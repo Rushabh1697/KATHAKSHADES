@@ -107,11 +107,6 @@ export default function Catalogue() {
           <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
             A glimpse into the vibrant world of Kathak Shades — our annual events, workshops, performances, and special celebrations.
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 bg-brand-maroon/10 border border-brand-maroon/20 rounded-full px-5 py-2">
-            <span className="font-sans text-brand-maroon text-sm font-semibold">
-              📸 For event photos &amp; videos: <a href="https://wa.me/919773602766" className="text-[#5C0612] font-bold underline hover:text-brand-maroon/70">WhatsApp +91 97736 02766</a>
-            </span>
-          </div>
         </div>
 
         {/* Categories */}

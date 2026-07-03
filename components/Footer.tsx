@@ -51,14 +51,14 @@ export default function Footer() {
               <div>
                 <p className="font-sans font-semibold text-brand-cream text-sm">🏛️ Dombivli East</p>
                 <p className="font-sans text-brand-cream/60 text-xs leading-relaxed mt-1">
-                  Regency Anantam, Kidz Kingdom<br />
+                  <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Regency Anantam, Kidz Kingdom</a><br />
                   Mon &amp; Wed · 7:00 PM – 8:00 PM
                 </p>
               </div>
               <div>
                 <p className="font-sans font-semibold text-brand-cream text-sm">🏛️ Thane West</p>
                 <p className="font-sans text-brand-cream/60 text-xs leading-relaxed mt-1">
-                  Kinder Hive, Vasant Vihar<br />
+                  <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Kinder Hive, Vasant Vihar</a><br />
                   Tue &amp; Thu · 7:00 PM – 8:00 PM
                 </p>
               </div>

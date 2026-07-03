@@ -62,7 +62,7 @@ export default function Contact() {
               <h3 className="font-serif text-xl font-bold text-brand-gold mb-1">🏛️ Dombivli East</h3>
               <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kidz Kingdom — Regency Anantam</p>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
-                Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)
+                <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)</a>
               </p>
               <div className="space-y-2 text-sm">
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold">📅 Days:</span> Every Monday &amp; Wednesday</p>
@@ -77,7 +77,7 @@ export default function Contact() {
               <h3 className="font-serif text-xl font-bold text-brand-gold mb-1">🏛️ Thane West</h3>
               <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kinder Hive — Vasant Vihar</p>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
-                Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610
+                <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610</a>
               </p>
               <div className="space-y-2 text-sm">
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold">📅 Days:</span> Every Tuesday &amp; Thursday</p>
