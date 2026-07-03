@@ -4,9 +4,10 @@ import RootLayoutClient from "@/components/RootLayoutClient";
 
 export const metadata: Metadata = {
   title: "Kathak Shades - Classical Dance Academy",
-  description: "The School of Kathak — Where tradition dances on. Learn classical Kathak dance at our studios in Dombivli East, Thane West, and Online.",
+  description:
+    "Amruta Todankar's School of Kathak — Where tradition dances on. Classical Kathak classes in Dombivli East & Thane West.",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 
@@ -22,9 +23,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-brand-cream">
-        <RootLayoutClient>
-          {children}
-        </RootLayoutClient>
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );

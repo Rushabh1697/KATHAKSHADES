@@ -5,102 +5,50 @@ import { useState } from 'react';
 const studios = [
   {
     id: 'dombivli',
-    name: 'Dombivli East Studio',
-    address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli East',
-    batches: [
-      {
-        title: 'Kids Batch',
-        level: 'Ages 5-12',
-        timing: 'Mon, Wed, Fri - 4:00 PM to 5:00 PM',
-        duration: '1 Hour',
-      },
-      {
-        title: 'Teen Batch',
-        level: 'Ages 13-18',
-        timing: 'Tue, Thu, Sat - 5:30 PM to 6:45 PM',
-        duration: '1.25 Hours',
-      },
-      {
-        title: 'Adults Batch',
-        level: 'Age 18+',
-        timing: 'Mon, Wed, Fri - 6:00 PM to 7:30 PM',
-        duration: '1.5 Hours',
-      },
-      {
-        title: 'Advanced Batch',
-        level: 'By Selection',
-        timing: 'Tue, Thu, Sat - 7:00 PM to 8:30 PM',
-        duration: '1.5 Hours',
-      },
+    name: 'Dombivli East',
+    venue: 'Kidz Kingdom — Regency Anantam',
+    address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
+    days: 'Every Monday & Wednesday',
+    timing: '7:00 PM – 8:00 PM',
+    contacts: [
+      { label: 'Kathak Shades', number: '+91 97736 02766' },
+      { label: 'Kidz Kingdom', number: '+91 96194 42555' },
     ],
+    color: 'bg-brand-maroon',
+    mapLink: 'https://maps.google.com/?q=Regency+Anantam+Dombivli+East',
+    whatsapp: '919773602766',
   },
   {
     id: 'thane',
-    name: 'Thane West Studio',
-    address: 'To be announced',
-    batches: [
-      {
-        title: 'Kids Batch',
-        level: 'Ages 5-12',
-        timing: 'Mon, Wed, Fri - 4:30 PM to 5:30 PM',
-        duration: '1 Hour',
-      },
-      {
-        title: 'Adults Batch',
-        level: 'Age 18+',
-        timing: 'Tue, Thu, Sat - 6:00 PM to 7:30 PM',
-        duration: '1.5 Hours',
-      },
-      {
-        title: 'Advanced Batch',
-        level: 'By Selection',
-        timing: 'Mon, Wed, Fri - 7:00 PM to 8:30 PM',
-        duration: '1.5 Hours',
-      },
+    name: 'Thane West',
+    venue: 'Kinder Hive — Vasant Vihar',
+    address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
+    days: 'Every Tuesday & Thursday',
+    timing: '7:00 PM – 8:00 PM',
+    contacts: [
+      { label: 'Kathak Shades', number: '+91 97736 02766' },
+      { label: 'Kinder Hive', number: '+91 98851 80738' },
     ],
-  },
-  {
-    id: 'online',
-    name: 'Online Interactive Batches',
-    address: 'Available worldwide via Zoom/Google Meet',
-    batches: [
-      {
-        title: 'Kids Online Batch',
-        level: 'Ages 5-12',
-        timing: 'Tue, Thu - 5:00 PM to 6:00 PM IST',
-        duration: '1 Hour',
-      },
-      {
-        title: 'Adults Online Batch',
-        level: 'Age 18+',
-        timing: 'Mon, Wed, Fri - 7:00 PM to 8:30 PM IST',
-        duration: '1.5 Hours',
-      },
-      {
-        title: 'Weekend Batch',
-        level: 'All Ages',
-        timing: 'Sat, Sun - 10:00 AM to 11:30 AM IST',
-        duration: '1.5 Hours',
-      },
-    ],
+    color: 'bg-[#0e4a72]',
+    mapLink: 'https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West',
+    whatsapp: '919773602766',
   },
 ];
 
 export default function Classes() {
   const [activeStudio, setActiveStudio] = useState('dombivli');
-
   const currentStudio = studios.find(s => s.id === activeStudio)!;
 
   return (
-    <section id="classes" className="py-20 bg-brand-cream">
+    <section id="classes" className="py-20 bg-brand-cream min-h-screen">
       <div className="container">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
-            Classes & Batches
-          </h2>
+        <div className="text-center mb-14 animate-slide-up">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
+            Classes &amp; Batches
+          </h1>
           <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
-            Choose from our expertly crafted programs across multiple locations, designed for all skill levels.
+            Join our expertly guided Kathak classes at two studio locations. All age groups welcome.
           </p>
         </div>
 
@@ -110,10 +58,10 @@ export default function Classes() {
             <button
               key={studio.id}
               onClick={() => setActiveStudio(studio.id)}
-              className={`px-6 py-3 rounded-full font-sans font-bold transition-all transform hover:scale-105 ${
+              className={`px-8 py-3 rounded-full font-sans font-bold transition-all transform hover:scale-105 shadow-md ${
                 activeStudio === studio.id
                   ? 'bg-brand-maroon text-brand-gold border-2 border-brand-gold'
-                  : 'bg-brand-gold/20 text-brand-maroon border-2 border-brand-maroon hover:bg-brand-gold/30'
+                  : 'bg-white text-brand-maroon border-2 border-brand-maroon/30 hover:border-brand-maroon'
               }`}
             >
               {studio.name}
@@ -121,74 +69,107 @@ export default function Classes() {
           ))}
         </div>
 
-        {/* Studio Address */}
-        <div className="text-center mb-12 p-4 bg-brand-maroon/10 rounded-lg border-2 border-brand-maroon/30">
-          <p className="font-sans text-sm text-brand-black/60">📍 Location:</p>
-          <p className="font-sans text-lg font-semibold text-brand-maroon">
-            {currentStudio.address}
-          </p>
-        </div>
+        {/* Studio Detail Card */}
+        <div className="max-w-4xl mx-auto">
+          <div className={`${currentStudio.color} rounded-3xl shadow-2xl overflow-hidden`}>
+            {/* Top Gold Bar */}
+            <div className="h-2 w-full bg-brand-gold" />
 
-        {/* Batches Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentStudio.batches.map((batch, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-lg border-4 border-brand-gold shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-1 overflow-hidden group"
-            >
-              {/* Header Bar */}
-              <div className="bg-brand-maroon h-2" />
+            <div className="p-8 md:p-12">
+              {/* Venue */}
+              <div className="mb-8">
+                <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest mb-1">Studio</p>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-brand-gold">{currentStudio.name}</h2>
+                <p className="font-sans text-brand-cream/80 text-lg mt-1">{currentStudio.venue}</p>
+              </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="font-serif text-xl font-bold text-brand-maroon mb-2">
-                  {batch.title}
-                </h3>
-
-                <div className="space-y-3 mb-4">
-                  <div>
-                    <p className="font-sans text-xs text-brand-black/50 uppercase tracking-wider">
-                      Level
-                    </p>
-                    <p className="font-sans text-sm font-semibold text-brand-maroon">
-                      {batch.level}
-                    </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left: Schedule */}
+                <div className="space-y-6">
+                  <div className="bg-white/10 rounded-2xl p-6 border border-brand-gold/20">
+                    <h3 className="font-serif text-brand-gold text-xl font-bold mb-4 flex items-center gap-2">
+                      <span>📅</span> Class Schedule
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <p className="font-sans text-brand-cream/60 text-xs uppercase tracking-wider mb-1">Class Days</p>
+                        <p className="font-sans text-brand-cream font-bold text-lg">{currentStudio.days}</p>
+                      </div>
+                      <div>
+                        <p className="font-sans text-brand-cream/60 text-xs uppercase tracking-wider mb-1">Timing</p>
+                        <p className="font-sans text-brand-cream font-bold text-lg">{currentStudio.timing}</p>
+                      </div>
+                    </div>
                   </div>
 
-                  <div>
-                    <p className="font-sans text-xs text-brand-black/50 uppercase tracking-wider">
-                      Schedule
-                    </p>
-                    <p className="font-sans text-sm font-semibold text-brand-maroon">
-                      {batch.timing}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="font-sans text-xs text-brand-black/50 uppercase tracking-wider">
-                      Duration
-                    </p>
-                    <p className="font-sans text-sm font-semibold text-brand-gold">
-                      {batch.duration}
-                    </p>
+                  {/* Contacts */}
+                  <div className="bg-white/10 rounded-2xl p-6 border border-brand-gold/20">
+                    <h3 className="font-serif text-brand-gold text-xl font-bold mb-4 flex items-center gap-2">
+                      <span>📞</span> Contact
+                    </h3>
+                    <div className="space-y-3">
+                      {currentStudio.contacts.map((c, i) => (
+                        <div key={i} className="flex items-center justify-between">
+                          <p className="font-sans text-brand-cream/70 text-sm">{c.label}</p>
+                          <a
+                            href={`tel:${c.number.replace(/\s/g, '')}`}
+                            className="font-sans text-brand-gold font-bold text-sm hover:underline"
+                          >
+                            {c.number}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* CTA Button */}
-                <button
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className="w-full bg-brand-gold text-brand-maroon py-2 rounded font-sans font-bold hover:bg-brand-gold/90 transition-colors text-sm"
-                >
-                  Enquire Now
-                </button>
+                {/* Right: Address + CTAs */}
+                <div className="space-y-6">
+                  <div className="bg-white/10 rounded-2xl p-6 border border-brand-gold/20">
+                    <h3 className="font-serif text-brand-gold text-xl font-bold mb-4 flex items-center gap-2">
+                      <span>📍</span> Address
+                    </h3>
+                    <p className="font-sans text-brand-cream/90 text-sm leading-relaxed">
+                      {currentStudio.address}
+                    </p>
+                    <a
+                      href={currentStudio.mapLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-4 text-brand-gold text-sm font-bold hover:underline"
+                    >
+                      View on Maps →
+                    </a>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="space-y-3">
+                    <a
+                      href={`https://wa.me/${currentStudio.whatsapp}?text=Hello%20Kathak%20Shades!%20I%20want%20to%20enquire%20about%20${currentStudio.name}%20classes.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-3 rounded-xl font-sans font-bold hover:bg-[#20bb5a] transition-colors"
+                    >
+                      <span>💬</span> Enquire on WhatsApp
+                    </a>
+                    <a
+                      href="/contact"
+                      className="w-full flex items-center justify-center gap-3 bg-brand-gold text-brand-maroon py-3 rounded-xl font-sans font-bold hover:bg-brand-gold/90 transition-colors"
+                    >
+                      📋 Fill Enquiry Form
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Info Note */}
+          <div className="mt-8 text-center p-5 bg-brand-maroon/10 rounded-2xl border-2 border-brand-maroon/20">
+            <p className="font-sans text-brand-maroon font-semibold">
+              🎓 Classes are open for all age groups. Contact us to know the batch that suits you best!
+            </p>
+          </div>
         </div>
       </div>
     </section>
