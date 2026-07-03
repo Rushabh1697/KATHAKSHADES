@@ -68,7 +68,7 @@ export default function Contact() {
             Get In Touch
           </h2>
           <p className="font-sans text-lg text-brand-cream max-w-2xl mx-auto">
-            Have questions? Connect with us through WhatsApp or visit our studios. We're here to help you begin your Kathak journey!
+            Have questions? Connect with us through WhatsApp or visit our studios. We&rsquo;re here to help you begin your Kathak journey!
           </p>
         </div>
 
@@ -233,7 +233,7 @@ export default function Contact() {
               </button>
 
               <p className="font-sans text-sm text-brand-black/60 text-center">
-                💬 You'll be redirected to WhatsApp to complete your inquiry
+                💬 You&rsquo;ll be redirected to WhatsApp to complete your inquiry
               </p>
             </form>
           </div>

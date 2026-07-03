@@ -66,7 +66,7 @@ export default function About() {
                   💝 Teaching Philosophy
                 </h3>
                 <p className="font-sans text-brand-black/80">
-                  "Kathak is not just a dance—it's a dialogue with tradition. I believe in nurturing each student's unique artistic voice while maintaining the purity and authenticity of this classical heritage. Through dedicated practice and spiritual connection, we transform movements into poetry and rhythm into meditation."
+                  &quot;Kathak is not just a dance&mdash;it&rsquo;s a dialogue with tradition. I believe in nurturing each student&rsquo;s unique artistic voice while maintaining the purity and authenticity of this classical heritage. Through dedicated practice and spiritual connection, we transform movements into poetry and rhythm into meditation.&quot;
                 </p>
               </div>
             </div>
