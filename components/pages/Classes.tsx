@@ -15,7 +15,7 @@ const studios = [
       { label: 'Kidz Kingdom', number: '+91 96194 42555' },
     ],
     color: 'bg-brand-maroon',
-    mapLink: 'https://maps.google.com/?q=Regency+Anantam+Dombivli+East',
+    mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
     whatsapp: '919773602766',
   },
   {

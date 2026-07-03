@@ -1,181 +1,122 @@
 export default function Books() {
-  const books = [
-    {
-      title: 'Kathak: An Introduction',
-      author: 'Sunil Kothari',
-      desc: 'The definitive reference on Kathak\'s history, gharanas, and technique. Essential for every serious student.',
-      price: '₹450',
-      level: 'All Levels',
-      emoji: '🏛️',
-      tag: 'Must Read',
-    },
-    {
-      title: 'Nritya Ratnavali',
-      author: 'Pundit Birju Maharaj',
-      desc: 'The legendary Birju Maharaj\'s personal guide to Kathak compositions, tukras, and parans.',
-      price: '₹650',
-      level: 'Intermediate+',
-      emoji: '🎭',
-      tag: 'Classic',
-    },
-    {
-      title: 'Taal Vigyan (Rhythm Science)',
-      author: 'Pt. Arvind Mulgaonkar',
-      desc: 'Comprehensive guide to Indian classical taal system — teen taal, ektaal, jhaptaal and more.',
-      price: '₹380',
-      level: 'Beginner+',
-      emoji: '🥁',
-      tag: 'Taal & Rhythm',
-    },
-    {
-      title: 'Abhinaya Darpana',
-      author: 'Nandikesvara (translated)',
-      desc: 'The ancient Sanskrit text on classical Indian dance expression — mudras, hastas, and emotions.',
-      price: '₹520',
-      level: 'Advanced',
-      emoji: '🪷',
-      tag: 'Classical Text',
-    },
-    {
-      title: 'Laya & Taal: A Practical Guide',
-      author: 'Deepak S. Raja',
-      desc: 'Learn to understand and count rhythm cycles used in Hindustani classical dance and music.',
-      price: '₹320',
-      level: 'Beginner',
-      emoji: '🎵',
-      tag: 'Practical',
-    },
-    {
-      title: 'Kathak Notation Manual Vol. 1',
-      author: 'Amruta Todankar',
-      desc: 'Handcrafted notation guide for foundational Kathak sequences by our own Guru Amruta Todankar.',
-      price: '₹250',
-      level: 'Beginner',
-      emoji: '📝',
-      tag: 'In-House',
-    },
-    {
-      title: 'Ghungroo Ki Awaaz',
-      author: 'Birju Maharaj (Hindi)',
-      desc: 'An autobiographical journey through Kathak by the master himself. Inspiring and deeply personal.',
-      price: '₹400',
-      level: 'All Levels',
-      emoji: '🔔',
-      tag: 'Autobiography',
-    },
-    {
-      title: 'Indian Classical Dance — An Overview',
-      author: 'Mohan Khokar',
-      desc: 'A beautifully illustrated overview of all 8 classical dance forms including Kathak\'s unique place.',
-      price: '₹580',
-      level: 'All Levels',
-      emoji: '🌺',
-      tag: 'Reference',
-    },
-  ];
-
-  const tagColors: Record<string, string> = {
-    'Must Read': 'bg-brand-gold text-brand-maroon',
-    'Classic': 'bg-purple-700 text-white',
-    'Taal & Rhythm': 'bg-blue-700 text-white',
-    'Classical Text': 'bg-rose-700 text-white',
-    'Practical': 'bg-teal-700 text-white',
-    'In-House': 'bg-brand-maroon text-brand-gold',
-    'Autobiography': 'bg-orange-700 text-white',
-    'Reference': 'bg-indigo-700 text-white',
-  };
-
-  const levels: Record<string, string> = {
-    'All Levels': 'text-green-700',
-    'Beginner': 'text-teal-700',
-    'Beginner+': 'text-teal-600',
-    'Intermediate+': 'text-amber-700',
-    'Advanced': 'text-red-700',
-  };
-
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
-      <div className="container">
+      <div className="container max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <p className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
-            Kathak Shades Library
+            Kathak Shades Publication
           </p>
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
             Books &amp; Resources
           </h1>
           <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
-            Deepen your understanding of Kathak with our curated collection — from classical texts to rhythm manuals and inspiring biographies.
+            Our in-house Kathak Foundation Handbook — your perfect companion from the very first step to a strong technique.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 bg-brand-maroon/10 border border-brand-maroon/20 rounded-full px-5 py-2">
-            <span className="text-brand-maroon text-sm font-sans font-semibold">
-              📞 To order: <a href="https://wa.me/919773602766" className="text-brand-gold font-bold hover:underline">WhatsApp +91 97736 02766</a>
+            <span className="font-sans text-brand-maroon text-sm font-semibold">
+              📞 To order: <a href="https://wa.me/919773602766" className="text-brand-maroon font-bold underline hover:text-brand-maroon/70">WhatsApp +91 97736 02766</a>
             </span>
           </div>
         </div>
 
-        {/* Books Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {books.map((book, idx) => (
-            <div
-              key={idx}
-              className="bg-brand-cream rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group border border-brand-maroon/10 flex flex-col"
-            >
-              {/* Book Spine Accent */}
-              <div className="h-2 bg-gradient-to-r from-brand-gold to-brand-maroon" />
+        {/* Book Feature Card */}
+        <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+            {/* Left — Book Visual */}
+            <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-12 min-h-[420px] relative overflow-hidden">
+              {/* Decorative circles */}
+              <div className="absolute top-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full -translate-x-24 -translate-y-24" />
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full translate-x-32 translate-y-32" />
 
-              {/* Icon Area */}
-              <div className="bg-brand-maroon flex items-center justify-center h-28 group-hover:bg-brand-maroon/90 transition-colors">
-                <span className="text-5xl">{book.emoji}</span>
-              </div>
-
-              {/* Content */}
-              <div className="p-5 flex flex-col flex-1">
-                <div className="flex items-start justify-between gap-2 mb-1">
-                  <h3 className="font-serif text-base font-bold text-brand-maroon leading-snug">{book.title}</h3>
+              {/* Book mockup */}
+              <div className="relative z-10 w-44 shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                {/* Book cover */}
+                <div className="bg-gradient-to-b from-[#2a0a0d] to-[#0d0204] rounded-r-lg rounded-l-sm border-l-8 border-[#1a0205] overflow-hidden" style={{aspectRatio: '3/4'}}>
+                  <div className="p-5 h-full flex flex-col justify-between">
+                    <div className="text-center">
+                      <p className="font-serif text-brand-gold text-xl font-bold leading-tight mb-1">नृत्यारंभ...</p>
+                      <p className="font-sans text-brand-gold/60 text-[9px] italic leading-snug">...Unfolding the Journey of Kathak</p>
+                    </div>
+                    {/* Decorative image - ghungroos */}
+                    <div className="flex-1 flex items-center justify-center py-3">
+                      <span className="text-5xl opacity-70">🔔</span>
+                    </div>
+                    <div className="border border-brand-gold/30 rounded p-2 text-center">
+                      <p className="font-sans text-brand-gold/80 text-[9px] font-bold uppercase tracking-widest">Foundation Handbook</p>
+                    </div>
+                  </div>
                 </div>
-                <p className="font-sans text-brand-black/50 text-xs mb-2 italic">{book.author}</p>
-
-                <div className="flex items-center gap-2 mb-3">
-                  <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${tagColors[book.tag] || 'bg-gray-200 text-gray-700'}`}>
-                    {book.tag}
-                  </span>
-                  <span className={`text-xs font-semibold font-sans ${levels[book.level] || 'text-gray-600'}`}>
-                    {book.level}
-                  </span>
-                </div>
-
-                <p className="font-sans text-brand-black/70 text-xs leading-relaxed mb-4 flex-1">{book.desc}</p>
-
-                <div className="flex items-center justify-between mt-auto">
-                  <p className="font-sans text-brand-gold font-bold text-base">{book.price}</p>
-                  <a
-                    href={`https://wa.me/919773602766?text=Hi!%20I%27m%20interested%20in%20the%20book%20%22${encodeURIComponent(book.title)}%22%20by%20${encodeURIComponent(book.author)}%20from%20Kathak%20Shades.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-brand-maroon text-brand-gold px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-maroon/90 transition-colors"
-                  >
-                    Order
-                  </a>
-                </div>
+                {/* Book spine */}
+                <div className="absolute left-0 top-0 bottom-0 w-2 bg-[#1a0205] rounded-l" />
               </div>
             </div>
-          ))}
+
+            {/* Right — Book Details */}
+            <div className="p-10 flex flex-col justify-center">
+              {/* Hindi title */}
+              <h2 className="font-serif text-4xl font-bold text-brand-maroon mb-1" style={{fontFamily: 'serif'}}>
+                नृत्यारंभ...
+              </h2>
+              <p className="font-sans text-brand-black/50 text-sm italic mb-6">
+                &ldquo;...Unfolding the Journey of Kathak&rdquo;
+              </p>
+
+              {/* Description */}
+              <p className="font-sans text-brand-black/80 text-base leading-relaxed mb-6">
+                From the first step in Kathak to a strong foundation in technique — this book is your <em className="text-brand-maroon font-semibold">perfect companion</em>. A comprehensive Foundation Handbook crafted for every beginner and student of classical Kathak.
+              </p>
+
+              {/* Edition Status */}
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                  <span className="text-xl">🙏</span>
+                  <div>
+                    <p className="font-sans text-red-700 font-bold text-sm">1st &amp; 2nd Editions — Sold Out!</p>
+                    <p className="font-sans text-red-500/70 text-xs">Due to overwhelming demand</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                  <span className="text-xl">📖</span>
+                  <div>
+                    <p className="font-sans text-green-700 font-bold text-sm">3rd Edition — Coming Soon!</p>
+                    <p className="font-sans text-green-600/70 text-xs">Pre-book your copy today</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Price + CTA */}
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price</p>
+                  <p className="font-serif text-3xl font-bold text-brand-gold">₹350</p>
+                </div>
+                <a
+                  href="https://wa.me/919773602766?text=Hi!%20I%20would%20like%20to%20pre-book%20a%20copy%20of%20%22%E0%A4%A8%E0%A5%83%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A4%82%E0%A4%AD%22%20Foundation%20Handbook%20(3rd%20Edition).%20Price%20%E2%82%B9350."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-brand-maroon text-brand-gold px-7 py-3 rounded-full font-sans font-bold hover:bg-brand-maroon/90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
+                >
+                  📖 Book Your Copy
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Suggest a Book */}
-        <div className="text-center bg-brand-maroon rounded-2xl p-8">
-          <p className="font-serif text-2xl font-bold text-brand-gold mb-3">Can&rsquo;t find what you&rsquo;re looking for?</p>
-          <p className="font-sans text-brand-cream/80 max-w-lg mx-auto mb-5">
-            We regularly update our library. Suggest a book or resource and we&rsquo;ll try to source it for you.
+        {/* Bottom Note */}
+        <div className="text-center mt-10 p-6 bg-brand-maroon/5 rounded-2xl border border-brand-maroon/10">
+          <p className="font-sans text-brand-maroon font-semibold">
+            🎓 This handbook is recommended for all enrolled students at Kathak Shades.
+            Contact us on WhatsApp to reserve your copy before the 3rd edition sells out!
           </p>
           <a
-            href="https://wa.me/919773602766?text=Hi!%20I%20have%20a%20book%20suggestion%20for%20Kathak%20Shades."
+            href="https://wa.me/919773602766?text=Hi!%20I%20want%20to%20know%20more%20about%20the%20Nrityarambh%20Foundation%20Handbook."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-brand-gold text-brand-maroon px-8 py-3 rounded-full font-bold hover:bg-brand-gold/90 transition-colors"
+            className="inline-block mt-4 bg-[#25D366] text-white px-6 py-3 rounded-full font-bold hover:bg-[#20bb5a] transition-colors"
           >
-            💬 Suggest on WhatsApp
+            💬 Chat on WhatsApp
           </a>
         </div>
       </div>

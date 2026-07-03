@@ -1,101 +1,96 @@
 export default function Catalogue() {
-  const items = [
+  const categories = [
     {
-      category: 'Costumes',
-      emoji: '👘',
-      products: [
+      label: 'Annual Events',
+      emoji: '🎭',
+      items: [
         {
-          name: 'Classic Anarkali Set',
-          desc: 'Traditional Kathak anarkali in deep maroon with gold zari embroidery. Available in all sizes.',
-          price: '₹2,800 – ₹4,200',
-          tag: 'Best Seller',
+          title: 'Varshik Utsav 2024',
+          desc: 'Annual day celebration showcasing students\' performances across all batches.',
+          type: 'Annual Event',
         },
         {
-          name: 'Lehenga Choli Set',
-          desc: 'Elegant lehenga with matching choli and dupatta. Rich silk fabric, intricate border work.',
-          price: '₹3,500 – ₹6,000',
-          tag: 'Premium',
+          title: 'Nritya Sangam 2023',
+          desc: 'Grand stage performance featuring advanced students in full classical Kathak compositions.',
+          type: 'Annual Event',
         },
         {
-          name: 'Practice Churidar Set',
-          desc: 'Comfortable daily-practice outfit. Breathable cotton with minimal embroidery.',
-          price: '₹800 – ₹1,400',
-          tag: 'Practice',
-        },
-        {
-          name: 'Ghagra Set (Kids)',
-          desc: 'Vibrant ghagra choli for young dancers. Lightweight and comfortable for children.',
-          price: '₹1,200 – ₹2,000',
-          tag: 'Kids',
+          title: 'Guru Purnima Celebration',
+          desc: 'A sacred event dedicated to our gurus — featuring devotional Kathak performances.',
+          type: 'Annual Event',
         },
       ],
     },
     {
-      category: 'Ghungroos',
-      emoji: '🔔',
-      products: [
+      label: 'Workshops',
+      emoji: '🎓',
+      items: [
         {
-          name: 'Brass Ghungroos (100 bells)',
-          desc: 'High-quality brass ghungroos on strong cotton padding. Perfect resonance for Kathak.',
-          price: '₹650 – ₹900',
-          tag: 'Professional',
+          title: 'Taal Workshop — Teen Taal',
+          desc: 'Intensive one-day workshop on Teen Taal theory, counting, and practical application.',
+          type: 'Workshop',
         },
         {
-          name: 'Brass Ghungroos (50 bells)',
-          desc: 'Ideal for beginners and children. Comfortable padding, durable knotting.',
-          price: '₹350 – ₹500',
-          tag: 'Beginner',
+          title: 'Abhinaya & Expression Workshop',
+          desc: 'Focused session on facial expressions, mudras, and storytelling in Kathak.',
+          type: 'Workshop',
         },
         {
-          name: 'Silver-Tone Ghungroos (100 bells)',
-          desc: 'Premium silver-coated bells with crisp sound. For stage performances.',
-          price: '₹1,100 – ₹1,600',
-          tag: 'Stage',
+          title: 'Costume & Makeup Workshop',
+          desc: 'Hands-on session for students on stage costume, jewellery, and makeup techniques.',
+          type: 'Workshop',
         },
       ],
     },
     {
-      category: 'Accessories',
-      emoji: '💎',
-      products: [
+      label: 'Performances',
+      emoji: '🌟',
+      items: [
         {
-          name: 'Kathak Jewellery Set',
-          desc: 'Mathapatti, earrings, necklace and bangles set in gold finish. Traditional stage look.',
-          price: '₹1,500 – ₹3,000',
-          tag: 'Stage',
+          title: 'Cultural Festival — Dombivli',
+          desc: 'Kathak Shades represented at the city-level cultural festival with a group performance.',
+          type: 'Performance',
         },
         {
-          name: 'Bindi & Makeup Kit',
-          desc: 'Stage-grade face makeup and bindi collection curated for classical dancers.',
-          price: '₹400 – ₹900',
-          tag: 'Essentials',
+          title: 'Thane Arts Festival',
+          desc: 'Students performed at Thane\'s regional arts festival to great applause.',
+          type: 'Performance',
         },
         {
-          name: 'Hair Accessories Set',
-          desc: 'Traditional gajra (floral), clips and pins for classic Kathak stage hair styling.',
-          price: '₹250 – ₹600',
-          tag: 'Essentials',
+          title: 'School Outreach Program',
+          desc: 'Classical Kathak demonstration and mini-workshop conducted at local schools.',
+          type: 'Performance',
+        },
+      ],
+    },
+    {
+      label: 'Special Occasions',
+      emoji: '✨',
+      items: [
+        {
+          title: 'Diwali Celebration 2024',
+          desc: 'Festive Kathak performances and in-house celebration with students and families.',
+          type: 'Special',
         },
         {
-          name: 'Dance Bag',
-          desc: 'Spacious tote in maroon & gold. Designed to carry costume, ghungroos and accessories.',
-          price: '₹700 – ₹1,200',
-          tag: 'Utility',
+          title: 'Navratri Garba & Kathak Night',
+          desc: 'A fusion event blending classical Kathak with the festive spirit of Navratri.',
+          type: 'Special',
+        },
+        {
+          title: 'Year-End Recital',
+          desc: 'Intimate recital where each student performs their term\'s learnings for family.',
+          type: 'Special',
         },
       ],
     },
   ];
 
   const tagColors: Record<string, string> = {
-    'Best Seller': 'bg-brand-gold text-brand-maroon',
-    'Premium': 'bg-purple-700 text-white',
-    'Practice': 'bg-green-700 text-white',
-    'Kids': 'bg-pink-600 text-white',
-    'Professional': 'bg-brand-maroon text-brand-gold',
-    'Beginner': 'bg-teal-700 text-white',
-    'Stage': 'bg-indigo-700 text-white',
-    'Essentials': 'bg-amber-700 text-white',
-    'Utility': 'bg-gray-700 text-white',
+    'Annual Event': 'bg-brand-gold text-brand-maroon',
+    'Workshop': 'bg-blue-700 text-white',
+    'Performance': 'bg-purple-700 text-white',
+    'Special': 'bg-rose-600 text-white',
   };
 
   return (
@@ -104,65 +99,67 @@ export default function Catalogue() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
-            Kathak Shades Store
+            Kathak Shades
           </p>
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
-            Catalogue
+            Events &amp; Gallery
           </h1>
           <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
-            Everything a Kathak dancer needs — from practice costumes to stage-ready outfits, ghungroos, and accessories.
+            A glimpse into the vibrant world of Kathak Shades — our annual events, workshops, performances, and special celebrations.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 bg-brand-maroon/10 border border-brand-maroon/20 rounded-full px-5 py-2">
-            <span className="text-brand-maroon text-sm font-sans font-semibold">
-              📞 To order or enquire: <a href="https://wa.me/919773602766" className="text-brand-gold font-bold hover:underline">WhatsApp +91 97736 02766</a>
+            <span className="font-sans text-brand-maroon text-sm font-semibold">
+              📸 For event photos &amp; videos: <a href="https://wa.me/919773602766" className="text-[#5C0612] font-bold underline hover:text-brand-maroon/70">WhatsApp +91 97736 02766</a>
             </span>
           </div>
         </div>
 
         {/* Categories */}
-        {items.map(cat => (
-          <div key={cat.category} className="mb-16">
+        {categories.map(cat => (
+          <div key={cat.label} className="mb-16">
             <div className="flex items-center gap-4 mb-8">
               <span className="text-4xl">{cat.emoji}</span>
               <div>
-                <h2 className="font-serif text-3xl font-bold text-brand-maroon">{cat.category}</h2>
+                <h2 className="font-serif text-3xl font-bold text-brand-maroon">{cat.label}</h2>
                 <div className="h-1 w-16 bg-brand-gold rounded mt-1" />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {cat.products.map((product, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cat.items.map((item, idx) => (
                 <div
                   key={idx}
                   className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group border border-brand-maroon/10"
                 >
-                  {/* Top Color Bar */}
-                  <div className="h-2 bg-gradient-to-r from-brand-maroon to-brand-gold" />
-
-                  {/* Decorative icon area */}
-                  <div className="bg-brand-maroon/5 flex items-center justify-center h-28 group-hover:bg-brand-maroon/10 transition-colors">
-                    <span className="text-5xl opacity-60">{cat.emoji}</span>
-                  </div>
-
-                  <div className="p-5">
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <h3 className="font-serif text-lg font-bold text-brand-maroon leading-tight">{product.name}</h3>
-                      <span className={`text-xs font-bold px-2 py-1 rounded-full whitespace-nowrap ${tagColors[product.tag] || 'bg-gray-200 text-gray-700'}`}>
-                        {product.tag}
+                  {/* Photo Placeholder */}
+                  <div className="relative bg-gradient-to-br from-brand-maroon via-brand-maroon/80 to-brand-black h-48 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <span className="text-7xl opacity-30 group-hover:scale-110 transition-transform duration-500">{cat.emoji}</span>
+                    <div className="absolute bottom-3 left-3">
+                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[item.type]}`}>
+                        {item.type}
                       </span>
                     </div>
-                    <p className="font-sans text-brand-black/70 text-sm leading-relaxed mb-4">{product.desc}</p>
-                    <div className="flex items-center justify-between">
-                      <p className="font-sans text-brand-gold font-bold text-base">{product.price}</p>
-                      <a
-                        href={`https://wa.me/919773602766?text=Hi!%20I%27m%20interested%20in%20${encodeURIComponent(product.name)}%20from%20the%20Kathak%20Shades%20Catalogue.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-brand-maroon text-brand-gold px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-maroon/90 transition-colors"
-                      >
-                        Enquire
-                      </a>
+                    {/* Photo coming soon overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-maroon/60">
+                      <p className="font-sans text-brand-gold font-bold text-sm text-center px-4">
+                        📸 Photos available on WhatsApp
+                      </p>
                     </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5">
+                    <h3 className="font-serif text-lg font-bold text-brand-maroon mb-2 leading-snug">{item.title}</h3>
+                    <p className="font-sans text-brand-black/70 text-sm leading-relaxed mb-4">{item.desc}</p>
+                    <a
+                      href={`https://wa.me/919773602766?text=Hi!%20I%27d%20like%20to%20see%20photos%20from%20${encodeURIComponent(item.title)}%20by%20Kathak%20Shades.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-brand-maroon text-brand-gold px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-maroon/90 transition-colors"
+                    >
+                      📸 View Photos
+                    </a>
                   </div>
                 </div>
               ))}
@@ -170,19 +167,20 @@ export default function Catalogue() {
           </div>
         ))}
 
-        {/* Bottom Note */}
+        {/* Share CTA */}
         <div className="text-center bg-brand-maroon rounded-2xl p-8 mt-4">
-          <p className="font-serif text-2xl font-bold text-brand-gold mb-3">Custom Orders Welcome!</p>
+          <p className="font-serif text-2xl font-bold text-brand-gold mb-3">Want to Share Your Moment?</p>
           <p className="font-sans text-brand-cream/80 max-w-lg mx-auto mb-5">
-            Need a specific colour, size, or custom design? We accept custom costume orders for performances, recitals, and exams.
+            If you have photos or videos from a Kathak Shades event, we&rsquo;d love to feature them here!
+            Reach out to us on WhatsApp.
           </p>
           <a
-            href="https://wa.me/919773602766?text=Hi!%20I%20would%20like%20to%20place%20a%20custom%20order."
+            href="https://wa.me/919773602766?text=Hi!%20I%20have%20photos%20from%20a%20Kathak%20Shades%20event%20I%27d%20like%20to%20share."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-brand-gold text-brand-maroon px-8 py-3 rounded-full font-bold hover:bg-brand-gold/90 transition-colors"
           >
-            💬 Chat on WhatsApp
+            💬 Share on WhatsApp
           </a>
         </div>
       </div>
