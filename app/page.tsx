@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/pages/Hero";
+import { Landmark, CalendarDays, Clock, Users, Shirt, BookOpen, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-40 h-40 bg-brand-gold/10 rounded-full -translate-y-20 translate-x-20 group-hover:scale-150 transition-transform duration-700" />
               <div className="relative p-8">
                 <div className="w-14 h-14 bg-brand-gold/20 rounded-full flex items-center justify-center mb-6 border-2 border-brand-gold/40">
-                  <span className="text-2xl">🏛️</span>
+                  <Landmark className="w-7 h-7 text-brand-gold" />
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-brand-gold mb-2">Dombivli East</h3>
                 <p className="font-sans text-brand-gold/60 text-sm uppercase tracking-widest mb-4">Regency Anantam · Kidz Kingdom</p>
@@ -41,11 +42,11 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col gap-2 mb-8">
                   <div className="flex items-center gap-3">
-                    <span className="text-brand-gold text-lg">📅</span>
+                    <CalendarDays className="w-5 h-5 text-brand-gold" />
                     <span className="font-sans text-brand-cream font-semibold">Monday &amp; Wednesday</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-brand-gold text-lg">🕖</span>
+                    <Clock className="w-5 h-5 text-brand-gold" />
                     <span className="font-sans text-brand-cream font-semibold">7:00 PM – 8:00 PM</span>
                   </div>
                 </div>
@@ -63,7 +64,7 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-40 h-40 bg-brand-gold/10 rounded-full -translate-y-20 translate-x-20 group-hover:scale-150 transition-transform duration-700" />
               <div className="relative p-8">
                 <div className="w-14 h-14 bg-brand-gold/20 rounded-full flex items-center justify-center mb-6 border-2 border-brand-gold/40">
-                  <span className="text-2xl">🏛️</span>
+                  <Landmark className="w-7 h-7 text-brand-gold" />
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-brand-gold mb-2">Thane West</h3>
                 <p className="font-sans text-brand-gold/60 text-sm uppercase tracking-widest mb-4">Kinder Hive · Vasant Vihar</p>
@@ -72,11 +73,11 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col gap-2 mb-8">
                   <div className="flex items-center gap-3">
-                    <span className="text-brand-gold text-lg">📅</span>
+                    <CalendarDays className="w-5 h-5 text-brand-gold" />
                     <span className="font-sans text-brand-cream font-semibold">Tuesday &amp; Thursday</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-brand-gold text-lg">🕖</span>
+                    <Clock className="w-5 h-5 text-brand-gold" />
                     <span className="font-sans text-brand-cream font-semibold">7:00 PM – 8:00 PM</span>
                   </div>
                 </div>
@@ -108,28 +109,28 @@ export default function Home() {
             {[
               {
                 href: '/classes',
-                icon: '💃',
+                icon: <Users className="w-10 h-10 text-brand-gold" />,
                 title: 'Classes',
                 desc: 'Real-time batches at Dombivli & Thane West studios.',
                 color: 'bg-brand-maroon',
               },
               {
                 href: '/catalogue',
-                icon: '👘',
+                icon: <Shirt className="w-10 h-10 text-brand-gold" />,
                 title: 'Catalogue',
                 desc: 'Browse premium Kathak costumes, ghungroos & accessories.',
                 color: 'bg-[#7B3F00]',
               },
               {
                 href: '/books',
-                icon: '📚',
+                icon: <BookOpen className="w-10 h-10 text-brand-gold" />,
                 title: 'Books',
                 desc: 'Curated Kathak learning books, taal manuals & music theory.',
                 color: 'bg-[#1a4a3a]',
               },
               {
                 href: '/contact',
-                icon: '📞',
+                icon: <Phone className="w-10 h-10 text-brand-gold" />,
                 title: 'Contact',
                 desc: 'Reach us on WhatsApp or visit our studios.',
                 color: 'bg-[#3d1a5c]',
@@ -140,7 +141,7 @@ export default function Home() {
                 href={item.href}
                 className={`${item.color} rounded-2xl p-7 flex flex-col gap-4 group hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-xl`}
               >
-                <div className="text-4xl">{item.icon}</div>
+                <div>{item.icon}</div>
                 <h3 className="font-serif text-xl font-bold text-brand-gold">{item.title}</h3>
                 <p className="font-sans text-brand-cream/80 text-sm leading-relaxed">{item.desc}</p>
                 <span className="font-sans text-brand-gold text-sm font-bold group-hover:underline mt-auto">
@@ -160,7 +161,7 @@ export default function Home() {
             Amruta Todankar&rsquo;s School of Kathak &mdash; Where tradition dances on.
           </p>
           <p className="font-sans text-brand-cream/50 text-xs mt-4">
-            📞 +91 97736 02766 &nbsp;|&nbsp; Dombivli East &amp; Thane West
+            <span className="flex items-center justify-center gap-2"><Phone className="w-3.5 h-3.5 text-brand-gold" /> +91 97736 02766</span> &nbsp;|&nbsp; Dombivli East &amp; Thane West
           </p>
         </div>
       </footer>

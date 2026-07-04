@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { Landmark, CalendarDays, Clock, Phone, Globe, MessageCircle, Camera, Share2, Play } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -59,43 +60,43 @@ export default function Contact() {
           <div className="space-y-6 animate-slide-up">
             {/* Dombivli */}
             <div className="bg-white/10 border-2 border-brand-gold/40 p-7 rounded-2xl">
-              <h3 className="font-serif text-xl font-bold text-brand-gold mb-1">🏛️ Dombivli East</h3>
+              <h3 className="font-serif text-xl font-bold text-brand-gold mb-1 flex items-center gap-2"><Landmark className="w-5 h-5" /> Dombivli East</h3>
               <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kidz Kingdom — Regency Anantam</p>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
                 <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)</a>
               </p>
               <div className="space-y-2 text-sm">
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">📅 Days:</span> Every Monday &amp; Wednesday</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">🕖 Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">📞 Kathak Shades:</span> +91 97736 02766</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">📞 Kidz Kingdom:</span> +91 96194 42555</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kathak Shades:</span> +91 97736 02766</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kidz Kingdom:</span> +91 96194 42555</p>
               </div>
             </div>
 
             {/* Thane */}
             <div className="bg-white/10 border-2 border-brand-gold/40 p-7 rounded-2xl">
-              <h3 className="font-serif text-xl font-bold text-brand-gold mb-1">🏛️ Thane West</h3>
+              <h3 className="font-serif text-xl font-bold text-brand-gold mb-1 flex items-center gap-2"><Landmark className="w-5 h-5" /> Thane West</h3>
               <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kinder Hive — Vasant Vihar</p>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
                 <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610</a>
               </p>
               <div className="space-y-2 text-sm">
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">📅 Days:</span> Every Tuesday &amp; Thursday</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">🕖 Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">📞 Kathak Shades:</span> +91 97736 02766</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold">📞 Kinder Hive:</span> +91 98851 80738</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Tuesday &amp; Thursday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kathak Shades:</span> +91 97736 02766</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kinder Hive:</span> +91 98851 80738</p>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="bg-white/10 border-2 border-brand-gold/40 p-7 rounded-2xl">
-              <h3 className="font-serif text-xl font-bold text-brand-gold mb-5">🌐 Follow Us</h3>
+              <h3 className="font-serif text-xl font-bold text-brand-gold mb-5 flex items-center gap-2"><Globe className="w-5 h-5" /> Follow Us</h3>
               <div className="flex gap-4 flex-wrap">
                 {[
-                  { label: 'WhatsApp', href: 'https://wa.me/919773602766', icon: '💬' },
-                  { label: 'Instagram', href: 'https://instagram.com', icon: '📷' },
-                  { label: 'Facebook', href: 'https://facebook.com', icon: 'f' },
-                  { label: 'YouTube', href: 'https://youtube.com', icon: '▶' },
+                  { label: 'WhatsApp', href: 'https://wa.me/919773602766', icon: <MessageCircle className="w-5 h-5" /> },
+                  { label: 'Camera', href: 'https://instagram.com', icon: <Camera className="w-5 h-5" /> },
+                  { label: 'Share2', href: 'https://facebook.com', icon: <Share2 className="w-5 h-5" /> },
+                  { label: 'Play', href: 'https://youtube.com', icon: <Play className="w-5 h-5" /> },
                 ].map(s => (
                   <a
                     key={s.label}
@@ -171,7 +172,7 @@ export default function Contact() {
                 disabled={isSubmitting}
                 className="w-full bg-brand-maroon text-brand-gold px-6 py-4 rounded-xl font-sans font-bold text-lg hover:bg-brand-maroon/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
               >
-                {isSubmitting ? 'Connecting...' : '💬 Contact via WhatsApp'}
+                {isSubmitting ? 'Connecting...' : '<span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Contact via WhatsApp</span>'}
               </button>
               <p className="font-sans text-sm text-brand-black/60 text-center">
                 You&rsquo;ll be redirected to WhatsApp to complete your enquiry

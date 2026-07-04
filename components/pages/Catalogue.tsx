@@ -1,8 +1,10 @@
+import { Star, GraduationCap, Sparkles, Camera, MessageCircle } from 'lucide-react';
+
 export default function Catalogue() {
   const categories = [
     {
       label: 'Annual Events',
-      emoji: '🎭',
+      emoji: <Star className="w-10 h-10 text-brand-maroon" />,
       items: [
         {
           title: 'Varshik Utsav 2024',
@@ -23,7 +25,7 @@ export default function Catalogue() {
     },
     {
       label: 'Workshops',
-      emoji: '🎓',
+      emoji: <GraduationCap className="w-10 h-10 text-brand-maroon" />,
       items: [
         {
           title: 'Taal Workshop — Teen Taal',
@@ -44,7 +46,7 @@ export default function Catalogue() {
     },
     {
       label: 'Performances',
-      emoji: '🌟',
+      emoji: <Sparkles className="w-10 h-10 text-brand-maroon" />,
       items: [
         {
           title: 'Cultural Festival — Dombivli',
@@ -65,7 +67,7 @@ export default function Catalogue() {
     },
     {
       label: 'Special Occasions',
-      emoji: '✨',
+      emoji: <Sparkles className="w-10 h-10 text-brand-maroon" />,
       items: [
         {
           title: 'Diwali Celebration 2024',
@@ -113,7 +115,7 @@ export default function Catalogue() {
         {categories.map(cat => (
           <div key={cat.label} className="mb-16">
             <div className="flex items-center gap-4 mb-8">
-              <span className="text-4xl">{cat.emoji}</span>
+              <div className="flex items-center justify-center w-10 h-10">{cat.emoji}</div>
               <div>
                 <h2 className="font-serif text-3xl font-bold text-brand-maroon">{cat.label}</h2>
                 <div className="h-1 w-16 bg-brand-gold rounded mt-1" />
@@ -129,7 +131,7 @@ export default function Catalogue() {
                   {/* Photo Placeholder */}
                   <div className="relative bg-gradient-to-br from-brand-maroon via-brand-maroon/80 to-brand-black h-48 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    <span className="text-7xl opacity-30 group-hover:scale-110 transition-transform duration-500">{cat.emoji}</span>
+                    <div className="opacity-30 group-hover:scale-110 transition-transform duration-500 [&>svg]:w-20 [&>svg]:h-20 [&>svg]:text-brand-gold">{cat.emoji}</div>
                     <div className="absolute bottom-3 left-3">
                       <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[item.type]}`}>
                         {item.type}
@@ -138,7 +140,7 @@ export default function Catalogue() {
                     {/* Photo coming soon overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-maroon/60">
                       <p className="font-sans text-brand-gold font-bold text-sm text-center px-4">
-                        📸 Photos available on WhatsApp
+                        <span className="flex items-center justify-center gap-2"><Camera className="w-4 h-4" /> Photos available on WhatsApp</span>
                       </p>
                     </div>
                   </div>
@@ -153,7 +155,7 @@ export default function Catalogue() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-brand-maroon text-brand-gold px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-maroon/90 transition-colors"
                     >
-                      📸 View Photos
+                      <span className="flex items-center gap-2"><Camera className="w-4 h-4" /> View Photos</span>
                     </a>
                   </div>
                 </div>
@@ -175,7 +177,7 @@ export default function Catalogue() {
             rel="noopener noreferrer"
             className="inline-block bg-brand-gold text-brand-maroon px-8 py-3 rounded-full font-bold hover:bg-brand-gold/90 transition-colors"
           >
-            💬 Share on WhatsApp
+            <span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Share on WhatsApp</span>
           </a>
         </div>
       </div>

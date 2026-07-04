@@ -1,3 +1,5 @@
+import { Phone, Bell, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
+
 export default function Books() {
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
@@ -15,7 +17,7 @@ export default function Books() {
           </p>
           <div className="mt-6 inline-flex items-center gap-2 bg-brand-maroon/10 border border-brand-maroon/20 rounded-full px-5 py-2">
             <span className="font-sans text-brand-maroon text-sm font-semibold">
-              📞 To order: <a href="https://wa.me/919773602766" className="text-brand-maroon font-bold underline hover:text-brand-maroon/70">WhatsApp +91 97736 02766</a>
+              <Phone className="w-4 h-4 inline-block -mt-0.5" /> To order: <a href="https://wa.me/919773602766" className="text-brand-maroon font-bold underline hover:text-brand-maroon/70">WhatsApp +91 97736 02766</a>
             </span>
           </div>
         </div>
@@ -40,7 +42,7 @@ export default function Books() {
                     </div>
                     {/* Decorative image - ghungroos */}
                     <div className="flex-1 flex items-center justify-center py-3">
-                      <span className="text-5xl opacity-70">🔔</span>
+                      <Bell className="w-12 h-12 text-brand-gold opacity-70" />
                     </div>
                     <div className="border border-brand-gold/30 rounded p-2 text-center">
                       <p className="font-sans text-brand-gold/80 text-[9px] font-bold uppercase tracking-widest">Foundation Handbook</p>
@@ -70,14 +72,14 @@ export default function Books() {
               {/* Edition Status */}
               <div className="space-y-3 mb-8">
                 <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
-                  <span className="text-xl">🙏</span>
+                  <Info className="w-6 h-6 text-red-700" />
                   <div>
                     <p className="font-sans text-red-700 font-bold text-sm">1st &amp; 2nd Editions — Sold Out!</p>
                     <p className="font-sans text-red-500/70 text-xs">Due to overwhelming demand</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
-                  <span className="text-xl">📖</span>
+                  <BookOpen className="w-6 h-6 text-green-700" />
                   <div>
                     <p className="font-sans text-green-700 font-bold text-sm">3rd Edition — Coming Soon!</p>
                     <p className="font-sans text-green-600/70 text-xs">Pre-book your copy today</p>
@@ -97,7 +99,7 @@ export default function Books() {
                   rel="noopener noreferrer"
                   className="bg-brand-maroon text-brand-gold px-7 py-3 rounded-full font-sans font-bold hover:bg-brand-maroon/90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
                 >
-                  📖 Book Your Copy
+                  <BookOpen className="w-5 h-5 inline-block" /> Book Your Copy
                 </a>
               </div>
             </div>
@@ -107,7 +109,7 @@ export default function Books() {
         {/* Bottom Note */}
         <div className="text-center mt-10 p-6 bg-brand-maroon/5 rounded-2xl border border-brand-maroon/10">
           <p className="font-sans text-brand-maroon font-semibold">
-            🎓 This handbook is recommended for all enrolled students at Kathak Shades.
+            <GraduationCap className="w-5 h-5 inline-block -mt-1 mr-1" /> This handbook is recommended for all enrolled students at Kathak Shades.
             Contact us on WhatsApp to reserve your copy before the 3rd edition sells out!
           </p>
           <a
@@ -116,7 +118,7 @@ export default function Books() {
             rel="noopener noreferrer"
             className="inline-block mt-4 bg-[#25D366] text-white px-6 py-3 rounded-full font-bold hover:bg-[#20bb5a] transition-colors"
           >
-            💬 Chat on WhatsApp
+            <span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Chat on WhatsApp</span>
           </a>
         </div>
       </div>

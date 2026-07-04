@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Landmark, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -17,7 +18,7 @@ export default function Footer() {
               Amruta Todankar&rsquo;s School of Kathak &mdash; Where tradition dances on.
             </p>
             <p className="font-sans text-brand-cream/60 text-xs mt-3">
-              📞 +91 97736 02766
+              <span className="flex items-center justify-center md:justify-start gap-2"><Phone className="w-3.5 h-3.5 text-brand-gold" /> +91 97736 02766</span>
             </p>
           </div>
 
@@ -49,14 +50,14 @@ export default function Footer() {
             <h4 className="font-serif text-brand-gold font-bold text-lg mb-4">Our Studios</h4>
             <div className="space-y-4">
               <div>
-                <p className="font-sans font-semibold text-brand-cream text-sm">🏛️ Dombivli East</p>
+                <p className="font-sans font-semibold text-brand-cream text-sm flex items-center gap-2"><Landmark className="w-4 h-4 text-brand-gold" /> Dombivli East</p>
                 <p className="font-sans text-brand-cream/60 text-xs leading-relaxed mt-1">
                   <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Regency Anantam, Kidz Kingdom</a><br />
                   Mon &amp; Wed · 7:00 PM – 8:00 PM
                 </p>
               </div>
               <div>
-                <p className="font-sans font-semibold text-brand-cream text-sm">🏛️ Thane West</p>
+                <p className="font-sans font-semibold text-brand-cream text-sm flex items-center gap-2"><Landmark className="w-4 h-4 text-brand-gold" /> Thane West</p>
                 <p className="font-sans text-brand-cream/60 text-xs leading-relaxed mt-1">
                   <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Kinder Hive, Vasant Vihar</a><br />
                   Tue &amp; Thu · 7:00 PM – 8:00 PM

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap } from 'lucide-react';
 
 const studios = [
   {
@@ -88,7 +89,7 @@ export default function Classes() {
                 <div className="space-y-6">
                   <div className="bg-white/10 rounded-2xl p-6 border border-brand-gold/20">
                     <h3 className="font-serif text-brand-gold text-xl font-bold mb-4 flex items-center gap-2">
-                      <span>📅</span> Class Schedule
+                      <CalendarDays className="w-6 h-6 text-brand-gold" /> Class Schedule
                     </h3>
                     <div className="space-y-4">
                       <div>
@@ -105,7 +106,7 @@ export default function Classes() {
                   {/* Contacts */}
                   <div className="bg-white/10 rounded-2xl p-6 border border-brand-gold/20">
                     <h3 className="font-serif text-brand-gold text-xl font-bold mb-4 flex items-center gap-2">
-                      <span>📞</span> Contact
+                      <Phone className="w-6 h-6 text-brand-gold" /> Contact
                     </h3>
                     <div className="space-y-3">
                       {currentStudio.contacts.map((c, i) => (
@@ -127,7 +128,7 @@ export default function Classes() {
                 <div className="space-y-6">
                   <div className="bg-white/10 rounded-2xl p-6 border border-brand-gold/20">
                     <h3 className="font-serif text-brand-gold text-xl font-bold mb-4 flex items-center gap-2">
-                      <span>📍</span> Address
+                      <MapPin className="w-6 h-6 text-brand-gold" /> Address
                     </h3>
                     <p className="font-sans text-brand-cream/90 text-sm leading-relaxed">
                       {currentStudio.address}
@@ -150,13 +151,13 @@ export default function Classes() {
                       rel="noopener noreferrer"
                       className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-3 rounded-xl font-sans font-bold hover:bg-[#20bb5a] transition-colors"
                     >
-                      <span>💬</span> Enquire on WhatsApp
+                      <MessageCircle className="w-5 h-5 text-white" /> Enquire on WhatsApp
                     </a>
                     <a
                       href="/contact"
                       className="w-full flex items-center justify-center gap-3 bg-brand-gold text-brand-maroon py-3 rounded-xl font-sans font-bold hover:bg-brand-gold/90 transition-colors"
                     >
-                      📋 Fill Enquiry Form
+                      <ClipboardList className="w-5 h-5 text-brand-maroon" /> Fill Enquiry Form
                     </a>
                   </div>
                 </div>
@@ -167,7 +168,7 @@ export default function Classes() {
           {/* Info Note */}
           <div className="mt-8 text-center p-5 bg-brand-maroon/10 rounded-2xl border-2 border-brand-maroon/20">
             <p className="font-sans text-brand-maroon font-semibold">
-              🎓 Classes are open for all age groups. Contact us to know the batch that suits you best!
+              <span className="flex items-center justify-center gap-2"><GraduationCap className="w-6 h-6 text-brand-maroon flex-shrink-0" /> Classes are open for all age groups. Contact us to know the batch that suits you best!</span>
             </p>
           </div>
         </div>

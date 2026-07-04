@@ -1,5 +1,7 @@
 'use client';
 
+import { User, GraduationCap, Award, Heart } from 'lucide-react';
+
 export default function About() {
   return (
     <section id="about" className="py-20 bg-white">
@@ -11,7 +13,7 @@ export default function About() {
               {/* Placeholder for guru portrait */}
               <div className="absolute inset-0 flex items-center justify-center bg-brand-maroon/40 backdrop-blur-sm">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">🎭</div>
+                  <div className="flex justify-center mb-4"><User className="w-16 h-16 text-brand-gold" /></div>
                   <p className="text-brand-gold font-serif font-bold">
                     Amruta Todankar
                   </p>
@@ -42,7 +44,7 @@ export default function About() {
 
               <div className="bg-brand-maroon/10 border-l-4 border-brand-gold p-6 rounded">
                 <h3 className="font-serif text-xl font-bold text-brand-maroon mb-3">
-                  🎓 Training & Lineage
+                  <span className="flex items-center gap-2"><GraduationCap className="w-6 h-6" /> Training & Lineage</span>
                 </h3>
                 <p className="font-sans text-brand-black/80">
                   Trained under the prestigious Lucknow Gharana tradition, Amruta has studied under several master gurus. Her training encompasses the pure classical repertoire including Thaat, Toda, Tukra, and Paran with meticulous attention to Laya (rhythm) and Taal (meter).
@@ -51,7 +53,7 @@ export default function About() {
 
               <div className="bg-brand-gold/10 border-l-4 border-brand-maroon p-6 rounded">
                 <h3 className="font-serif text-xl font-bold text-brand-maroon mb-3">
-                  📜 Certifications & Achievements
+                  <span className="flex items-center gap-2"><Award className="w-6 h-6" /> Certifications & Achievements</span>
                 </h3>
                 <ul className="font-sans text-brand-black/80 space-y-2">
                   <li>✓ Recognized Kathak Exponent by Ministry of Culture</li>
@@ -63,7 +65,7 @@ export default function About() {
 
               <div className="bg-brand-cream border-2 border-brand-maroon/30 p-6 rounded">
                 <h3 className="font-serif text-xl font-bold text-brand-maroon mb-3">
-                  💝 Teaching Philosophy
+                  <span className="flex items-center gap-2"><Heart className="w-6 h-6" /> Teaching Philosophy</span>
                 </h3>
                 <p className="font-sans text-brand-black/80">
                   &quot;Kathak is not just a dance&mdash;it&rsquo;s a dialogue with tradition. I believe in nurturing each student&rsquo;s unique artistic voice while maintaining the purity and authenticity of this classical heritage. Through dedicated practice and spiritual connection, we transform movements into poetry and rhythm into meditation.&quot;
