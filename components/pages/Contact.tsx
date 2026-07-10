@@ -172,7 +172,7 @@ export default function Contact() {
                 disabled={isSubmitting}
                 className="w-full bg-brand-maroon text-brand-gold px-6 py-4 rounded-xl font-sans font-bold text-lg hover:bg-brand-maroon/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
               >
-                {isSubmitting ? 'Connecting...' : '<span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Contact via WhatsApp</span>'}
+                {isSubmitting ? 'Connecting...' : <span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Contact via WhatsApp</span>}
               </button>
               <p className="font-sans text-sm text-brand-black/60 text-center">
                 You&rsquo;ll be redirected to WhatsApp to complete your enquiry
