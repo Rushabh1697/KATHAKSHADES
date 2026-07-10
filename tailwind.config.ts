@@ -10,16 +10,20 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          maroon: '#5C0612',
-          gold: '#FFC700',
-          'gold-muted': '#C59B4E',
-          cream: '#F5EAD4',
-          black: '#260205',
+          maroon: '#4A0F1D', // Deep Maroon
+          gold: '#C89B3C', // Accent Gold
+          'gold-dark': '#B8872B', // For gradients
+          'gold-light': '#D6AE54', // For gradients
+          'gold-hover': '#D8B35B',
+          cream: '#FFF8EE', // Cream
+          black: '#2E1A12', // Dark Text
+          light: '#FFF7EE', // Light Text
+          brown: '#7B4A2E', // Muted Brown
         },
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        sans: ['Poppins', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Playfair Display', 'serif'],
+        sans: ['Poppins', 'Inter', 'sans-serif'],
       },
       keyframes: {
         heartbeat: {

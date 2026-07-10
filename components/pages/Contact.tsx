@@ -59,7 +59,7 @@ export default function Contact() {
           {/* Studio Info */}
           <div className="space-y-6 animate-slide-up">
             {/* Dombivli */}
-            <div className="bg-white/10 border-2 border-brand-gold/40 p-7 rounded-2xl">
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-7 rounded-2xl">
               <h3 className="font-serif text-xl font-bold text-brand-gold mb-1 flex items-center gap-2"><Landmark className="w-5 h-5" /> Dombivli East</h3>
               <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kidz Kingdom — Regency Anantam</p>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
@@ -74,7 +74,7 @@ export default function Contact() {
             </div>
 
             {/* Thane */}
-            <div className="bg-white/10 border-2 border-brand-gold/40 p-7 rounded-2xl">
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-7 rounded-2xl">
               <h3 className="font-serif text-xl font-bold text-brand-gold mb-1 flex items-center gap-2"><Landmark className="w-5 h-5" /> Thane West</h3>
               <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kinder Hive — Vasant Vihar</p>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
@@ -89,7 +89,7 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div className="bg-white/10 border-2 border-brand-gold/40 p-7 rounded-2xl">
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-7 rounded-2xl">
               <h3 className="font-serif text-xl font-bold text-brand-gold mb-5 flex items-center gap-2"><Globe className="w-5 h-5" /> Follow Us</h3>
               <div className="flex gap-4 flex-wrap">
                 {[

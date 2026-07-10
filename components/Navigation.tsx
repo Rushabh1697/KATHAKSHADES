@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -15,10 +16,17 @@ const navLinks = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full bg-brand-maroon/95 backdrop-blur-md z-40 shadow-lg">
+    <nav className={`fixed top-0 w-full z-40 transition-colors duration-500 ${scrolled ? 'bg-brand-maroon/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
       <div className="container flex items-center justify-between py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
@@ -30,24 +38,34 @@ export default function Navigation() {
           </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 items-center">
+        {/* Desktop Menu (Centered) */}
+        <div className="hidden md:flex gap-8 items-center absolute left-1/2 -translate-x-1/2">
           {navLinks.slice(0, -1).map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className={`font-sans text-sm font-medium transition-colors ${
+              className={`relative font-sans text-sm font-medium transition-colors ${
                 pathname === link.href
-                  ? 'text-brand-gold border-b-2 border-brand-gold pb-0.5'
+                  ? 'text-brand-gold'
                   : 'text-brand-cream hover:text-brand-gold'
               }`}
             >
               {link.label}
+              {pathname === link.href && (
+                <motion.div
+                  layoutId="navbar-underline"
+                  className="absolute left-0 right-0 -bottom-1 h-[2px] bg-brand-gold"
+                />
+              )}
             </Link>
           ))}
+        </div>
+
+        {/* Desktop CTA (Right) */}
+        <div className="hidden md:block">
           <Link
             href="/contact"
-            className="bg-brand-gold text-brand-maroon px-6 py-2 rounded-full font-sans font-bold hover:bg-brand-gold/90 transition-colors text-sm"
+            className="inline-block bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-2.5 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(200,155,60,0.3)] transition-all transform hover:-translate-y-0.5 hover:brightness-110 text-sm shadow-sm"
           >
             Contact
           </Link>

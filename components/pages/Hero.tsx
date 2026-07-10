@@ -1,12 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative w-full h-screen flex items-center overflow-hidden pt-16"
     >
       {/* Background */}
       <div
@@ -17,46 +18,51 @@ export default function Hero() {
         }}
       />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-maroon/40 via-transparent to-brand-maroon/60" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-brand-maroon/70 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-black/80 to-transparent" />
 
-      {/* Decorative Circles */}
-      <div className="absolute top-20 left-10 w-64 h-64 border border-brand-gold/10 rounded-full" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 border border-brand-gold/5 rounded-full" />
+      {/* Decorative Elements */}
+      <div className="absolute top-20 right-10 w-96 h-96 border-[0.5px] border-brand-gold/20 rounded-full opacity-50" />
+      <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] border-[0.5px] border-brand-gold/10 rounded-full opacity-30" />
 
       {/* Content */}
-      <div className="relative z-10 container max-w-4xl mx-auto text-center px-4 animate-fade-in">
-        <p className="font-sans text-brand-gold/80 text-sm uppercase tracking-[0.3em] mb-4">
-          Amruta Todankar&rsquo;s
-        </p>
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-brand-gold mb-4 drop-shadow-lg">
-          KATHAK SHADES
-        </h1>
-        <p className="font-sans text-xl sm:text-2xl text-brand-cream mb-3 drop-shadow-md">
-          The School of Kathak
-        </p>
-        <p className="font-serif text-brand-gold/70 italic text-lg mb-12">
-          &ldquo;Where tradition dances on&rdquo;
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/classes"
-            className="bg-brand-gold text-brand-maroon px-8 sm:px-12 py-4 rounded-full font-sans font-bold text-lg hover:bg-brand-gold/90 transition-all transform hover:scale-105 shadow-2xl"
-          >
-            View Classes
-          </Link>
-          <Link
-            href="/contact"
-            className="border-2 border-brand-gold text-brand-gold px-8 sm:px-12 py-4 rounded-full font-sans font-bold text-lg hover:bg-brand-gold/10 transition-all transform hover:scale-105"
-          >
-            Book a Trial
-          </Link>
-        </div>
+      <div className="relative z-10 container mx-auto px-4 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-3xl"
+        >
+          <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.1] tracking-wide mb-8">
+            <span className="text-brand-light block">Where</span>
+            <span className="text-brand-gold block my-1">Tradition</span>
+            <span className="text-brand-light block">Dances On</span>
+          </h1>
+          
+          <p className="font-sans text-brand-cream/80 text-lg md:text-xl font-light tracking-wide mb-10 max-w-xl">
+            Experience the elegance, grace, and heritage of classical Kathak at Amruta Todankar&rsquo;s Kathak Shades.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-5">
+            <Link
+              href="/classes"
+              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(200,155,60,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
+            >
+              View Classes
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex justify-center items-center bg-transparent border border-brand-gold/60 text-brand-gold px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:bg-brand-gold/10 transition-all transform hover:-translate-y-1 hover:scale-[1.02]"
+            >
+              About the Guru
+            </Link>
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-brand-cream to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-brand-cream to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
