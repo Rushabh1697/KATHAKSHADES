@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const navLinks = [
@@ -19,23 +19,12 @@ const logoSrc = 'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846259/i
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [logoError, setLogoError] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <nav
-      className={`fixed top-0 w-full z-40 border-b border-brand-gold/10 transition-all duration-500 ${
-        scrolled
-          ? 'bg-brand-maroon/98 backdrop-blur-md shadow-[0_10px_30px_rgba(46,26,18,0.18)]'
-          : 'bg-brand-maroon/95 backdrop-blur-md shadow-[0_6px_18px_rgba(46,26,18,0.10)]'
-      }`}
+      className="fixed top-0 w-full z-40 border-b border-brand-gold/10 bg-brand-maroon shadow-[0_10px_30px_rgba(46,26,18,0.18)]"
     >
       <div className="container flex items-center justify-between py-4">
         {/* Logo */}

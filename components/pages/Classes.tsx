@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -28,7 +30,7 @@ const studios = [
         name: 'Rhymes N Colours',
         days: 'Tuesday & Friday',
         timing: '6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM',
-        address: 'Rhymes N Colours, Thane',
+        address: 'Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West',
         mapLink: 'https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7',
       },
     ],
@@ -146,6 +148,10 @@ export default function Classes() {
   const labelClass = isThane ? 'text-brand-gold/90' : 'text-brand-gold';
   const iconClass = isThane ? 'text-brand-gold' : 'text-brand-gold';
   const buttonClass = 'bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black shadow-[0_4px_15px_rgba(179,92,17,0.22)] hover:shadow-[0_8px_25px_rgba(179,92,17,0.3)]';
+  const thaneCataloguePhotos = [
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
+  ];
 
   return (
     <section id="classes" className="py-24 bg-brand-cream relative min-h-screen overflow-hidden">
@@ -306,6 +312,40 @@ export default function Classes() {
                         View on Maps <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
                       </a>
                     </div>
+
+                    {isThane && (
+                      <div className={`${panelClass} rounded-[12px] p-8 shadow-sm overflow-hidden`}>
+                        <div className="flex items-start justify-between gap-4 mb-6">
+                          <div>
+                            <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Catalogue</p>
+                            <h3 className={`font-serif text-xl font-bold ${headingClass}`}>Thane Classes Book</h3>
+                          </div>
+                          <Link
+                            href="/books"
+                            className={`inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold border ${isThane ? 'border-brand-gold/50 text-brand-gold' : 'border-brand-gold/40 text-brand-gold'}`}
+                          >
+                            Open Book
+                          </Link>
+                        </div>
+
+                        <div className="relative rounded-[16px] overflow-hidden bg-brand-maroon min-h-[220px] shadow-[0_16px_40px_rgba(46,26,18,0.22)]" style={{ perspective: '1800px' }}>
+                          <div className="absolute inset-0 bg-gradient-to-br from-brand-maroon via-[#360b12] to-[#160205]" />
+                          <div className="absolute inset-y-0 left-0 w-[38%] bg-gradient-to-br from-[#3d0d13] to-[#130205] shadow-[12px_0_30px_rgba(0,0,0,0.28)]" style={{ transform: 'rotateY(12deg)', transformOrigin: 'right center', transformStyle: 'preserve-3d' }} />
+                          <div className="absolute inset-y-4 right-4 left-[36%] rounded-[14px] bg-brand-cream border border-brand-gold/20 overflow-hidden">
+                            {thaneCataloguePhotos.map((photo, index) => (
+                              <div key={photo} className="absolute inset-0 animate-pageTurn" style={{ animationDelay: `${index * 1.2}s`, animationDuration: '12s' }}>
+                                <Image src={photo} alt={`Thane class catalogue photo ${index + 1}`} fill className="object-cover" />
+                              </div>
+                            ))}
+                          </div>
+                          <div className="absolute inset-y-0 left-[35%] w-[2px] bg-brand-gold/30 shadow-[0_0_16px_rgba(179,92,17,0.35)]" />
+                        </div>
+
+                        <p className={`mt-4 text-sm ${mutedClass}`}>
+                          Opening and page-turning preview for the Thane classes catalogue.
+                        </p>
+                      </div>
+                    )}
 
                     <div className="space-y-4">
                       <a

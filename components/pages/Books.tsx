@@ -1,8 +1,10 @@
-import { useMemo } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Phone, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
 
-const bookPhotos = [
+const fallbackBookPhotos = [
   'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
   'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
   'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/uog13wlckc1emvjnucwv.jpg',
@@ -10,7 +12,39 @@ const bookPhotos = [
 ];
 
 export default function Books() {
-  const pages = useMemo(() => bookPhotos, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const [bookPhotos, setBookPhotos] = useState(fallbackBookPhotos);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsOpen(true), 150);
+
+    const controller = new AbortController();
+
+    const loadTaggedPhotos = async () => {
+      try {
+        const response = await fetch('/api/thaneclasses', { signal: controller.signal });
+
+        if (!response.ok) {
+          return;
+        }
+
+        const data: { photos?: string[] } = await response.json();
+
+        if (Array.isArray(data.photos) && data.photos.length > 0) {
+          setBookPhotos(data.photos);
+        }
+      } catch {
+        // Keep the local fallback images if Cloudinary is not configured.
+      }
+    };
+
+    loadTaggedPhotos();
+
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, []);
 
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
@@ -34,7 +68,7 @@ export default function Books() {
         </div>
 
         {/* Book Feature Card */}
-        <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10">
+        <div className={`bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 transition-all duration-700 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             {/* Left — Book Visual */}
             <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-8 md:p-12 min-h-[460px] relative overflow-hidden">
@@ -42,27 +76,32 @@ export default function Books() {
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full translate-x-32 translate-y-32" />
 
               <div className="relative z-10 w-full max-w-[26rem]" style={{ perspective: '2200px' }}>
-                <div className="relative h-[18rem] md:h-[22rem]">
+                <div className="relative h-[18rem] md:h-[22rem] transition-all duration-700" style={{ transformStyle: 'preserve-3d', transform: isOpen ? 'scale(1) rotateX(0deg)' : 'scale(0.92) rotateX(8deg)', opacity: isOpen ? 1 : 0 }}>
                   <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20" />
-                  <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.32)] border border-white/60 overflow-hidden" />
+                  <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.24)] border border-white/60 overflow-hidden" />
 
-                  <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20" style={{ transform: 'rotateY(-132deg)' }} />
+                  <div
+                    className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20"
+                    style={{
+                      transform: `rotateY(${isOpen ? -132 : -176}deg)`,
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
+                    }}
+                  />
 
                   <div className="absolute inset-y-6 right-4 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
-                    {pages.map((photo, index) => (
+                    {bookPhotos.map((photo, index) => (
                       <div
                         key={photo}
-                        className="absolute inset-0"
+                        className="absolute inset-0 animate-pageTurn"
                         style={{
-                          transform: `rotateY(${index * 6}deg) translateX(${index * 7}px) translateY(${index * 3}px)`,
-                          transformStyle: 'preserve-3d',
-                          zIndex: pages.length - index,
-                          animation: `pageTurn 10s ease-in-out ${index * 1.5}s infinite`,
+                          zIndex: bookPhotos.length - index,
+                          animationDelay: `${index * 1.5}s`,
+                          animationDuration: '12s',
                         }}
                       >
-                        <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.15)] overflow-hidden border border-brand-gold/10">
+                        <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.12)] overflow-hidden border border-brand-gold/10">
                           <Image src={photo} alt={`Thane class photo ${index + 1}`} fill className="object-cover" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                           <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-brand-cream">
                             <div>
                               <p className="font-serif text-xl font-bold">Thane Classes</p>

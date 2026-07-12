@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/pages/Hero";
 import Footer from "@/components/Footer";
-import { MapPin, CalendarDays, Clock, Users, Shirt, BookOpen, Phone } from "lucide-react";
+import { MapPin, Users, Shirt, BookOpen, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -35,26 +35,12 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            {/* Dombivli Card */}
+            {/* Thane Card */}
             <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-10 flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(179,92,17,0.2)] transition-all duration-300">
                 <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
               </div>
-              <h3 className="font-serif text-3xl font-bold text-brand-maroon mb-2">Dombivli East</h3>
-              <p className="font-sans text-brand-gold text-sm uppercase tracking-[0.2em] mb-4">Regency Anantam</p>
-              <p className="font-sans text-brand-black/70 text-sm leading-relaxed mb-8">
-                Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)
-              </p>
-              <div className="flex flex-col gap-3 mb-8 w-full border-t border-b border-brand-gold/10 py-5">
-                <div className="flex items-center justify-center gap-3">
-                  <CalendarDays className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
-                  <span className="font-sans text-brand-black/80 font-medium">Monday &amp; Wednesday</span>
-                </div>
-                <div className="flex items-center justify-center gap-3">
-                  <Clock className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
-                  <span className="font-sans text-brand-black/80 font-medium">7:00 PM – 8:00 PM</span>
-                </div>
-              </div>
+              <h3 className="font-serif text-3xl font-bold text-brand-maroon mb-8">Thane West</h3>
               <a
                 href="/classes"
                 className="mt-auto bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-8 py-3 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(179,92,17,0.3)] transition-all text-sm w-full"
@@ -63,26 +49,12 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Thane Card */}
+            {/* Dombivli Card */}
             <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-10 flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(179,92,17,0.2)] transition-all duration-300">
                 <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
               </div>
-              <h3 className="font-serif text-3xl font-bold text-brand-maroon mb-2">Thane West</h3>
-              <p className="font-sans text-brand-gold text-sm uppercase tracking-[0.2em] mb-4">Vasant Vihar</p>
-              <p className="font-sans text-brand-black/70 text-sm leading-relaxed mb-8">
-                Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West
-              </p>
-              <div className="flex flex-col gap-3 mb-8 w-full border-t border-b border-brand-gold/10 py-5">
-                <div className="flex items-center justify-center gap-3">
-                  <CalendarDays className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
-                  <span className="font-sans text-brand-black/80 font-medium">Tuesday &amp; Thursday</span>
-                </div>
-                <div className="flex items-center justify-center gap-3">
-                  <Clock className="w-5 h-5 text-brand-gold" strokeWidth={1.5} />
-                  <span className="font-sans text-brand-black/80 font-medium">7:00 PM – 8:00 PM</span>
-                </div>
-              </div>
+              <h3 className="font-serif text-3xl font-bold text-brand-maroon mb-8">Dombivli East</h3>
               <a
                 href="/classes"
                 className="mt-auto bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-8 py-3 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(179,92,17,0.3)] transition-all text-sm w-full"
