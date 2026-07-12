@@ -75,8 +75,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-brand-cream to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
