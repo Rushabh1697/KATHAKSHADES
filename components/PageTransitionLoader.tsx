@@ -19,7 +19,7 @@ export default function PageTransitionLoader() {
         {/* Inner circle - main logo */}
         <div className="relative w-24 h-24 bg-brand-gold rounded-full flex items-center justify-center animate-heartbeat shadow-lg"
              style={{
-               boxShadow: '0 0 30px rgba(255, 199, 0, 0.5)',
+               boxShadow: '0 0 30px rgba(179, 92, 17, 0.5)',
              }}
         >
           {/* Logo text */}

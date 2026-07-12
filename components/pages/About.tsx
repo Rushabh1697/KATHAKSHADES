@@ -1,27 +1,45 @@
 'use client';
 
+import Image from 'next/image';
+import { useState } from 'react';
 import { User, GraduationCap, Award, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
+const guruPhotoSrc = 'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846646/g766uhiacofbd8m0pcxx.jpg';
+
 export default function About() {
+  const [photoError, setPhotoError] = useState(false);
+
   return (
     <section id="about" className="py-24 bg-brand-cream relative">
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Portrait Placeholder */}
           <div className="flex justify-center group">
-            <div className="relative w-full max-w-md aspect-[4/5] bg-brand-maroon rounded-[18px] overflow-hidden shadow-[0_10px_40px_rgba(74,15,29,0.2)] transition-all duration-700 hover:shadow-[0_15px_50px_rgba(200,155,60,0.25)] hover:-translate-y-2">
+            <div className="relative w-full max-w-md aspect-[4/5] bg-brand-maroon rounded-[18px] overflow-hidden shadow-[0_10px_40px_rgba(74,15,29,0.2)] transition-all duration-700 hover:shadow-[0_15px_50px_rgba(179,92,17,0.25)] hover:-translate-y-2">
               <div className="absolute inset-0 bg-gradient-to-b from-brand-black/20 to-brand-black/80 z-10" />
               
-              {/* Placeholder for guru portrait */}
-              <div className="absolute inset-0 flex items-center justify-center bg-brand-maroon/40 backdrop-blur-sm z-0 group-hover:scale-105 transition-transform duration-700">
-                <div className="text-center z-20">
-                  <div className="flex justify-center mb-6">
-                    <div className="w-20 h-20 rounded-full border border-brand-gold flex items-center justify-center bg-brand-maroon/50 shadow-inner">
-                      <User className="w-10 h-10 text-brand-gold" strokeWidth={1.5} />
+              <div className="absolute inset-0 bg-brand-maroon/40 backdrop-blur-sm z-0 group-hover:scale-105 transition-transform duration-700">
+                {!photoError ? (
+                  <Image
+                    src={guruPhotoSrc}
+                    alt="Amruta Todankar"
+                    fill
+                    priority
+                    className="object-cover object-center"
+                    onError={() => setPhotoError(true)}
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-brand-maroon/35">
+                    <div className="text-center z-20">
+                      <div className="flex justify-center mb-6">
+                        <div className="w-20 h-20 rounded-full border border-brand-gold flex items-center justify-center bg-brand-maroon/50 shadow-inner">
+                          <User className="w-10 h-10 text-brand-gold" strokeWidth={1.5} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
               
               {/* Gold border accent */}
@@ -101,7 +119,7 @@ export default function About() {
               <div className="pt-6 text-center md:text-left">
                 <Link
                   href="/contact"
-                  className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(200,155,60,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
+                  className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
                 >
                   Know More
                 </Link>

@@ -1,6 +1,17 @@
-import { Phone, Bell, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
+import { useMemo } from 'react';
+import Image from 'next/image';
+import { Phone, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
+
+const bookPhotos = [
+  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
+  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
+  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/uog13wlckc1emvjnucwv.jpg',
+  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847366/oksnto6rkscnicygmjx9.jpg',
+];
 
 export default function Books() {
+  const pages = useMemo(() => bookPhotos, []);
+
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
       <div className="container max-w-5xl mx-auto">
@@ -26,31 +37,54 @@ export default function Books() {
         <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             {/* Left — Book Visual */}
-            <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-12 min-h-[420px] relative overflow-hidden">
-              {/* Decorative circles */}
+            <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-8 md:p-12 min-h-[460px] relative overflow-hidden">
               <div className="absolute top-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full -translate-x-24 -translate-y-24" />
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full translate-x-32 translate-y-32" />
 
-              {/* Book mockup */}
-              <div className="relative z-10 w-44 shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                {/* Book cover */}
-                <div className="bg-gradient-to-b from-[#2a0a0d] to-[#0d0204] rounded-r-lg rounded-l-sm border-l-8 border-[#1a0205] overflow-hidden" style={{aspectRatio: '3/4'}}>
-                  <div className="p-5 h-full flex flex-col justify-between">
-                    <div className="text-center">
-                      <p className="font-serif text-brand-gold text-xl font-bold leading-tight mb-1">नृत्यारंभ...</p>
-                      <p className="font-sans text-brand-gold/60 text-[9px] italic leading-snug">...Unfolding the Journey of Kathak</p>
-                    </div>
-                    {/* Decorative image - ghungroos */}
-                    <div className="flex-1 flex items-center justify-center py-3">
-                      <Bell className="w-12 h-12 text-brand-gold opacity-70" />
-                    </div>
-                    <div className="border border-brand-gold/30 rounded p-2 text-center">
-                      <p className="font-sans text-brand-gold/80 text-[9px] font-bold uppercase tracking-widest">Foundation Handbook</p>
-                    </div>
+              <div className="relative z-10 w-full max-w-[26rem]" style={{ perspective: '2200px' }}>
+                <div className="relative h-[18rem] md:h-[22rem]">
+                  <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20" />
+                  <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.32)] border border-white/60 overflow-hidden" />
+
+                  <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20" style={{ transform: 'rotateY(-132deg)' }} />
+
+                  <div className="absolute inset-y-6 right-4 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
+                    {pages.map((photo, index) => (
+                      <div
+                        key={photo}
+                        className="absolute inset-0"
+                        style={{
+                          transform: `rotateY(${index * 6}deg) translateX(${index * 7}px) translateY(${index * 3}px)`,
+                          transformStyle: 'preserve-3d',
+                          zIndex: pages.length - index,
+                          animation: `pageTurn 10s ease-in-out ${index * 1.5}s infinite`,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.15)] overflow-hidden border border-brand-gold/10">
+                          <Image src={photo} alt={`Thane class photo ${index + 1}`} fill className="object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                          <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-brand-cream">
+                            <div>
+                              <p className="font-serif text-xl font-bold">Thane Classes</p>
+                              <p className="font-sans text-[10px] uppercase tracking-[0.25em]">Display Photo {index + 1}</p>
+                            </div>
+                            <p className="font-sans text-[10px] font-semibold">Page {index + 1}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="absolute inset-y-0 left-0 w-[1px] bg-brand-gold/20" />
+                    <div className="absolute top-0 bottom-0 left-[50%] w-[2px] bg-brand-gold/25 shadow-[0_0_12px_rgba(179,92,17,0.35)]" />
                   </div>
+
+                  <div className="absolute left-3 top-4 bottom-4 w-4 rounded-l-[1rem] bg-[#140305] shadow-[inset_-2px_0_0_rgba(255,255,255,0.08)]" />
                 </div>
-                {/* Book spine */}
-                <div className="absolute left-0 top-0 bottom-0 w-2 bg-[#1a0205] rounded-l" />
+
+                <div className="mt-6 text-center text-brand-cream/80">
+                  <p className="font-serif text-2xl font-bold text-brand-gold">Thane Classes Catalogue</p>
+                  <p className="font-sans text-sm">A lightweight 3D flipbook showcasing the uploaded class photos.</p>
+                </div>
               </div>
             </div>
 

@@ -37,7 +37,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
             {/* Dombivli Card */}
             <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-10 flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(200,155,60,0.2)] transition-all duration-300">
+              <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(179,92,17,0.2)] transition-all duration-300">
                 <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
               </div>
               <h3 className="font-serif text-3xl font-bold text-brand-maroon mb-2">Dombivli East</h3>
@@ -57,7 +57,7 @@ export default function Home() {
               </div>
               <a
                 href="/classes"
-                className="mt-auto bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-8 py-3 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(200,155,60,0.3)] transition-all text-sm w-full"
+                className="mt-auto bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-8 py-3 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(179,92,17,0.3)] transition-all text-sm w-full"
               >
                 View Class Details
               </a>
@@ -65,7 +65,7 @@ export default function Home() {
 
             {/* Thane Card */}
             <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-10 flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(200,155,60,0.2)] transition-all duration-300">
+              <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(179,92,17,0.2)] transition-all duration-300">
                 <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
               </div>
               <h3 className="font-serif text-3xl font-bold text-brand-maroon mb-2">Thane West</h3>
@@ -85,7 +85,7 @@ export default function Home() {
               </div>
               <a
                 href="/classes"
-                className="mt-auto bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-8 py-3 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(200,155,60,0.3)] transition-all text-sm w-full"
+                className="mt-auto bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-8 py-3 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(179,92,17,0.3)] transition-all text-sm w-full"
               >
                 View Class Details
               </a>

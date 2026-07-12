@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-[0_0_15px_rgba(200,155,60,0.1)]">
+              <div className="w-12 h-12 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-[0_0_15px_rgba(179,92,17,0.1)]">
                 <span className="text-brand-gold font-serif font-bold text-lg">KS</span>
               </div>
               <span className="text-brand-gold font-serif font-bold text-2xl tracking-wide">Kathak Shades</span>

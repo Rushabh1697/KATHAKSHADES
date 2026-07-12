@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="theme-color" content="#5C0612" />
+        <meta name="theme-color" content="#B35C11" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-brand-cream">

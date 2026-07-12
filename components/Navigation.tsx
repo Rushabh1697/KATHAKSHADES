@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -14,9 +15,12 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+const logoSrc = 'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846259/iuajlxf8tsqzwfbrfa6u.jpg';
+
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -26,12 +30,30 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 w-full z-40 transition-colors duration-500 ${scrolled ? 'bg-brand-maroon/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+    <nav
+      className={`fixed top-0 w-full z-40 border-b border-brand-gold/10 transition-all duration-500 ${
+        scrolled
+          ? 'bg-brand-maroon/98 backdrop-blur-md shadow-[0_10px_30px_rgba(46,26,18,0.18)]'
+          : 'bg-brand-maroon/95 backdrop-blur-md shadow-[0_6px_18px_rgba(46,26,18,0.10)]'
+      }`}
+    >
       <div className="container flex items-center justify-between py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-          <div className="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center">
-            <span className="text-brand-maroon font-serif font-bold text-sm">KS</span>
+          <div className="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center overflow-hidden shadow-[0_4px_12px_rgba(179,92,17,0.25)]">
+            {!logoError ? (
+              <Image
+                src={logoSrc}
+                alt="Kathak Shades logo"
+                width={40}
+                height={40}
+                className="h-full w-full object-cover"
+                onError={() => setLogoError(true)}
+                priority
+              />
+            ) : (
+              <span className="text-brand-maroon font-serif font-bold text-sm">KS</span>
+            )}
           </div>
           <span className="text-brand-gold font-serif font-bold text-lg hidden sm:inline">
             Kathak Shades
@@ -65,7 +87,7 @@ export default function Navigation() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="inline-block bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-2.5 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(200,155,60,0.3)] transition-all transform hover:-translate-y-0.5 hover:brightness-110 text-sm shadow-sm"
+            className="inline-block bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-2.5 rounded-[12px] font-sans font-bold hover:shadow-[0_4px_15px_rgba(179,92,17,0.3)] transition-all transform hover:-translate-y-0.5 hover:brightness-110 text-sm shadow-sm"
           >
             Contact
           </Link>

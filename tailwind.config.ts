@@ -11,10 +11,10 @@ const config: Config = {
       colors: {
         brand: {
           maroon: '#4A0F1D', // Deep Maroon
-          gold: '#C89B3C', // Accent Gold
-          'gold-dark': '#B8872B', // For gradients
-          'gold-light': '#D6AE54', // For gradients
-          'gold-hover': '#D8B35B',
+          gold: '#B35C11', // Accent Gold
+          'gold-dark': '#8F460D', // For gradients
+          'gold-light': '#D5832A', // For gradients
+          'gold-hover': '#C96A16',
           cream: '#FFF8EE', // Cream
           black: '#2E1A12', // Dark Text
           light: '#FFF7EE', // Light Text
@@ -33,6 +33,13 @@ const config: Config = {
           '75%': { transform: 'scale(1.15)' },
           '100%': { transform: 'scale(1)' },
         },
+        pageTurn: {
+          '0%': { transform: 'rotateY(0deg) translateX(0px) translateY(0px)', opacity: '1' },
+          '20%': { transform: 'rotateY(0deg) translateX(0px) translateY(0px)', opacity: '1' },
+          '45%': { transform: 'rotateY(-30deg) translateX(18px) translateY(-4px)', opacity: '0.95' },
+          '70%': { transform: 'rotateY(-120deg) translateX(36px) translateY(0px)', opacity: '0.82' },
+          '100%': { transform: 'rotateY(-180deg) translateX(48px) translateY(4px)', opacity: '0' },
+        },
         'fade-in': {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -44,6 +51,7 @@ const config: Config = {
       },
       animation: {
         heartbeat: 'heartbeat 1.5s ease-in-out infinite',
+        pageTurn: 'pageTurn 10s ease-in-out infinite',
         'fade-in': 'fade-in 0.8s ease-out',
         'slide-up': 'slide-up 0.6s ease-out',
       },

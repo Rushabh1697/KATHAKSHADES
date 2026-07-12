@@ -20,6 +20,11 @@ body {
   color: #2E1A12;
 }
 
+::selection {
+  background: rgba(179, 92, 17, 0.18);
+  color: #4A0F1D;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', serif;
 }
