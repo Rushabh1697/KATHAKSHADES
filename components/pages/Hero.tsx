@@ -27,13 +27,13 @@ export default function Hero() {
 
       {/* Decorative Elements */}
       <div className="absolute top-20 right-10 w-96 h-96 border-[0.5px] border-brand-gold/20 rounded-full opacity-50 flex items-center justify-center pointer-events-none">
-        <div className="w-36 h-36 rounded-full border border-brand-gold/40 bg-brand-maroon/35 backdrop-blur-sm shadow-[0_0_40px_rgba(179,92,17,0.12)] flex items-center justify-center overflow-hidden">
+        <div className="w-48 h-48 rounded-full border border-brand-gold/45 bg-brand-maroon/35 backdrop-blur-sm shadow-[0_0_40px_rgba(179,92,17,0.22)] flex items-center justify-center overflow-hidden">
           <Image
             src={logoSrc}
             alt="Kathak Shades logo"
-            width={144}
-            height={144}
-            className="h-full w-full object-cover"
+            width={192}
+            height={192}
+            className="h-full w-full object-cover scale-[1.42]"
             priority
           />
         </div>

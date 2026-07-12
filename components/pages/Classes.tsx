@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight } from 'lucide-react';
@@ -152,6 +152,31 @@ export default function Classes() {
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
   ];
+  const [thaneBookPhotos, setThaneBookPhotos] = useState<string[]>(thaneCataloguePhotos);
+  const [bookIsOpen, setBookIsOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setBookIsOpen(true), 800);
+    const controller = new AbortController();
+    const loadTaggedPhotos = async () => {
+      try {
+        const response = await fetch('/api/thaneclasses', { signal: controller.signal });
+        if (response.ok) {
+          const data: { photos?: string[] } = await response.json();
+          if (Array.isArray(data.photos) && data.photos.length > 0) {
+            setThaneBookPhotos(data.photos);
+          }
+        }
+      } catch {
+        // Fallback to default
+      }
+    };
+    loadTaggedPhotos();
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, []);
 
   return (
     <section id="classes" className="py-24 bg-brand-cream relative min-h-screen overflow-hidden">
@@ -292,27 +317,7 @@ export default function Classes() {
                     </div>
                   </div>
 
-                  <div className="space-y-8 flex flex-col">
-                    <div className={`${panelClass} rounded-[12px] p-8 shadow-sm flex-grow`}>
-                      <h3 className={`font-serif text-xl font-bold mb-6 flex items-center gap-3 ${headingClass}`}>
-                        <div className={`w-10 h-10 rounded-full border ${isThane ? 'border-white/20 bg-white/10' : 'border-brand-gold flex items-center justify-center bg-brand-cream/10'}`}>
-                          <MapPin className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
-                        </div>
-                        Address
-                      </h3>
-                      <p className={`text-sm leading-relaxed font-light mb-6 ${mutedClass}`}>
-                        {currentStudio.address}
-                      </p>
-                      <a
-                        href={currentStudio.mapLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center justify-center w-full py-3 rounded-[12px] font-sans text-sm font-semibold transition-colors group border ${isThane ? 'border-brand-gold/50 text-brand-gold hover:bg-white/8' : 'border-brand-gold/60 text-brand-gold hover:bg-brand-gold/5'}`}
-                      >
-                        View on Maps <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
-                      </a>
-                    </div>
-
+                  <div className="space-y-8 flex flex-col justify-between">
                     {isThane && (
                       <div className={`${panelClass} rounded-[12px] p-8 shadow-sm overflow-hidden`}>
                         <div className="flex items-start justify-between gap-4 mb-6">
@@ -328,17 +333,52 @@ export default function Classes() {
                           </Link>
                         </div>
 
-                        <div className="relative rounded-[16px] overflow-hidden bg-brand-maroon min-h-[220px] shadow-[0_16px_40px_rgba(46,26,18,0.22)]" style={{ perspective: '1800px' }}>
-                          <div className="absolute inset-0 bg-gradient-to-br from-brand-maroon via-[#360b12] to-[#160205]" />
-                          <div className="absolute inset-y-0 left-0 w-[38%] bg-gradient-to-br from-[#3d0d13] to-[#130205] shadow-[12px_0_30px_rgba(0,0,0,0.28)]" style={{ transform: 'rotateY(12deg)', transformOrigin: 'right center', transformStyle: 'preserve-3d' }} />
-                          <div className="absolute inset-y-4 right-4 left-[36%] rounded-[14px] bg-brand-cream border border-brand-gold/20 overflow-hidden">
-                            {thaneCataloguePhotos.map((photo, index) => (
-                              <div key={photo} className="absolute inset-0 animate-pageTurn" style={{ animationDelay: `${index * 1.2}s`, animationDuration: '12s' }}>
-                                <Image src={photo} alt={`Thane class catalogue photo ${index + 1}`} fill className="object-cover" />
-                              </div>
-                            ))}
+                        <div className="relative w-full max-w-[26rem] mx-auto p-4 flex items-center justify-center min-h-[260px]" style={{ perspective: '2200px' }}>
+                          <div className="relative w-full h-[14rem] sm:h-[16rem] transition-all duration-700" style={{ transformStyle: 'preserve-3d', transform: bookIsOpen ? 'scale(1) rotateX(0deg)' : 'scale(0.92) rotateX(8deg)', opacity: bookIsOpen ? 1 : 0 }}>
+                            {/* Left inside cover backing */}
+                            <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20" />
+                            {/* Right page base/shadow */}
+                            <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.24)] border border-white/60 overflow-hidden" />
+
+                            {/* Outer front cover (opening left) */}
+                            <div
+                              className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20"
+                              style={{
+                                transform: `rotateY(${bookIsOpen ? -132 : -176}deg)`,
+                                transformStyle: 'preserve-3d',
+                                transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
+                              }}
+                            />
+
+                            {/* Right Pages Container */}
+                            <div className="absolute inset-y-5 right-3 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
+                              {thaneBookPhotos.map((photo, index) => (
+                                <div
+                                  key={photo}
+                                  className="absolute inset-0 animate-pageTurn"
+                                  style={{
+                                    zIndex: thaneBookPhotos.length - index,
+                                    animationDelay: `${index * 1.5}s`,
+                                    animationDuration: '12s',
+                                  }}
+                                >
+                                  <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.12)] overflow-hidden border border-brand-gold/10">
+                                    <Image src={photo} alt={`Thane class photo ${index + 1}`} fill className="object-cover" />
+                                    <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between text-brand-black/90">
+                                      <p className="font-serif text-[11px] font-bold">Thane Classes</p>
+                                      <p className="font-sans text-[8px] font-semibold">Page {index + 1}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+
+                              <div className="absolute inset-y-0 left-0 w-[1px] bg-brand-gold/20" />
+                              <div className="absolute top-0 bottom-0 left-[50%] w-[2px] bg-brand-gold/25 shadow-[0_0_12px_rgba(179,92,17,0.35)]" />
+                            </div>
+
+                            {/* Book Spine Overlay */}
+                            <div className="absolute left-3 top-4 bottom-4 w-4 rounded-l-[1rem] bg-[#140305] shadow-[inset_-2px_0_0_rgba(255,255,255,0.08)]" />
                           </div>
-                          <div className="absolute inset-y-0 left-[35%] w-[2px] bg-brand-gold/30 shadow-[0_0_16px_rgba(179,92,17,0.35)]" />
                         </div>
 
                         <p className={`mt-4 text-sm ${mutedClass}`}>
