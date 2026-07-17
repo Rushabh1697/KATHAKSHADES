@@ -340,32 +340,32 @@ export default function Classes() {
               {isDombivli && (
                 <>
                   {/* Vintage parchment texture */}
-                  <div className="absolute inset-0 z-0">
+                  <div className="absolute inset-0 z-0 rounded-[16px] overflow-hidden">
                     <Image src="/parchment-texture.png" alt="" fill className="object-cover opacity-40" />
                   </div>
                   {/* Faint mandala overlay on left */}
-                  <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[28rem] h-[28rem] z-0 pointer-events-none opacity-[0.07]">
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[24rem] h-[24rem] z-0 pointer-events-none opacity-[0.08]">
                     <Image src="/mandala-overlay.png" alt="" fill className="object-contain" />
                   </div>
                   {/* Gold corner borders */}
-                  <div className="absolute top-3 left-3 w-20 h-20 z-0 pointer-events-none opacity-60">
+                  <div className="absolute top-4 left-4 w-24 h-24 z-[1] pointer-events-none opacity-60">
                     <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
                   </div>
-                  <div className="absolute top-3 right-3 w-20 h-20 z-0 pointer-events-none opacity-60 -scale-x-100">
+                  <div className="absolute top-4 right-4 w-24 h-24 z-[1] pointer-events-none opacity-60 -scale-x-100">
                     <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
                   </div>
-                  <div className="absolute bottom-3 left-3 w-20 h-20 z-0 pointer-events-none opacity-60 -scale-y-100">
+                  <div className="absolute bottom-4 left-4 w-24 h-24 z-[1] pointer-events-none opacity-60 -scale-y-100">
                     <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
                   </div>
-                  <div className="absolute bottom-3 right-3 w-20 h-20 z-0 pointer-events-none opacity-60 scale-[-1]">
+                  <div className="absolute bottom-4 right-4 w-24 h-24 z-[1] pointer-events-none opacity-60 scale-[-1]">
                     <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
                   </div>
                 </>
               )}
 
-              <div className={`h-2 w-full ${isThane ? 'bg-gradient-to-r from-[#0A556A] via-[#0B6277] to-[#0E7088]' : 'bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark'}`} />
+              <div className={`h-2 w-full relative z-[2] ${isThane ? 'bg-gradient-to-r from-[#0A556A] via-[#0B6277] to-[#0E7088]' : 'bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark'}`} />
 
-              <div className="p-8 md:p-12 relative z-[1]">
+              <div className="p-8 md:p-12 relative z-[2]">
                 <div className="mb-8 text-center md:text-left">
                   {isDombivli && (
                     <p className="font-serif text-sm tracking-[0.3em] uppercase text-brand-gold mb-1">School of Kathak</p>

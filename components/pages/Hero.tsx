@@ -13,13 +13,16 @@ export default function Hero() {
       className="relative w-full h-screen flex items-center overflow-hidden pt-16"
     >
       {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><radialGradient id="vignette" cx="50%25" cy="50%25" r="60%25"><stop offset="0%25" style="stop-color:%235C0612;stop-opacity:0" /><stop offset="100%25" style="stop-color:%235C0612;stop-opacity:0.6" /></radialGradient></defs><rect width="1200" height="600" fill="%235C0612"/><circle cx="600" cy="300" r="500" fill="url(%23vignette)"/></svg>')`,
-          backgroundAttachment: 'fixed',
-        }}
-      />
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-background.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-brand-maroon/70 mix-blend-multiply" />

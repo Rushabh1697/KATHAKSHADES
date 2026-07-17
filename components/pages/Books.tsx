@@ -14,37 +14,38 @@ const fallbackBookPhotos = [
 export default function Books() {
   const [isOpen, setIsOpen] = useState(false);
   const [bookPhotos, setBookPhotos] = useState(fallbackBookPhotos);
+  const [bookCover, setBookCover] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsOpen(true), 150);
 
     const controller = new AbortController();
 
-    const loadTaggedPhotos = async () => {
+    // Fetch book cover photo from Cloudinary tag 'book'
+    const loadBookCover = async () => {
       try {
-        const response = await fetch('/api/thaneclasses', { signal: controller.signal });
-
-        if (!response.ok) {
-          return;
-        }
-
-        const data: { photos?: string[] } = await response.json();
-
-        if (Array.isArray(data.photos) && data.photos.length > 0) {
-          setBookPhotos(data.photos);
+        const response = await fetch('/api/book', { signal: controller.signal });
+        if (response.ok) {
+          const data: { photos?: string[] } = await response.json();
+          if (Array.isArray(data.photos) && data.photos.length > 0) {
+            setBookCover(data.photos[0]);
+            // Use all book-tagged photos as page content too
+            setBookPhotos(data.photos);
+          }
         }
       } catch {
-        // Keep the local fallback images if Cloudinary is not configured.
+        // Keep fallback
       }
     };
 
-    loadTaggedPhotos();
+    loadBookCover();
 
     return () => {
       window.clearTimeout(timer);
       controller.abort();
     };
   }, []);
+
 
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
@@ -81,13 +82,20 @@ export default function Books() {
                   <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.24)] border border-white/60 overflow-hidden" />
 
                   <div
-                    className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20"
+                    className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20 overflow-hidden"
                     style={{
                       transform: `rotateY(${isOpen ? -132 : -176}deg)`,
                       transformStyle: 'preserve-3d',
                       transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
                     }}
-                  />
+                  >
+                    {/* Book Cover Photo */}
+                    {bookCover && (
+                      <div className="absolute inset-0" style={{ backfaceVisibility: 'hidden' }}>
+                        <Image src={bookCover} alt="Book cover" fill className="object-cover" />
+                      </div>
+                    )}
+                  </div>
 
                   <div className="absolute inset-y-6 right-4 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
                     {bookPhotos.map((photo, index) => (
@@ -101,11 +109,11 @@ export default function Books() {
                         }}
                       >
                         <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.12)] overflow-hidden border border-brand-gold/10">
-                          <Image src={photo} alt={`Thane class photo ${index + 1}`} fill className="object-cover" />
+                          <Image src={photo} alt={`Book page ${index + 1}`} fill className="object-cover" />
                           <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-brand-cream">
                             <div>
-                              <p className="font-serif text-xl font-bold">Thane Classes</p>
-                              <p className="font-sans text-[10px] uppercase tracking-[0.25em]">Display Photo {index + 1}</p>
+                              <p className="font-serif text-xl font-bold">नृत्यारंभ</p>
+                              <p className="font-sans text-[10px] uppercase tracking-[0.25em]">Preview {index + 1}</p>
                             </div>
                             <p className="font-sans text-[10px] font-semibold">Page {index + 1}</p>
                           </div>
@@ -121,8 +129,8 @@ export default function Books() {
                 </div>
 
                 <div className="mt-6 text-center text-brand-cream/80">
-                  <p className="font-serif text-2xl font-bold text-brand-gold">Thane Classes Catalogue</p>
-                  <p className="font-sans text-sm">A lightweight 3D flipbook showcasing the uploaded class photos.</p>
+                  <p className="font-serif text-2xl font-bold text-brand-gold">नृत्यारंभ — Foundation Handbook</p>
+                  <p className="font-sans text-sm">An interactive preview of our Kathak Foundation Book.</p>
                 </div>
               </div>
             </div>
