@@ -102,7 +102,6 @@ export default function Books() {
                   >
                     <Image src={bookCover} alt="Book cover" fill className="object-cover" />
                   </div>
-div>
 
                   <div className="absolute inset-y-6 right-4 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
                     {bookPhotos.map((photo, index) => (
