@@ -1,100 +1,156 @@
-import { Star, GraduationCap, Sparkles, Camera, MessageCircle } from 'lucide-react';
+'use client';
 
-export default function Catalogue() {
-  const categories = [
-    {
-      label: 'Annual Events',
-      emoji: <Star className="w-10 h-10 text-brand-maroon" />,
-      items: [
-        {
-          title: 'Varshik Utsav 2024',
-          desc: 'Annual day celebration showcasing students\' performances across all batches.',
-          type: 'Annual Event',
-        },
-        {
-          title: 'Nritya Sangam 2023',
-          desc: 'Grand stage performance featuring advanced students in full classical Kathak compositions.',
-          type: 'Annual Event',
-        },
-        {
-          title: 'Guru Purnima Celebration',
-          desc: 'A sacred event dedicated to our gurus — featuring devotional Kathak performances.',
-          type: 'Annual Event',
-        },
-      ],
-    },
-    {
-      label: 'Workshops',
-      emoji: <GraduationCap className="w-10 h-10 text-brand-maroon" />,
-      items: [
-        {
-          title: 'Taal Workshop — Teen Taal',
-          desc: 'Intensive one-day workshop on Teen Taal theory, counting, and practical application.',
-          type: 'Workshop',
-        },
-        {
-          title: 'Abhinaya & Expression Workshop',
-          desc: 'Focused session on facial expressions, mudras, and storytelling in Kathak.',
-          type: 'Workshop',
-        },
-        {
-          title: 'Costume & Makeup Workshop',
-          desc: 'Hands-on session for students on stage costume, jewellery, and makeup techniques.',
-          type: 'Workshop',
-        },
-      ],
-    },
-    {
-      label: 'Performances',
-      emoji: <Sparkles className="w-10 h-10 text-brand-maroon" />,
-      items: [
-        {
-          title: 'Cultural Festival — Dombivli',
-          desc: 'Kathak Shades represented at the city-level cultural festival with a group performance.',
-          type: 'Performance',
-        },
-        {
-          title: 'Thane Arts Festival',
-          desc: 'Students performed at Thane\'s regional arts festival to great applause.',
-          type: 'Performance',
-        },
-        {
-          title: 'School Outreach Program',
-          desc: 'Classical Kathak demonstration and mini-workshop conducted at local schools.',
-          type: 'Performance',
-        },
-      ],
-    },
-    {
-      label: 'Special Occasions',
-      emoji: <Sparkles className="w-10 h-10 text-brand-maroon" />,
-      items: [
-        {
-          title: 'Diwali Celebration 2024',
-          desc: 'Festive Kathak performances and in-house celebration with students and families.',
-          type: 'Special',
-        },
-        {
-          title: 'Navratri Garba & Kathak Night',
-          desc: 'A fusion event blending classical Kathak with the festive spirit of Navratri.',
-          type: 'Special',
-        },
-        {
-          title: 'Year-End Recital',
-          desc: 'Intimate recital where each student performs their term\'s learnings for family.',
-          type: 'Special',
-        },
-      ],
-    },
-  ];
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { Star, GraduationCap, Sparkles, Calendar, ChevronLeft, ChevronRight, MessageCircle, ImageOff } from 'lucide-react';
 
-  const tagColors: Record<string, string> = {
-    'Annual Event': 'bg-brand-gold text-brand-maroon',
-    'Workshop': 'bg-blue-700 text-white',
-    'Performance': 'bg-purple-700 text-white',
-    'Special': 'bg-rose-600 text-white',
+interface Category {
+  label: string;
+  tag: string;
+  apiRoute: string;
+  icon: React.ReactNode;
+  accentColor: string;
+}
+
+const categories: Category[] = [
+  {
+    label: 'Samarpan',
+    tag: 'samarpan',
+    apiRoute: '/api/samarpan',
+    icon: <Star className="w-6 h-6" />,
+    accentColor: 'text-brand-gold',
+  },
+  {
+    label: 'Workshops',
+    tag: 'workshops',
+    apiRoute: '/api/workshops',
+    icon: <GraduationCap className="w-6 h-6" />,
+    accentColor: 'text-blue-600',
+  },
+  {
+    label: 'Performances',
+    tag: 'performances',
+    apiRoute: '/api/performances',
+    icon: <Sparkles className="w-6 h-6" />,
+    accentColor: 'text-purple-600',
+  },
+  {
+    label: 'Special Occasions',
+    tag: 'specialoccasions',
+    apiRoute: '/api/specialoccasions',
+    icon: <Calendar className="w-6 h-6" />,
+    accentColor: 'text-rose-600',
+  },
+];
+
+function PhotoScrollRow({ category }: { category: Category }) {
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(category.apiRoute)
+      .then((r) => r.json())
+      .then((data: { photos?: string[] }) => {
+        if (Array.isArray(data.photos)) setPhotos(data.photos);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [category.apiRoute]);
+
+  const scroll = (dir: 'left' | 'right') => {
+    if (!scrollRef.current) return;
+    const amount = scrollRef.current.clientWidth * 0.8;
+    scrollRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' });
   };
 
+  return (
+    <div className="mb-20">
+      {/* Section header */}
+      <div className="flex items-center gap-4 mb-6">
+        <div className={`flex items-center justify-center w-11 h-11 rounded-full border-2 border-brand-gold/40 bg-brand-cream shadow-sm ${category.accentColor}`}>
+          {category.icon}
+        </div>
+        <div>
+          <h2 className="font-serif text-3xl font-bold text-brand-maroon">{category.label}</h2>
+          <div className="h-1 w-14 bg-brand-gold rounded mt-1" />
+        </div>
+      </div>
+
+      {/* Loading state */}
+      {loading && (
+        <div className="flex gap-5 overflow-hidden">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex-shrink-0 w-64 h-52 rounded-2xl bg-brand-maroon/10 animate-pulse" />
+          ))}
+        </div>
+      )}
+
+      {/* Empty state */}
+      {!loading && photos.length === 0 && (
+        <div className="flex items-center gap-4 p-8 rounded-2xl border border-brand-gold/20 bg-white/60 text-brand-black/50">
+          <ImageOff className="w-8 h-8 text-brand-gold/40 flex-shrink-0" />
+          <div>
+            <p className="font-serif text-lg font-semibold text-brand-maroon/60">No photos yet</p>
+            <p className="font-sans text-sm">Photos tagged <code className="bg-brand-gold/10 px-1 rounded text-brand-maroon font-mono">{category.tag}</code> on Cloudinary will appear here automatically.</p>
+          </div>
+        </div>
+      )}
+
+      {/* Photo scroll strip */}
+      {!loading && photos.length > 0 && (
+        <div className="relative">
+          {/* Scroll container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-5 overflow-x-auto pb-4 scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {photos.map((src, idx) => (
+              <div
+                key={src + idx}
+                className="flex-shrink-0 w-64 sm:w-72 md:w-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group border border-brand-maroon/10 bg-white"
+              >
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={src}
+                    alt={`${category.label} photo ${idx + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation buttons */}
+          <div className="flex items-center gap-3 mt-5">
+            <button
+              onClick={() => scroll('left')}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-maroon text-brand-gold border border-brand-gold/20 shadow hover:bg-brand-maroon/90 hover:shadow-md transition-all hover:scale-110 active:scale-95"
+              aria-label={`Scroll ${category.label} left`}
+            >
+              <ChevronLeft className="w-5 h-5" strokeWidth={2} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-maroon text-brand-gold border border-brand-gold/20 shadow hover:bg-brand-maroon/90 hover:shadow-md transition-all hover:scale-110 active:scale-95"
+              aria-label={`Scroll ${category.label} right`}
+            >
+              <ChevronRight className="w-5 h-5" strokeWidth={2} />
+            </button>
+            <span className="font-sans text-sm text-brand-black/40 ml-1">{photos.length} photo{photos.length !== 1 ? 's' : ''}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function Catalogue() {
   return (
     <section id="catalogue" className="py-20 bg-brand-cream min-h-screen">
       <div className="container">
@@ -107,61 +163,13 @@ export default function Catalogue() {
             Events &amp; Gallery
           </h1>
           <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
-            A glimpse into the vibrant world of Kathak Shades — our annual events, workshops, performances, and special celebrations.
+            A glimpse into the vibrant world of Kathak Shades — our Samarpan productions, workshops, performances, and special celebrations.
           </p>
         </div>
 
-        {/* Categories */}
-        {categories.map(cat => (
-          <div key={cat.label} className="mb-16">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex items-center justify-center w-10 h-10">{cat.emoji}</div>
-              <div>
-                <h2 className="font-serif text-3xl font-bold text-brand-maroon">{cat.label}</h2>
-                <div className="h-1 w-16 bg-brand-gold rounded mt-1" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {cat.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden group border border-brand-maroon/10"
-                >
-                  {/* Photo Placeholder */}
-                  <div className="relative bg-gradient-to-br from-brand-maroon via-brand-maroon/80 to-brand-black h-48 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    <div className="opacity-30 group-hover:scale-110 transition-transform duration-500 [&>svg]:w-20 [&>svg]:h-20 [&>svg]:text-brand-gold">{cat.emoji}</div>
-                    <div className="absolute bottom-3 left-3">
-                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${tagColors[item.type]}`}>
-                        {item.type}
-                      </span>
-                    </div>
-                    {/* Photo coming soon overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-maroon/60">
-                      <p className="font-sans text-brand-gold font-bold text-sm text-center px-4">
-                        <span className="flex items-center justify-center gap-2"><Camera className="w-4 h-4" /> Photos available on WhatsApp</span>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <h3 className="font-serif text-lg font-bold text-brand-maroon mb-2 leading-snug">{item.title}</h3>
-                    <p className="font-sans text-brand-black/70 text-sm leading-relaxed mb-4">{item.desc}</p>
-                    <a
-                      href={`https://wa.me/919773602766?text=Hi!%20I%27d%20like%20to%20see%20photos%20from%20${encodeURIComponent(item.title)}%20by%20Kathak%20Shades.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-brand-maroon text-brand-gold px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-maroon/90 transition-colors"
-                    >
-                      <span className="flex items-center gap-2"><Camera className="w-4 h-4" /> View Photos</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Dynamic photo rows per category */}
+        {categories.map((cat) => (
+          <PhotoScrollRow key={cat.tag} category={cat} />
         ))}
 
         {/* Share CTA */}

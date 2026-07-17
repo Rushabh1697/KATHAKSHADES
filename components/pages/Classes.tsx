@@ -661,7 +661,7 @@ export default function Classes() {
                 href={`https://wa.me/${studios[0].whatsapp}?text=Hello%20Kathak%20Shades!%20I%20want%20to%20enquire%20about%20classes.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-[12px] font-sans font-bold shadow-lg hover:bg-[#20bb5a] transition-all transform hover:-translate-y-1 hover:shadow-xl"
+                className="flex items-center justify-center gap-3 bg-brand-maroon text-brand-gold px-8 py-4 rounded-[12px] font-sans font-bold shadow-lg hover:bg-brand-maroon/90 transition-all transform hover:-translate-y-1 hover:shadow-xl"
               >
                 <MessageCircle className="w-5 h-5" strokeWidth={1.5} /> Enquire on WhatsApp
               </a>
