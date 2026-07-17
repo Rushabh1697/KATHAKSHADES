@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight } from 'lucide-react';
+import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const studios = [
@@ -203,10 +203,17 @@ export default function Classes() {
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
   ];
   const [thaneBookPhotos, setThaneBookPhotos] = useState<string[]>(thaneCataloguePhotos);
-  const [bookIsOpen, setBookIsOpen] = useState(false);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+
+  const goToNextCard = useCallback(() => {
+    setActiveCardIndex(prev => (prev + 1) % thaneBookPhotos.length);
+  }, [thaneBookPhotos.length]);
+
+  const goToPrevCard = useCallback(() => {
+    setActiveCardIndex(prev => (prev - 1 + thaneBookPhotos.length) % thaneBookPhotos.length);
+  }, [thaneBookPhotos.length]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setBookIsOpen(true), 800);
     const controller = new AbortController();
     const loadTaggedPhotos = async () => {
       try {
@@ -215,6 +222,7 @@ export default function Classes() {
           const data: { photos?: string[] } = await response.json();
           if (Array.isArray(data.photos) && data.photos.length > 0) {
             setThaneBookPhotos(data.photos);
+            setActiveCardIndex(0);
           }
         }
       } catch {
@@ -223,10 +231,17 @@ export default function Classes() {
     };
     loadTaggedPhotos();
     return () => {
-      clearTimeout(timer);
       controller.abort();
     };
   }, []);
+
+  // Auto-advance cards every 5 seconds
+  useEffect(() => {
+    if (thaneBookPhotos.length <= 1) return;
+    const interval = setInterval(goToNextCard, 5000);
+    return () => clearInterval(interval);
+  }, [goToNextCard, thaneBookPhotos.length]);
+
 
   return (
     <section id="classes" className="py-24 bg-brand-cream relative min-h-screen overflow-hidden">
@@ -370,71 +385,90 @@ export default function Classes() {
 
                   <div className="space-y-8 flex flex-col justify-between">
                     {isThane && (
-                      <div className={`${panelClass} rounded-[12px] p-8 shadow-sm overflow-hidden`}>
+                      <div className={`${panelClass} rounded-[12px] p-6 sm:p-8 shadow-sm overflow-hidden`}>
                         <div className="flex items-start justify-between gap-4 mb-6">
                           <div>
-                            <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Catalogue</p>
-                            <h3 className={`font-serif text-xl font-bold ${headingClass}`}>Thane Classes Book</h3>
+                            <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Gallery</p>
+                            <h3 className={`font-serif text-xl font-bold ${headingClass}`}>Thane Classes</h3>
                           </div>
-                          {/* Label info indicator instead of a redirection link */}
                           <div className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${isThane ? 'border-brand-gold/40 text-brand-gold bg-white/5' : 'border-brand-gold/30 text-brand-gold bg-brand-cream/5'}`}>
-                            ✦ Flipbook Preview
+                            {activeCardIndex + 1} / {thaneBookPhotos.length}
                           </div>
                         </div>
 
-                        <div className="relative w-full max-w-[26rem] mx-auto p-4 flex items-center justify-center min-h-[260px]" style={{ perspective: '2200px' }}>
-                          <div className="relative w-full h-[14rem] sm:h-[16rem] transition-all duration-700" style={{ transformStyle: 'preserve-3d', transform: bookIsOpen ? 'scale(1) rotateX(0deg)' : 'scale(0.92) rotateX(8deg)', opacity: bookIsOpen ? 1 : 0 }}>
-                            {/* Left inside cover backing */}
-                            <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20" />
-                            {/* Right page base/shadow */}
-                            <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.24)] border border-white/60 overflow-hidden" />
-
-                            {/* Outer front cover (opening left) */}
-                            <div
-                              className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20"
-                              style={{
-                                transform: `rotateY(${bookIsOpen ? -132 : -176}deg)`,
-                                transformStyle: 'preserve-3d',
-                                transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
-                              }}
-                            />
-
-                            {/* Right Pages Container */}
-                            <div className="absolute inset-y-5 right-3 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
-                              {thaneBookPhotos.map((photo, index) => (
-                                <div
-                                  key={photo}
-                                  className="absolute inset-0 animate-pageTurn"
-                                  style={{
-                                    zIndex: thaneBookPhotos.length - index,
-                                    animationDelay: `${index * 1.5}s`,
-                                    animationDuration: '12s',
-                                  }}
-                                >
-                                  <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.12)] overflow-hidden border border-brand-gold/10">
-                                    <Image src={photo} alt={`Thane class photo ${index + 1}`} fill className="object-cover" />
-                                    <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between text-brand-black/90">
-                                      <p className="font-serif text-[11px] font-bold">Thane Classes</p>
-                                      <p className="font-sans text-[8px] font-semibold">Page {index + 1}</p>
-                                    </div>
+                        {/* Photo Card Carousel */}
+                        <div className="relative w-full">
+                          {/* Main card area */}
+                          <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+                            <AnimatePresence mode="wait">
+                              <motion.div
+                                key={activeCardIndex}
+                                initial={{ opacity: 0, scale: 1.05 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                className="absolute inset-0"
+                              >
+                                <Image
+                                  src={thaneBookPhotos[activeCardIndex]}
+                                  alt={`Thane class photo ${activeCardIndex + 1}`}
+                                  fill
+                                  className="object-cover"
+                                  sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                                {/* Gradient overlay at bottom */}
+                                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
+                                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                                  <div>
+                                    <p className="font-serif text-white text-lg font-bold drop-shadow-lg">Thane Classes</p>
+                                    <p className="font-sans text-white/70 text-xs">Kathak Shades Studio</p>
                                   </div>
                                 </div>
-                              ))}
+                              </motion.div>
+                            </AnimatePresence>
 
-                              <div className="absolute inset-y-0 left-0 w-[1px] bg-brand-gold/20" />
-                              <div className="absolute top-0 bottom-0 left-[50%] w-[2px] bg-brand-gold/25 shadow-[0_0_12px_rgba(179,92,17,0.35)]" />
-                            </div>
-
-                            {/* Book Spine Overlay */}
-                            <div className="absolute left-3 top-4 bottom-4 w-4 rounded-l-[1rem] bg-[#140305] shadow-[inset_-2px_0_0_rgba(255,255,255,0.08)]" />
+                            {/* Navigation Arrows */}
+                            {thaneBookPhotos.length > 1 && (
+                              <>
+                                <button
+                                  onClick={goToPrevCard}
+                                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
+                                  aria-label="Previous photo"
+                                >
+                                  <ChevronLeft className="w-5 h-5" strokeWidth={2} />
+                                </button>
+                                <button
+                                  onClick={goToNextCard}
+                                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
+                                  aria-label="Next photo"
+                                >
+                                  <ChevronRight className="w-5 h-5" strokeWidth={2} />
+                                </button>
+                              </>
+                            )}
                           </div>
-                        </div>
 
-                        <p className={`mt-4 text-sm ${mutedClass}`}>
-                          Opening and page-turning preview for the Thane classes catalogue.
-                        </p>
+                          {/* Dot Indicators */}
+                          {thaneBookPhotos.length > 1 && (
+                            <div className="flex items-center justify-center gap-2 mt-4">
+                              {thaneBookPhotos.map((_, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => setActiveCardIndex(index)}
+                                  className={`rounded-full transition-all duration-300 ${
+                                    index === activeCardIndex
+                                      ? 'w-6 h-2 bg-brand-gold'
+                                      : `w-2 h-2 ${isThane ? 'bg-white/30 hover:bg-white/50' : 'bg-brand-gold/30 hover:bg-brand-gold/50'}`
+                                  }`}
+                                  aria-label={`Go to photo ${index + 1}`}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     )}
+
 
                     <div className="space-y-4">
                       <a
