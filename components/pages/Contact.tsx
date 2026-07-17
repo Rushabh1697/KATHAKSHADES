@@ -56,47 +56,125 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Studio Info */}
+          {/* Studio Info — All Branches */}
           <div className="space-y-6 animate-slide-up">
-            {/* Dombivli */}
-            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-7 rounded-2xl">
-              <h3 className="font-serif text-xl font-bold text-brand-gold mb-1 flex items-center gap-2"><Landmark className="w-5 h-5" /> Dombivli East</h3>
-              <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kidz Kingdom — Regency Anantam</p>
-              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
-                <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)</a>
+            <h2 className="font-serif text-2xl font-bold text-brand-gold flex items-center gap-2 mb-2">
+              <Landmark className="w-6 h-6" /> Studio Locations &amp; Batches
+            </h2>
+
+            {/* Dombivli — Kidz Kingdom */}
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Dombivli East — Kidz Kingdom</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Regency Anantam Branch 1</p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
+                >
+                  Map ↗
+                </a>
+              </div>
+              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
+                Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)
               </p>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1.5 text-sm">
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kathak Shades:</span> +91 97736 02766</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kidz Kingdom:</span> +91 96194 42555</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766 / +91 96194 42555</p>
               </div>
             </div>
 
-            {/* Thane */}
-            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-7 rounded-2xl">
-              <h3 className="font-serif text-xl font-bold text-brand-gold mb-1 flex items-center gap-2"><Landmark className="w-5 h-5" /> Thane West</h3>
-              <p className="font-sans text-brand-gold/60 text-xs uppercase tracking-widest mb-4">Kinder Hive — Vasant Vihar</p>
-              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-4">
-                <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold hover:underline">Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610</a>
+            {/* Dombivli — SD Studio */}
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Dombivli East — SD Studio</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Regency Anantam Branch 2</p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/YEA5qG25toE9D2gPA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
+                >
+                  Map ↗
+                </a>
+              </div>
+              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
+                SD Education hub, Regency Anantam gate no 1, Dombivli (East)
               </p>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1.5 text-sm">
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
+              </div>
+            </div>
+
+            {/* Thane — Kinder Hive */}
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Thane West — Kinder Hive</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Vasant Vihar Branch</p>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
+                >
+                  Map ↗
+                </a>
+              </div>
+              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
+                Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610
+              </p>
+              <div className="space-y-1.5 text-sm">
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Tuesday &amp; Thursday</p>
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kathak Shades:</span> +91 97736 02766</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Kinder Hive:</span> +91 98851 80738</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766 / +91 98851 80738</p>
+              </div>
+            </div>
+
+            {/* Thane — Rhymes N Colours */}
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Thane West — Rhymes N Colours</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Manpada Branch</p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
+                >
+                  Map ↗
+                </a>
+              </div>
+              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
+                Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West
+              </p>
+              <div className="space-y-1.5 text-sm">
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Tuesday &amp; Friday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-7 rounded-2xl">
-              <h3 className="font-serif text-xl font-bold text-brand-gold mb-5 flex items-center gap-2"><Globe className="w-5 h-5" /> Follow Us</h3>
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
+              <h3 className="font-serif text-xl font-bold text-brand-gold mb-4 flex items-center gap-2"><Globe className="w-5 h-5" /> Follow Us</h3>
               <div className="flex gap-4 flex-wrap">
                 {[
                   { label: 'WhatsApp', href: 'https://wa.me/919773602766', icon: <MessageCircle className="w-5 h-5" /> },
-                  { label: 'Camera', href: 'https://instagram.com', icon: <Camera className="w-5 h-5" /> },
-                  { label: 'Share2', href: 'https://facebook.com', icon: <Share2 className="w-5 h-5" /> },
-                  { label: 'Play', href: 'https://youtube.com', icon: <Play className="w-5 h-5" /> },
+                  { label: 'Instagram', href: 'https://instagram.com', icon: <Camera className="w-5 h-5" /> },
+                  { label: 'Facebook', href: 'https://facebook.com', icon: <Share2 className="w-5 h-5" /> },
+                  { label: 'YouTube', href: 'https://youtube.com', icon: <Play className="w-5 h-5" /> },
                 ].map(s => (
                   <a
                     key={s.label}
@@ -114,7 +192,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-brand-cream rounded-2xl p-8 shadow-2xl animate-slide-up">
+          <div className="bg-brand-cream rounded-2xl p-8 shadow-2xl animate-slide-up self-start">
             <h3 className="font-serif text-2xl font-bold text-brand-maroon mb-6">
               Send an Enquiry
             </h3>
@@ -144,15 +222,17 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="block font-sans font-semibold text-brand-maroon mb-2">Preferred Location</label>
+                <label className="block font-sans font-semibold text-brand-maroon mb-2">Preferred Studio Branch</label>
                 <select
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-brand-maroon/30 rounded-xl focus:outline-none focus:border-brand-gold font-sans transition-colors bg-white text-brand-maroon"
+                  className="w-full px-4 py-3 border-2 border-brand-maroon/30 rounded-xl focus:outline-none focus:border-brand-gold font-sans transition-colors bg-white text-brand-maroon font-medium"
                 >
-                  <option value="dombivli">Dombivli East (Regency Anantam)</option>
-                  <option value="thane">Thane West (Vasant Vihar)</option>
+                  <option value="dombivli_kidz">Dombivli East — Kidz Kingdom (Regency Anantam)</option>
+                  <option value="dombivli_sd">Dombivli East — SD Studio (Regency Anantam Gate 1)</option>
+                  <option value="thane_kinder">Thane West — Kinder Hive (Vasant Vihar)</option>
+                  <option value="thane_rhymes">Thane West — Rhymes N Colours (Manpada)</option>
                 </select>
               </div>
               <div>
@@ -170,7 +250,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-brand-maroon text-brand-gold px-6 py-4 rounded-xl font-sans font-bold text-lg hover:bg-brand-maroon/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
+                className="w-full bg-brand-maroon text-brand-gold px-6 py-4 rounded-xl font-sans font-bold text-lg hover:bg-brand-maroon/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 shadow-md"
               >
                 {isSubmitting ? 'Connecting...' : <span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Contact via WhatsApp</span>}
               </button>
@@ -180,6 +260,7 @@ export default function Contact() {
             </form>
           </div>
         </div>
+
       </div>
     </section>
   );

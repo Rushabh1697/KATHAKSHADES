@@ -5,16 +5,14 @@ import Image from 'next/image';
 import { Phone, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
 
 const fallbackBookPhotos = [
-  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
-  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
-  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/uog13wlckc1emvjnucwv.jpg',
-  'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847366/oksnto6rkscnicygmjx9.jpg',
+  'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1784278292/g5hwqgmgnnwvp0ngypn8.jpg',
 ];
 
 export default function Books() {
   const [isOpen, setIsOpen] = useState(false);
-  const [bookPhotos, setBookPhotos] = useState(fallbackBookPhotos);
+  const [bookPhotos, setBookPhotos] = useState<string[]>(fallbackBookPhotos);
   const [bookCover, setBookCover] = useState<string>(fallbackBookPhotos[0]);
+
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsOpen(true), 150);

@@ -39,13 +39,29 @@ const studios = [
   {
     id: 'dombivli',
     name: 'Dombivli East',
-    venue: 'Kidz Kingdom — Regency Anantam',
-    address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
+    venue: 'Studio branches in Kidz Kingdom and SD Studio',
+    address: 'Regency Anantam, Dombivli (East)',
     days: 'Every Monday & Wednesday',
-    timing: '7:00 PM – 8:00 PM',
+    timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
     contacts: [
       { label: 'Kathak Shades', number: '+91 97736 02766' },
       { label: 'Kidz Kingdom', number: '+91 96194 42555' },
+    ],
+    branches: [
+      {
+        name: 'Kidz Kingdom — Regency Anantam',
+        days: 'Monday & Wednesday',
+        timing: '7:00 PM – 8:00 PM',
+        address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
+        mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
+      },
+      {
+        name: 'SD Studio — Regency Anantam',
+        days: 'Monday & Wednesday',
+        timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
+        address: 'SD Education hub, Regency Anantam gate no 1, Dombivli',
+        mapLink: 'https://maps.app.goo.gl/YEA5qG25toE9D2gPA',
+      },
     ],
     mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
     whatsapp: '919773602766',
@@ -255,9 +271,11 @@ export default function Classes() {
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
   ];
   const dombivliCataloguePhotos = [
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/uog13wlckc1emvjnucwv.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847366/oksnto6rkscnicygmjx9.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862457/ku47mhfvgpjuhbqqkxfy.jpg',
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862455/ieceaztoludztzb3xsng.jpg',
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862455/dwapjhozmjvmfrwvotb8.jpg',
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862451/apfmggbmpftwnqmab7jm.jpg',
+    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862451/cylztldboaxrfikelche.jpg',
   ];
   const [thaneBookPhotos, setThaneBookPhotos] = useState<string[]>(thaneCataloguePhotos);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -469,7 +487,7 @@ export default function Classes() {
                           <div className={`w-10 h-10 rounded-full border ${isThane ? 'border-white/20 bg-white/10' : 'border-brand-gold flex items-center justify-center bg-brand-cream/10'}`}>
                             <MapPin className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
                           </div>
-                          Thane Branches
+                          {isThane ? 'Thane Branches' : 'Dombivli Branches'}
                         </h3>
                         <div className="space-y-4">
                           {currentStudio.branches.map(branch => (

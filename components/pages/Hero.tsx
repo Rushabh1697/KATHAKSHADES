@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-const logoSrc = 'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846259/iuajlxf8tsqzwfbrfa6u.jpg';
 
 export default function Hero() {
   return (
@@ -30,19 +29,8 @@ export default function Hero() {
 
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 right-10 w-96 h-96 border-[0.5px] border-brand-gold/20 rounded-full opacity-50 flex items-center justify-center pointer-events-none">
-        <div className="w-48 h-48 rounded-full border border-brand-gold/45 bg-brand-maroon/35 backdrop-blur-sm shadow-[0_0_40px_rgba(179,92,17,0.22)] flex items-center justify-center overflow-hidden">
-          <Image
-            src={logoSrc}
-            alt="Kathak Shades logo"
-            width={192}
-            height={192}
-            className="h-full w-full object-cover scale-[1.42]"
-            priority
-          />
-        </div>
-      </div>
-      <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] border-[0.5px] border-brand-gold/10 rounded-full opacity-30" />
+      <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] border-[0.5px] border-brand-gold/10 rounded-full opacity-30 pointer-events-none" />
+
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 lg:px-8">
