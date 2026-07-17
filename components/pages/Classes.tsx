@@ -187,9 +187,10 @@ export default function Classes() {
   const [activeStudio, setActiveStudio] = useState('thane');
   const currentStudio = studios.find(s => s.id === activeStudio)!;
   const isThane = currentStudio.id === 'thane';
+  const isDombivli = currentStudio.id === 'dombivli';
   const cardClass = isThane
     ? 'bg-[#033C4A] border border-[#0B6277]/40 shadow-[0_12px_45px_rgba(3,60,74,0.2)]'
-    : 'bg-brand-cream border border-brand-gold/40 shadow-[0_10px_40px_rgba(123,74,46,0.08)]';
+    : 'border border-brand-gold/50 shadow-[0_10px_40px_rgba(123,74,46,0.12)]';
   const panelClass = isThane
     ? 'bg-white/6 border border-white/10 text-brand-cream/90'
     : 'bg-brand-cream border border-brand-gold/30 text-brand-black/70';
@@ -235,12 +236,51 @@ export default function Classes() {
     };
   }, []);
 
-  // Auto-advance cards every 5 seconds
+  // Auto-advance Thane cards every 5 seconds
   useEffect(() => {
     if (thaneBookPhotos.length <= 1) return;
     const interval = setInterval(goToNextCard, 5000);
     return () => clearInterval(interval);
   }, [goToNextCard, thaneBookPhotos.length]);
+
+  // --- Dombivli photo carousel state ---
+  const [dombivliPhotos, setDombivliPhotos] = useState<string[]>([]);
+  const [dombivliCardIndex, setDombivliCardIndex] = useState(0);
+
+  const goToNextDombivliCard = useCallback(() => {
+    setDombivliCardIndex(prev => (prev + 1) % (dombivliPhotos.length || 1));
+  }, [dombivliPhotos.length]);
+
+  const goToPrevDombivliCard = useCallback(() => {
+    setDombivliCardIndex(prev => (prev - 1 + (dombivliPhotos.length || 1)) % (dombivliPhotos.length || 1));
+  }, [dombivliPhotos.length]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const loadDombivliPhotos = async () => {
+      try {
+        const response = await fetch('/api/dombivliclasses', { signal: controller.signal });
+        if (response.ok) {
+          const data: { photos?: string[] } = await response.json();
+          if (Array.isArray(data.photos) && data.photos.length > 0) {
+            setDombivliPhotos(data.photos);
+            setDombivliCardIndex(0);
+          }
+        }
+      } catch {
+        // Fallback — no photos
+      }
+    };
+    loadDombivliPhotos();
+    return () => { controller.abort(); };
+  }, []);
+
+  // Auto-advance Dombivli cards every 5 seconds
+  useEffect(() => {
+    if (dombivliPhotos.length <= 1) return;
+    const interval = setInterval(goToNextDombivliCard, 5000);
+    return () => clearInterval(interval);
+  }, [goToNextDombivliCard, dombivliPhotos.length]);
 
 
   return (
@@ -294,15 +334,53 @@ export default function Classes() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className={`${cardClass} rounded-[16px] overflow-hidden`}
+              className={`${cardClass} rounded-[16px] overflow-hidden relative ${isDombivli ? 'bg-brand-cream' : ''}`}
             >
+              {/* Dombivli premium background layers */}
+              {isDombivli && (
+                <>
+                  {/* Vintage parchment texture */}
+                  <div className="absolute inset-0 z-0">
+                    <Image src="/parchment-texture.png" alt="" fill className="object-cover opacity-40" />
+                  </div>
+                  {/* Faint mandala overlay on left */}
+                  <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[28rem] h-[28rem] z-0 pointer-events-none opacity-[0.07]">
+                    <Image src="/mandala-overlay.png" alt="" fill className="object-contain" />
+                  </div>
+                  {/* Gold corner borders */}
+                  <div className="absolute top-3 left-3 w-20 h-20 z-0 pointer-events-none opacity-60">
+                    <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
+                  </div>
+                  <div className="absolute top-3 right-3 w-20 h-20 z-0 pointer-events-none opacity-60 -scale-x-100">
+                    <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
+                  </div>
+                  <div className="absolute bottom-3 left-3 w-20 h-20 z-0 pointer-events-none opacity-60 -scale-y-100">
+                    <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
+                  </div>
+                  <div className="absolute bottom-3 right-3 w-20 h-20 z-0 pointer-events-none opacity-60 scale-[-1]">
+                    <Image src="/gold-corner-border.png" alt="" fill className="object-contain" />
+                  </div>
+                </>
+              )}
+
               <div className={`h-2 w-full ${isThane ? 'bg-gradient-to-r from-[#0A556A] via-[#0B6277] to-[#0E7088]' : 'bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark'}`} />
 
-              <div className="p-8 md:p-12">
-                <div className="mb-12 text-center md:text-left">
+              <div className="p-8 md:p-12 relative z-[1]">
+                <div className="mb-8 text-center md:text-left">
+                  {isDombivli && (
+                    <p className="font-serif text-sm tracking-[0.3em] uppercase text-brand-gold mb-1">School of Kathak</p>
+                  )}
                   <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Studio</p>
                   <h2 className={`font-serif text-3xl md:text-4xl font-bold mb-2 ${headingClass}`}>{currentStudio.name}</h2>
                   <p className={`font-sans text-lg font-light ${mutedClass}`}>{currentStudio.venue}</p>
+                  {/* Gold divider for Dombivli */}
+                  {isDombivli && (
+                    <div className="mt-4 flex justify-center md:justify-start">
+                      <div className="relative w-48 h-6 opacity-60">
+                        <Image src="/gold-divider.png" alt="" fill className="object-contain" />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -384,90 +462,110 @@ export default function Classes() {
                   </div>
 
                   <div className="space-y-8 flex flex-col justify-between">
-                    {isThane && (
-                      <div className={`${panelClass} rounded-[12px] p-6 sm:p-8 shadow-sm overflow-hidden`}>
-                        <div className="flex items-start justify-between gap-4 mb-6">
-                          <div>
-                            <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Gallery</p>
-                            <h3 className={`font-serif text-xl font-bold ${headingClass}`}>Thane Classes</h3>
-                          </div>
-                          <div className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${isThane ? 'border-brand-gold/40 text-brand-gold bg-white/5' : 'border-brand-gold/30 text-brand-gold bg-brand-cream/5'}`}>
-                            {activeCardIndex + 1} / {thaneBookPhotos.length}
-                          </div>
-                        </div>
+                    {/* === Photo Card Carousel (shared: Thane + Dombivli) === */}
+                    {(() => {
+                      const photos = isThane ? thaneBookPhotos : dombivliPhotos;
+                      const idx = isThane ? activeCardIndex : dombivliCardIndex;
+                      const setIdx = isThane ? setActiveCardIndex : setDombivliCardIndex;
+                      const prev = isThane ? goToPrevCard : goToPrevDombivliCard;
+                      const next = isThane ? goToNextCard : goToNextDombivliCard;
+                      const title = isThane ? 'Thane Classes' : 'Dombivli Classes';
 
-                        {/* Photo Card Carousel */}
-                        <div className="relative w-full">
-                          {/* Main card area */}
-                          <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-                            <AnimatePresence mode="wait">
-                              <motion.div
-                                key={activeCardIndex}
-                                initial={{ opacity: 0, scale: 1.05 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                className="absolute inset-0"
-                              >
-                                <Image
-                                  src={thaneBookPhotos[activeCardIndex]}
-                                  alt={`Thane class photo ${activeCardIndex + 1}`}
-                                  fill
-                                  className="object-cover"
-                                  sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                                {/* Gradient overlay at bottom */}
-                                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
-                                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                                  <div>
-                                    <p className="font-serif text-white text-lg font-bold drop-shadow-lg">Thane Classes</p>
-                                    <p className="font-sans text-white/70 text-xs">Kathak Shades Studio</p>
+                      if (photos.length === 0 && !isThane) return null;
+                      if (photos.length === 0) return null;
+
+                      return (
+                        <div className={`${panelClass} rounded-[12px] p-6 sm:p-8 shadow-sm overflow-hidden`}>
+                          <div className="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                              <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Gallery</p>
+                              <h3 className={`font-serif text-xl font-bold ${headingClass}`}>{title}</h3>
+                            </div>
+                            <div className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${isThane ? 'border-brand-gold/40 text-brand-gold bg-white/5' : 'border-brand-gold/30 text-brand-gold bg-brand-cream/5'}`}>
+                              {idx + 1} / {photos.length}
+                            </div>
+                          </div>
+
+                          {/* Photo Card */}
+                          <div className="relative w-full">
+                            <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
+                              <AnimatePresence mode="wait">
+                                <motion.div
+                                  key={idx}
+                                  initial={{ opacity: 0, scale: 1.05 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  exit={{ opacity: 0, scale: 0.95 }}
+                                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                  className="absolute inset-0"
+                                >
+                                  <Image
+                                    src={photos[idx]}
+                                    alt={`${title} photo ${idx + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                  />
+                                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
+                                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                                    <div>
+                                      <p className="font-serif text-white text-lg font-bold drop-shadow-lg">{title}</p>
+                                      <p className="font-sans text-white/70 text-xs">Kathak Shades Studio</p>
+                                    </div>
                                   </div>
-                                </div>
-                              </motion.div>
-                            </AnimatePresence>
+                                </motion.div>
+                              </AnimatePresence>
 
-                            {/* Navigation Arrows */}
-                            {thaneBookPhotos.length > 1 && (
-                              <>
-                                <button
-                                  onClick={goToPrevCard}
-                                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
-                                  aria-label="Previous photo"
-                                >
-                                  <ChevronLeft className="w-5 h-5" strokeWidth={2} />
-                                </button>
-                                <button
-                                  onClick={goToNextCard}
-                                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
-                                  aria-label="Next photo"
-                                >
-                                  <ChevronRight className="w-5 h-5" strokeWidth={2} />
-                                </button>
-                              </>
+                              {/* Navigation Arrows */}
+                              {photos.length > 1 && (
+                                <>
+                                  <button
+                                    onClick={prev}
+                                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
+                                    aria-label="Previous photo"
+                                  >
+                                    <ChevronLeft className="w-5 h-5" strokeWidth={2} />
+                                  </button>
+                                  <button
+                                    onClick={next}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
+                                    aria-label="Next photo"
+                                  >
+                                    <ChevronRight className="w-5 h-5" strokeWidth={2} />
+                                  </button>
+                                </>
+                              )}
+                            </div>
+
+                            {/* Dot Indicators */}
+                            {photos.length > 1 && (
+                              <div className="flex items-center justify-center gap-2 mt-4">
+                                {photos.map((_, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => setIdx(index)}
+                                    className={`rounded-full transition-all duration-300 ${
+                                      index === idx
+                                        ? 'w-6 h-2 bg-brand-gold'
+                                        : `w-2 h-2 ${isThane ? 'bg-white/30 hover:bg-white/50' : 'bg-brand-gold/30 hover:bg-brand-gold/50'}`
+                                    }`}
+                                    aria-label={`Go to photo ${index + 1}`}
+                                  />
+                                ))}
+                              </div>
                             )}
                           </div>
 
-                          {/* Dot Indicators */}
-                          {thaneBookPhotos.length > 1 && (
-                            <div className="flex items-center justify-center gap-2 mt-4">
-                              {thaneBookPhotos.map((_, index) => (
-                                <button
-                                  key={index}
-                                  onClick={() => setActiveCardIndex(index)}
-                                  className={`rounded-full transition-all duration-300 ${
-                                    index === activeCardIndex
-                                      ? 'w-6 h-2 bg-brand-gold'
-                                      : `w-2 h-2 ${isThane ? 'bg-white/30 hover:bg-white/50' : 'bg-brand-gold/30 hover:bg-brand-gold/50'}`
-                                  }`}
-                                  aria-label={`Go to photo ${index + 1}`}
-                                />
-                              ))}
+                          {/* Gold divider accent below gallery for Dombivli */}
+                          {isDombivli && (
+                            <div className="mt-4 flex justify-center">
+                              <div className="relative w-32 h-5 opacity-50">
+                                <Image src="/gold-divider.png" alt="" fill className="object-contain" />
+                              </div>
                             </div>
                           )}
                         </div>
-                      </div>
-                    )}
+                      );
+                    })()}
 
 
                     <div className="space-y-4">
