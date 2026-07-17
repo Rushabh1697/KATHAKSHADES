@@ -265,7 +265,7 @@ export default function Classes() {
   const mutedClass = isThane ? 'text-brand-cream/70' : 'text-brand-black/70';
   const labelClass = isThane ? 'text-brand-gold/90' : 'text-brand-gold';
   const iconClass = isThane ? 'text-brand-gold' : 'text-brand-gold';
-  const buttonClass = 'bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black shadow-[0_4px_15px_rgba(179,92,17,0.22)] hover:shadow-[0_8px_25px_rgba(179,92,17,0.3)]';
+
   const thaneCataloguePhotos = [
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
@@ -645,32 +645,33 @@ export default function Classes() {
                     })()}
 
 
-                    <div className="space-y-4">
-                      <a
-                        href={`https://wa.me/${currentStudio.whatsapp}?text=Hello%20Kathak%20Shades!%20I%20want%20to%20enquire%20about%20${currentStudio.name}%20classes.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-full flex items-center justify-center gap-3 py-4 rounded-[12px] font-sans font-bold transition-all transform hover:-translate-y-1 ${buttonClass}`}
-                      >
-                        <MessageCircle className="w-5 h-5 text-brand-black" strokeWidth={1.5} /> Enquire on WhatsApp
-                      </a>
-                      <a
-                        href="/contact"
-                        className={`w-full flex items-center justify-center gap-3 py-4 rounded-[12px] font-sans font-bold transition-all transform hover:-translate-y-1 ${buttonClass}`}
-                      >
-                        <ClipboardList className="w-5 h-5 text-brand-black" strokeWidth={1.5} /> Fill Enquiry Form
-                      </a>
-                    </div>
+
                   </div>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-12 text-center p-6 bg-brand-cream rounded-[16px] border border-brand-gold/20 shadow-sm max-w-2xl mx-auto">
-            <p className="font-sans text-brand-maroon font-medium">
+          <div className="mt-12 max-w-2xl mx-auto text-center">
+            <p className="font-sans text-brand-maroon font-medium mb-6">
               <span className="flex items-center justify-center gap-3"><GraduationCap className="w-6 h-6 text-brand-gold flex-shrink-0" strokeWidth={1.5} /> Classes are open for all age groups. Contact us to know the batch that suits you best!</span>
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={`https://wa.me/${studios[0].whatsapp}?text=Hello%20Kathak%20Shades!%20I%20want%20to%20enquire%20about%20classes.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-[12px] font-sans font-bold shadow-lg hover:bg-[#20bb5a] transition-all transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <MessageCircle className="w-5 h-5" strokeWidth={1.5} /> Enquire on WhatsApp
+              </a>
+              <a
+                href="/contact"
+                className="flex items-center justify-center gap-3 bg-brand-maroon text-brand-gold px-8 py-4 rounded-[12px] font-sans font-bold shadow-lg hover:bg-brand-maroon/90 transition-all transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <ClipboardList className="w-5 h-5" strokeWidth={1.5} /> Fill Enquiry Form
+              </a>
+            </div>
           </div>
         </div>
       </div>

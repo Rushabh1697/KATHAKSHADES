@@ -4,22 +4,14 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Phone, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
 
-const fallbackBookPhotos = [
-  'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1784278292/g5hwqgmgnnwvp0ngypn8.jpg',
-];
+const fallbackBookPhoto = 'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1784278292/g5hwqgmgnnwvp0ngypn8.jpg';
 
 export default function Books() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [bookPhotos, setBookPhotos] = useState<string[]>(fallbackBookPhotos);
-  const [bookCover, setBookCover] = useState<string>(fallbackBookPhotos[0]);
-
+  const [bookCover, setBookCover] = useState<string>(fallbackBookPhoto);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsOpen(true), 150);
-
     const controller = new AbortController();
 
-    // Fetch book cover photo from Cloudinary tag 'book'
     const loadBookCover = async () => {
       try {
         const response = await fetch('/api/book', { signal: controller.signal });
@@ -27,8 +19,6 @@ export default function Books() {
           const data: { photos?: string[] } = await response.json();
           if (Array.isArray(data.photos) && data.photos.length > 0) {
             setBookCover(data.photos[0]);
-            // Use all book-tagged photos as page content too
-            setBookPhotos(data.photos);
           }
         }
       } catch {
@@ -39,7 +29,6 @@ export default function Books() {
     loadBookCover();
 
     return () => {
-      window.clearTimeout(timer);
       controller.abort();
     };
   }, []);
@@ -66,75 +55,26 @@ export default function Books() {
         </div>
 
         {/* Book Feature Card */}
-        <div className={`bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 transition-all duration-700 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            {/* Left — Book Visual */}
+            {/* Left — Book Photo */}
             <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-8 md:p-12 min-h-[460px] relative overflow-hidden">
               <div className="absolute top-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full -translate-x-24 -translate-y-24" />
               <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full translate-x-32 translate-y-32" />
 
-              <div className="relative z-10 w-full max-w-[26rem]" style={{ perspective: '2200px' }}>
-                <div className="relative h-[18rem] md:h-[22rem] transition-all duration-700" style={{ transformStyle: 'preserve-3d', transform: isOpen ? 'scale(1) rotateX(0deg)' : 'scale(0.92) rotateX(8deg)', opacity: isOpen ? 1 : 0 }}>
-                  
-                  {/* Left inside cover backing — Displays Book Cover Photo */}
-                  <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20 overflow-hidden">
-                    <Image src={bookCover} alt="Book cover photo" fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                    <div className="absolute bottom-3 left-2 right-2 text-center">
-                      <p className="font-serif text-brand-gold text-xs font-bold tracking-wider uppercase">Book Cover</p>
-                      <p className="font-sans text-brand-cream/80 text-[9px]">नृत्यारंभ Foundation Handbook</p>
-                    </div>
-                  </div>
-
-                  {/* Right page base/shadow */}
-                  <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.24)] border border-white/60 overflow-hidden" />
-
-                  {/* Outer Front Cover Leaf */}
-                  <div
-                    className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20 overflow-hidden"
-                    style={{
-                      transform: `rotateY(${isOpen ? -132 : -176}deg)`,
-                      transformStyle: 'preserve-3d',
-                      transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
-                    }}
-                  >
-                    <Image src={bookCover} alt="Book cover" fill className="object-cover" />
-                  </div>
-
-                  <div className="absolute inset-y-6 right-4 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
-                    {bookPhotos.map((photo, index) => (
-                      <div
-                        key={photo}
-                        className="absolute inset-0 animate-pageTurn"
-                        style={{
-                          zIndex: bookPhotos.length - index,
-                          animationDelay: `${index * 1.5}s`,
-                          animationDuration: '12s',
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-white/95 rounded-[1rem] shadow-[0_8px_28px_rgba(0,0,0,0.12)] overflow-hidden border border-brand-gold/10">
-                          <Image src={photo} alt={`Book page ${index + 1}`} fill className="object-cover" />
-                          <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-brand-cream">
-                            <div>
-                              <p className="font-serif text-xl font-bold">नृत्यारंभ</p>
-                              <p className="font-sans text-[10px] uppercase tracking-[0.25em]">Preview {index + 1}</p>
-                            </div>
-                            <p className="font-sans text-[10px] font-semibold">Page {index + 1}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className="absolute inset-y-0 left-0 w-[1px] bg-brand-gold/20" />
-                    <div className="absolute top-0 bottom-0 left-[50%] w-[2px] bg-brand-gold/25 shadow-[0_0_12px_rgba(179,92,17,0.35)]" />
-                  </div>
-
-                  <div className="absolute left-3 top-4 bottom-4 w-4 rounded-l-[1rem] bg-[#140305] shadow-[inset_-2px_0_0_rgba(255,255,255,0.08)]" />
+              <div className="relative z-10 w-full max-w-[18rem]">
+                <div className="relative w-full aspect-[3/4] rounded-[1.4rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-brand-gold/20">
+                  <Image
+                    src={bookCover}
+                    alt="नृत्यारंभ Foundation Handbook cover"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
-
                 <div className="mt-6 text-center text-brand-cream/80">
                   <p className="font-serif text-2xl font-bold text-brand-gold">नृत्यारंभ — Foundation Handbook</p>
-                  <p className="font-sans text-sm">An interactive preview of our Kathak Foundation Book.</p>
+                  <p className="font-sans text-sm mt-1 text-brand-cream/70">by Kathak Shades</p>
                 </div>
               </div>
             </div>
