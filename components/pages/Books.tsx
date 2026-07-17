@@ -14,7 +14,7 @@ const fallbackBookPhotos = [
 export default function Books() {
   const [isOpen, setIsOpen] = useState(false);
   const [bookPhotos, setBookPhotos] = useState(fallbackBookPhotos);
-  const [bookCover, setBookCover] = useState<string | null>(null);
+  const [bookCover, setBookCover] = useState<string>(fallbackBookPhotos[0]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsOpen(true), 150);
@@ -45,7 +45,6 @@ export default function Books() {
       controller.abort();
     };
   }, []);
-
 
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
@@ -78,9 +77,21 @@ export default function Books() {
 
               <div className="relative z-10 w-full max-w-[26rem]" style={{ perspective: '2200px' }}>
                 <div className="relative h-[18rem] md:h-[22rem] transition-all duration-700" style={{ transformStyle: 'preserve-3d', transform: isOpen ? 'scale(1) rotateX(0deg)' : 'scale(0.92) rotateX(8deg)', opacity: isOpen ? 1 : 0 }}>
-                  <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20" />
+                  
+                  {/* Left inside cover backing — Displays Book Cover Photo */}
+                  <div className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-b from-[#421014] to-[#140305] shadow-[0_18px_50px_rgba(0,0,0,0.35)] border border-black/20 overflow-hidden">
+                    <Image src={bookCover} alt="Book cover photo" fill className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                    <div className="absolute bottom-3 left-2 right-2 text-center">
+                      <p className="font-serif text-brand-gold text-xs font-bold tracking-wider uppercase">Book Cover</p>
+                      <p className="font-sans text-brand-cream/80 text-[9px]">नृत्यारंभ Foundation Handbook</p>
+                    </div>
+                  </div>
+
+                  {/* Right page base/shadow */}
                   <div className="absolute inset-y-3 right-0 w-1/2 rounded-r-[1.4rem] bg-[#fdf4e8] shadow-[0_18px_50px_rgba(0,0,0,0.24)] border border-white/60 overflow-hidden" />
 
+                  {/* Outer Front Cover Leaf */}
                   <div
                     className="absolute inset-y-3 left-0 w-1/2 rounded-l-[1.4rem] bg-gradient-to-br from-[#3c0f13] via-[#241015] to-[#120205] origin-right shadow-[0_18px_50px_rgba(0,0,0,0.38)] border border-black/20 overflow-hidden"
                     style={{
@@ -89,13 +100,9 @@ export default function Books() {
                       transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s',
                     }}
                   >
-                    {/* Book Cover Photo */}
-                    {bookCover && (
-                      <div className="absolute inset-0" style={{ backfaceVisibility: 'hidden' }}>
-                        <Image src={bookCover} alt="Book cover" fill className="object-cover" />
-                      </div>
-                    )}
+                    <Image src={bookCover} alt="Book cover" fill className="object-cover" />
                   </div>
+div>
 
                   <div className="absolute inset-y-6 right-4 left-[51%] rounded-[1rem] bg-brand-cream/95 border border-brand-gold/20 overflow-hidden shadow-inner">
                     {bookPhotos.map((photo, index) => (

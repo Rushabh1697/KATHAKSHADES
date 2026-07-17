@@ -24,9 +24,10 @@ export default function Hero() {
       </div>
 
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-brand-maroon/70 mix-blend-multiply" />
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-black/80 to-transparent" />
+      {/* Dark Overlay for contrast */}
+      <div className="absolute inset-0 bg-brand-maroon/35 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-black/70 via-brand-black/40 to-transparent" />
+
 
       {/* Decorative Elements */}
       <div className="absolute top-20 right-10 w-96 h-96 border-[0.5px] border-brand-gold/20 rounded-full opacity-50 flex items-center justify-center pointer-events-none">
