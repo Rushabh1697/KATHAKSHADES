@@ -11,10 +11,10 @@ const config: Config = {
       colors: {
         brand: {
           maroon: '#4A0F1D', // Deep Maroon
-          gold: '#B35C11', // Accent Gold
-          'gold-dark': '#8A4509', // For gradients
-          'gold-light': '#CC6E1F', // For gradients
-          'gold-hover': '#C2650F',
+          gold: '#A77423', // Accent Gold
+          'gold-dark': '#7D5619', // For gradients
+          'gold-light': '#C08C30', // For gradients
+          'gold-hover': '#B8802A',
           cream: '#FFF8EE', // Cream
           black: '#2E1A12', // Dark Text
           light: '#FFF7EE', // Light Text
