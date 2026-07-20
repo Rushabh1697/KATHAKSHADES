@@ -51,26 +51,26 @@ export default function Contact() {
             Get In Touch
           </h1>
           <p className="font-sans text-lg text-brand-cream max-w-2xl mx-auto">
-            Have questions? Connect with us on WhatsApp or visit one of our studios.
+            Have questions? Connect with us on WhatsApp or visit one of our classes.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Studio Info — All Branches */}
+          {/* Classes Info — All Branches */}
           <div className="space-y-6 animate-slide-up">
             <h2 className="font-serif text-2xl font-bold text-brand-gold flex items-center gap-2 mb-2">
-              <Landmark className="w-6 h-6" /> Studio Locations &amp; Batches
+              <Landmark className="w-6 h-6" /> Classes Locations &amp; Batches
             </h2>
 
-            {/* Dombivli — Kidz Kingdom */}
+            {/* Thane — Rhymes N Colours */}
             <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-brand-gold">Dombivli East — Kidz Kingdom</h3>
-                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Regency Anantam Branch 1</p>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Thane West — Rhymes N Colours</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Manpada Branch</p>
                 </div>
                 <a
-                  href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6"
+                  href="https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
@@ -79,37 +79,11 @@ export default function Contact() {
                 </a>
               </div>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
-                Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)
+                Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West
               </p>
               <div className="space-y-1.5 text-sm">
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
-              </div>
-            </div>
-
-            {/* Dombivli — SD Studio */}
-            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-brand-gold">Dombivli East — SD Studio</h3>
-                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Regency Anantam Branch 2</p>
-                </div>
-                <a
-                  href="https://maps.app.goo.gl/YEA5qG25toE9D2gPA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
-                >
-                  Map ↗
-                </a>
-              </div>
-              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
-                SD Education hub, Regency Anantam gate no 1, Dombivli (East)
-              </p>
-              <div className="space-y-1.5 text-sm">
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Tuesday &amp; Friday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM</p>
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
               </div>
             </div>
@@ -140,15 +114,15 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Thane — Rhymes N Colours */}
+            {/* Dombivli — SD Studio */}
             <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
               <div className="flex items-start justify-between gap-3 mb-2">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-brand-gold">Thane West — Rhymes N Colours</h3>
-                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Manpada Branch</p>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Dombivli East — SD Studio</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Regency Anantam Branch 1</p>
                 </div>
                 <a
-                  href="https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7"
+                  href="https://maps.app.goo.gl/YEA5qG25toE9D2gPA"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
@@ -157,11 +131,37 @@ export default function Contact() {
                 </a>
               </div>
               <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
-                Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West
+                SD Education hub, Regency Anantam gate no 1, Dombivli (East)
               </p>
               <div className="space-y-1.5 text-sm">
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Tuesday &amp; Friday</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
+              </div>
+            </div>
+
+            {/* Dombivli — Kidzdom */}
+            <div className="bg-white/20 backdrop-blur-md border-2 border-brand-gold/40 p-6 rounded-2xl">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-brand-gold">Dombivli East — Kidzdom</h3>
+                  <p className="font-sans text-brand-gold/70 text-xs uppercase tracking-widest">Regency Anantam Branch 2</p>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold border border-brand-gold/40 rounded-full text-xs font-semibold transition-colors flex-shrink-0"
+                >
+                  Map ↗
+                </a>
+              </div>
+              <p className="font-sans text-brand-cream/80 text-sm leading-relaxed mb-3">
+                Front of Building No. 24 &amp; 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)
+              </p>
+              <div className="space-y-1.5 text-sm">
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:15 PM – 8:00 PM</p>
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
               </div>
             </div>

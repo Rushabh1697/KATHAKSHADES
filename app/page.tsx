@@ -27,10 +27,10 @@ export default function Home() {
               <span className="h-[1px] w-12 bg-brand-gold"></span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-6 tracking-wide">
-              Our Studio Locations
+              Our Classes Locations
             </h2>
             <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto font-light">
-              Join us at our two beautiful studios and experience the art of Kathak in its purest form.
+              Join us at our two beautiful classes and experience the art of Kathak in its purest form.
             </p>
           </div>
 
@@ -89,7 +89,7 @@ export default function Home() {
                 href: '/classes',
                 icon: <Users className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
                 title: 'Classes',
-                desc: 'Real-time batches at Dombivli & Thane West studios.',
+                desc: 'Real-time batches at Dombivli & Thane West classes.',
               },
               {
                 href: '/catalogue',
@@ -107,7 +107,7 @@ export default function Home() {
                 href: '/contact',
                 icon: <Phone className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
                 title: 'Contact',
-                desc: 'Reach us on WhatsApp or visit our studios.',
+                desc: 'Reach us on WhatsApp or visit our classes.',
               },
             ].map(item => (
               <a

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Contact Us — Kathak Shades",
   description:
-    "Get in touch with Kathak Shades. WhatsApp us or visit our studios in Dombivli East or Thane West.",
+    "Get in touch with Kathak Shades. WhatsApp us or visit our classes in Dombivli East or Thane West.",
 };
 
 export default function ContactPage() {

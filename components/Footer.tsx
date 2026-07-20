@@ -75,26 +75,44 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Studios */}
+          {/* Classes */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-serif text-brand-gold font-bold text-xl mb-6 tracking-wide">Our Studios</h4>
-            <div className="space-y-6">
+            <h4 className="font-serif text-brand-gold font-bold text-xl mb-6 tracking-wide">Our Classes</h4>
+            <div className="space-y-4">
               <div className="group">
-                <p className="font-sans font-medium text-brand-gold text-sm flex items-center justify-center md:justify-start gap-2 mb-2">
-                  <MapPin className="w-4 h-4" strokeWidth={1.5} /> Dombivli East
+                <p className="font-sans font-medium text-brand-gold text-sm flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <MapPin className="w-4 h-4" strokeWidth={1.5} /> Thane West — Rhymes N Colours
                 </p>
                 <p className="font-sans text-brand-cream/70 text-xs leading-relaxed">
-                  <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Regency Anantam, Kidz Kingdom</a><br />
-                  <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 7:00 PM – 8:00 PM</span>
+                  <a href="https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Manpada, Thane West</a><br />
+                  <span className="text-brand-cream/50 mt-1 block">Tue &amp; Fri · 6:00 PM – 8:00 PM</span>
                 </p>
               </div>
               <div className="group">
-                <p className="font-sans font-medium text-brand-gold text-sm flex items-center justify-center md:justify-start gap-2 mb-2">
-                  <MapPin className="w-4 h-4" strokeWidth={1.5} /> Thane West
+                <p className="font-sans font-medium text-brand-gold text-sm flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <MapPin className="w-4 h-4" strokeWidth={1.5} /> Thane West — Kinder Hive
                 </p>
                 <p className="font-sans text-brand-cream/70 text-xs leading-relaxed">
-                  <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Kinder Hive, Vasant Vihar</a><br />
+                  <a href="https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Vasant Vihar, Thane West</a><br />
                   <span className="text-brand-cream/50 mt-1 block">Tue &amp; Thu · 7:00 PM – 8:00 PM</span>
+                </p>
+              </div>
+              <div className="group">
+                <p className="font-sans font-medium text-brand-gold text-sm flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <MapPin className="w-4 h-4" strokeWidth={1.5} /> Dombivli East — SD Studio
+                </p>
+                <p className="font-sans text-brand-cream/70 text-xs leading-relaxed">
+                  <a href="https://maps.app.goo.gl/YEA5qG25toE9D2gPA" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Regency Anantam Gate 1, Dombivli</a><br />
+                  <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 5:00 PM – 8:00 PM</span>
+                </p>
+              </div>
+              <div className="group">
+                <p className="font-sans font-medium text-brand-gold text-sm flex items-center justify-center md:justify-start gap-2 mb-1">
+                  <MapPin className="w-4 h-4" strokeWidth={1.5} /> Dombivli East — Kidzdom
+                </p>
+                <p className="font-sans text-brand-cream/70 text-xs leading-relaxed">
+                  <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Regency Anantam Gate 3, Dombivli</a><br />
+                  <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 7:15 PM – 8:00 PM</span>
                 </p>
               </div>
             </div>

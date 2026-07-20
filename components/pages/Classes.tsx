@@ -9,7 +9,7 @@ const studios = [
   {
     id: 'thane',
     name: 'Thane West',
-    venue: 'Studio branches in Vasant Vihar and Rhymes N Colours',
+    venue: 'Classes branches in Vasant Vihar and Rhymes N Colours',
     address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
     days: 'Every Tuesday & Thursday',
     timing: '7:00 PM – 8:00 PM',
@@ -38,7 +38,7 @@ const studios = [
   {
     id: 'dombivli',
     name: 'Dombivli East',
-    venue: 'Studio branches in Kidz Kingdom and SD Studio',
+    venue: 'Classes branches in Kidzdom and SD Studio',
     address: 'Regency Anantam, Dombivli (East)',
     days: 'Every Monday & Wednesday',
     timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
@@ -253,16 +253,12 @@ export default function Classes() {
   const currentStudio = studios.find(s => s.id === activeStudio)!;
   const isThane = currentStudio.id === 'thane';
   const isDombivli = currentStudio.id === 'dombivli';
-  const cardClass = isThane
-    ? 'bg-[#033C4A] border border-[#0B6277]/40 shadow-[0_12px_45px_rgba(3,60,74,0.2)]'
-    : 'border border-brand-gold/50 shadow-[0_10px_40px_rgba(123,74,46,0.12)]';
-  const panelClass = isThane
-    ? 'bg-white/6 border border-white/10 text-brand-cream/90'
-    : 'bg-brand-cream border border-brand-gold/30 text-brand-black/70';
-  const headingClass = isThane ? 'text-brand-cream' : 'text-brand-maroon';
-  const mutedClass = isThane ? 'text-brand-cream/70' : 'text-brand-black/70';
-  const labelClass = isThane ? 'text-brand-gold/90' : 'text-brand-gold';
-  const iconClass = isThane ? 'text-brand-gold' : 'text-brand-gold';
+  const cardClass = 'bg-[#B0A257] border border-brand-gold/50 shadow-[0_12px_45px_rgba(176,162,87,0.25)]';
+  const panelClass = 'bg-white/15 border border-white/20 text-brand-black/90';
+  const headingClass = 'text-brand-maroon';
+  const mutedClass = 'text-brand-black/70';
+  const labelClass = 'text-brand-maroon';
+  const iconClass = 'text-brand-maroon';
 
   const thaneCataloguePhotos = [
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
@@ -379,7 +375,7 @@ export default function Classes() {
             Classes &amp; Batches
           </h1>
           <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto font-light">
-            Join our expertly guided Kathak classes at two studio locations. All age groups welcome.
+            Join our expertly guided Kathak classes at two classes locations. All age groups welcome.
           </p>
         </div>
 
@@ -407,7 +403,7 @@ export default function Classes() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className={`${cardClass} rounded-[16px] overflow-hidden relative ${isDombivli ? 'bg-brand-cream' : ''}`}
+              className={`${cardClass} rounded-[16px] overflow-hidden relative`}
             >
               {/* Dombivli premium background layers */}
               {isDombivli && (
@@ -583,7 +579,7 @@ export default function Classes() {
                                   <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
                                     <div>
                                       <p className="font-serif text-white text-lg font-bold drop-shadow-lg">{title}</p>
-                                      <p className="font-sans text-white/70 text-xs">Kathak Shades Studio</p>
+                                      <p className="font-sans text-white/70 text-xs">Kathak Shades Classes</p>
                                     </div>
                                   </div>
                                 </motion.div>
