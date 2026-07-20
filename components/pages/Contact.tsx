@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { Landmark, CalendarDays, Clock, Phone, Globe, MessageCircle, Camera, Share2, Play } from 'lucide-react';
+import { Landmark, CalendarDays, Clock, Phone, Globe, MessageCircle, Camera, Play } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -84,7 +84,7 @@ export default function Contact() {
               <div className="space-y-1.5 text-sm">
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Monday &amp; Wednesday</p>
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766 / +91 96194 42555</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
               </div>
             </div>
 
@@ -136,7 +136,7 @@ export default function Contact() {
               <div className="space-y-1.5 text-sm">
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><CalendarDays className="w-4 h-4" /> Days:</span> Every Tuesday &amp; Thursday</p>
                 <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Clock className="w-4 h-4" /> Timing:</span> 7:00 PM – 8:00 PM</p>
-                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766 / +91 98851 80738</p>
+                <p className="text-brand-cream"><span className="text-brand-gold font-bold inline-flex items-center gap-1"><Phone className="w-4 h-4" /> Contact:</span> +91 97736 02766</p>
               </div>
             </div>
 
@@ -172,9 +172,8 @@ export default function Contact() {
               <div className="flex gap-4 flex-wrap">
                 {[
                   { label: 'WhatsApp', href: 'https://wa.me/919773602766', icon: <MessageCircle className="w-5 h-5" /> },
-                  { label: 'Instagram', href: 'https://instagram.com', icon: <Camera className="w-5 h-5" /> },
-                  { label: 'Facebook', href: 'https://facebook.com', icon: <Share2 className="w-5 h-5" /> },
-                  { label: 'YouTube', href: 'https://youtube.com', icon: <Play className="w-5 h-5" /> },
+                  { label: 'Instagram', href: 'https://www.instagram.com/kathak_shades?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', icon: <Camera className="w-5 h-5" /> },
+                  { label: 'YouTube', href: 'https://www.youtube.com/@kathak_shades6419', icon: <Play className="w-5 h-5" /> },
                 ].map(s => (
                   <a
                     key={s.label}

@@ -15,22 +15,21 @@ const studios = [
     timing: '7:00 PM – 8:00 PM',
     contacts: [
       { label: 'Kathak Shades', number: '+91 97736 02766' },
-      { label: 'Kinder Hive', number: '+91 98851 80738' },
     ],
     branches: [
-      {
-        name: 'Kinder Hive — Vasant Vihar',
-        days: 'Tuesday & Thursday',
-        timing: '7:00 PM – 8:00 PM',
-        address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
-        mapLink: 'https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West',
-      },
       {
         name: 'Rhymes N Colours',
         days: 'Tuesday & Friday',
         timing: '6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM',
         address: 'Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West',
         mapLink: 'https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7',
+      },
+      {
+        name: 'Kinder Hive — Vasant Vihar',
+        days: 'Tuesday & Thursday',
+        timing: '7:00 PM – 8:00 PM',
+        address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
+        mapLink: 'https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West',
       },
     ],
     mapLink: 'https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West',
@@ -45,22 +44,21 @@ const studios = [
     timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
     contacts: [
       { label: 'Kathak Shades', number: '+91 97736 02766' },
-      { label: 'Kidz Kingdom', number: '+91 96194 42555' },
     ],
     branches: [
-      {
-        name: 'Kidz Kingdom — Regency Anantam',
-        days: 'Monday & Wednesday',
-        timing: '7:00 PM – 8:00 PM',
-        address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
-        mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
-      },
       {
         name: 'SD Studio — Regency Anantam',
         days: 'Monday & Wednesday',
         timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
         address: 'SD Education hub, Regency Anantam gate no 1, Dombivli',
         mapLink: 'https://maps.app.goo.gl/YEA5qG25toE9D2gPA',
+      },
+      {
+        name: 'Kidzdom — Regency Anantam',
+        days: 'Monday & Wednesday',
+        timing: '7:15 PM – 8:00 PM',
+        address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
+        mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
       },
     ],
     mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
@@ -445,7 +443,7 @@ export default function Classes() {
                   {isDombivli && (
                     <p className="font-serif text-sm tracking-[0.3em] uppercase text-brand-gold mb-1">School of Kathak</p>
                   )}
-                  <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Studio</p>
+                  <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Branch</p>
                   <h2 className={`font-serif text-3xl md:text-4xl font-bold mb-2 ${headingClass}`}>{currentStudio.name}</h2>
                   <p className={`font-sans text-lg font-light ${mutedClass}`}>{currentStudio.venue}</p>
                   {/* Gold divider for Dombivli */}

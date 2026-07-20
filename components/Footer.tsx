@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MapPin, Phone } from 'lucide-react';
+import { MapPin, Phone, Instagram, Youtube } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -21,6 +21,26 @@ export default function Footer() {
             <p className="font-sans text-brand-gold/80 text-sm mt-4 flex items-center gap-2">
               <Phone className="w-4 h-4 text-brand-gold" strokeWidth={1.5} /> +91 97736 02766
             </p>
+            <div className="flex items-center gap-3 mt-4">
+              <a
+                href="https://www.instagram.com/kathak_shades?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-9 h-9 rounded-full border border-brand-gold/40 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-maroon transition-all"
+              >
+                <Instagram className="w-4 h-4" strokeWidth={1.5} />
+              </a>
+              <a
+                href="https://www.youtube.com/@kathak_shades6419"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-9 h-9 rounded-full border border-brand-gold/40 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-maroon transition-all"
+              >
+                <Youtube className="w-4 h-4" strokeWidth={1.5} />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
