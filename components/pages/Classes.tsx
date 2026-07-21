@@ -316,7 +316,7 @@ export default function Classes() {
       <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-[24rem] h-[54rem] pointer-events-none opacity-50 hidden xl:block z-0">
         <PeacockFeatherArt />
       </div>
-      <div className="absolute right-0 top-12 translate-x-12 w-[24rem] h-[24rem] pointer-events-none opacity-50 hidden xl:block z-0">
+      <div className="absolute left-0 top-0 -translate-x-4 -translate-y-4 w-[28rem] h-[28rem] pointer-events-none opacity-60 hidden xl:block z-0">
         <RoyalCornerOrnament />
       </div>
 
