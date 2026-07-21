@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
