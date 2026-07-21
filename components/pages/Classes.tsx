@@ -1,9 +1,14 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const studios = [
   {
@@ -253,12 +258,104 @@ export default function Classes() {
   const currentStudio = studios.find(s => s.id === activeStudio)!;
   const isThane = currentStudio.id === 'thane';
   const isDombivli = currentStudio.id === 'dombivli';
-  const cardClass = 'bg-[#B0A257] border border-brand-gold/50 shadow-[0_12px_45px_rgba(176,162,87,0.25)]';
-  const panelClass = 'bg-white/15 border border-white/20 text-brand-black/90';
+  const cardClass = 'bg-[#E8D5C0] border border-brand-gold/50 shadow-[0_12px_45px_rgba(160,110,72,0.18)]';
+  const panelClass = 'bg-white/40 border border-brand-gold/25 text-brand-black/90';
   const headingClass = 'text-brand-maroon';
   const mutedClass = 'text-brand-black/70';
   const labelClass = 'text-brand-maroon';
   const iconClass = 'text-brand-maroon';
+
+  // ── GSAP animation refs ────────────────────────────────────────────
+  const sectionRef    = useRef<HTMLElement>(null);
+  const heroRef       = useRef<HTMLDivElement>(null);
+  const buttonsRef    = useRef<HTMLDivElement>(null);
+  const mainCardRef   = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      // 1. Hero — title + subtitle slide up on page load
+      const heroEls = heroRef.current
+        ? heroRef.current.querySelectorAll('[data-gsap="hero-item"]')
+        : [];
+      if (heroEls.length) {
+        gsap.fromTo(
+          heroEls,
+          { opacity: 0, y: 36 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: 'power3.out',
+            stagger: 0.18,
+          }
+        );
+      }
+
+      // 2. Toggle buttons — stagger in just after hero
+      const btnEls = buttonsRef.current
+        ? buttonsRef.current.querySelectorAll('[data-gsap="toggle-btn"]')
+        : [];
+      if (btnEls.length) {
+        gsap.fromTo(
+          btnEls,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.14,
+            delay: 0.55,
+          }
+        );
+      }
+
+      // 3. Main card — ScrollTrigger: fade + gentle scale-up
+      if (mainCardRef.current) {
+        gsap.fromTo(
+          mainCardRef.current,
+          { opacity: 0, scale: 0.97, y: 30 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: mainCardRef.current,
+              start: 'top 85%',
+              once: true,
+            },
+          }
+        );
+      }
+
+      // 4. Inner panels — stagger in after card is visible
+      const panelEls = mainCardRef.current
+        ? mainCardRef.current.querySelectorAll('[data-gsap="panel"]')
+        : [];
+      if (panelEls.length) {
+        gsap.fromTo(
+          panelEls,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            stagger: 0.13,
+            scrollTrigger: {
+              trigger: mainCardRef.current,
+              start: 'top 78%',
+              once: true,
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, { scope: sectionRef });
 
   const thaneCataloguePhotos = [
     'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
@@ -353,7 +450,7 @@ export default function Classes() {
 
 
   return (
-    <section id="classes" className="py-24 bg-brand-cream relative min-h-screen overflow-hidden">
+    <section ref={sectionRef} id="classes" className="py-24 bg-brand-cream relative min-h-screen overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjRkZGOEVFIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InJnYmEoMTc5LCA5MiwgMTcsIDAuMTUpIj48L3JlY3Q+Cjwvc3ZnPg==')] opacity-50 mix-blend-multiply pointer-events-none" />
 
       {/* Enlarged decorative backgrounds on left & right */}
@@ -365,29 +462,30 @@ export default function Classes() {
       </div>
 
       <div className="container relative z-10">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-4">
+        <div ref={heroRef} className="text-center mb-16">
+          <div data-gsap="hero-item" className="flex items-center justify-center gap-4 mb-4">
             <span className="h-[1px] w-12 bg-brand-gold"></span>
             <span className="text-brand-gold text-lg">✦</span>
             <span className="h-[1px] w-12 bg-brand-gold"></span>
           </div>
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-6 tracking-wide">
+          <h1 data-gsap="hero-item" className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-6 tracking-wide">
             Classes &amp; Batches
           </h1>
-          <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto font-light">
+          <p data-gsap="hero-item" className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto font-light">
             Join our expertly guided Kathak classes at two classes locations. All age groups welcome.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-6 mb-16 justify-center">
+        <div ref={buttonsRef} className="flex flex-wrap gap-6 mb-16 justify-center">
           {studios.map(studio => (
             <button
+              data-gsap="toggle-btn"
               key={studio.id}
               onClick={() => setActiveStudio(studio.id)}
-              className={`px-8 py-3 rounded-full font-sans font-medium transition-all transform hover:-translate-y-1 ${
+              className={`px-8 py-3 rounded-full font-sans font-medium transition-all duration-300 transform hover:-translate-y-1 ${
                 activeStudio === studio.id
-                  ? 'bg-[#033C4A] text-brand-gold shadow-[0_4px_15px_rgba(3,60,74,0.22)]'
-                  : 'bg-transparent text-brand-maroon border border-brand-maroon/30 hover:border-brand-maroon hover:shadow-sm'
+                  ? 'bg-[#AA7B27] text-white shadow-[0_4px_18px_rgba(170,123,39,0.35)]'
+                  : 'bg-transparent text-brand-gold border border-brand-gold/60 hover:border-brand-gold hover:bg-brand-gold/8 hover:shadow-sm'
               }`}
             >
               {studio.name}
@@ -395,7 +493,7 @@ export default function Classes() {
           ))}
         </div>
 
-        <div className="max-w-5xl mx-auto relative">
+        <div ref={mainCardRef} className="max-w-5xl mx-auto relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStudio.id}
@@ -405,100 +503,62 @@ export default function Classes() {
               transition={{ duration: 0.4 }}
               className={`${cardClass} rounded-[16px] overflow-hidden relative`}
             >
-              {/* Dombivli premium background layers */}
-              {isDombivli && (
-                <>
-                  {/* Vintage parchment texture */}
-                  <div className="absolute inset-0 z-0 rounded-[16px] overflow-hidden">
-                    <Image src="/parchment-texture.png" alt="" fill className="object-cover opacity-30" />
-                  </div>
-                  {/* Faint mandala overlay on left */}
-                  <div className="absolute -left-12 top-1/2 -translate-y-1/2 w-[28rem] h-[28rem] z-0 pointer-events-none opacity-40">
-                    <DombivliMandalaArt />
-                  </div>
-                  {/* Gold corner borders */}
-                  <div className="absolute top-3 left-3 w-20 h-20 z-[1] pointer-events-none opacity-80">
-                    <DombivliCornerOrnament />
-                  </div>
-                  <div className="absolute top-3 right-3 w-20 h-20 z-[1] pointer-events-none opacity-80 -scale-x-100">
-                    <DombivliCornerOrnament />
-                  </div>
-                  <div className="absolute bottom-3 left-3 w-20 h-20 z-[1] pointer-events-none opacity-80 -scale-y-100">
-                    <DombivliCornerOrnament />
-                  </div>
-                  <div className="absolute bottom-3 right-3 w-20 h-20 z-[1] pointer-events-none opacity-80 scale-[-1]">
-                    <DombivliCornerOrnament />
-                  </div>
-                </>
-              )}
 
-              <div className={`h-2 w-full relative z-[2] ${isThane ? 'bg-gradient-to-r from-[#0A556A] via-[#0B6277] to-[#0E7088]' : 'bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark'}`} />
+              <div className="bg-gradient-to-r from-brand-gold-light via-brand-gold to-brand-gold-dark h-2 w-full relative z-[2]" />
 
               <div className="p-8 md:p-12 relative z-[2]">
                 <div className="mb-8 text-center md:text-left">
-                  {isDombivli && (
-                    <p className="font-serif text-sm tracking-[0.3em] uppercase text-brand-gold mb-1">School of Kathak</p>
-                  )}
                   <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Branch</p>
                   <h2 className={`font-serif text-3xl md:text-4xl font-bold mb-2 ${headingClass}`}>{currentStudio.name}</h2>
                   <p className={`font-sans text-lg font-light ${mutedClass}`}>{currentStudio.venue}</p>
-                  {/* Gold divider for Dombivli */}
-                  {isDombivli && (
-                    <div className="mt-3 flex justify-center md:justify-start">
-                      <div className="w-48 h-6">
-                        <DombivliLotusDivider />
-                      </div>
-                    </div>
-                  )}
-
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-8">
-                    <div className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
+                    <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
                       <h3 className={`font-serif text-xl font-bold mb-6 flex items-center gap-3 ${headingClass}`}>
-                        <div className={`w-10 h-10 rounded-full border ${isThane ? 'border-white/20 bg-white/10' : 'border-brand-gold flex items-center justify-center bg-brand-cream/10'}`}>
+                        <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center">
                           <CalendarDays className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
                         </div>
                         Class Schedule
                       </h3>
                       <div className="space-y-5">
                         <div className="flex flex-col gap-1">
-                          <p className={`text-xs uppercase tracking-wider font-semibold ${isThane ? 'text-brand-cream/55' : 'text-brand-black/50'}`}>Class Days</p>
+                          <p className="text-xs uppercase tracking-wider font-semibold text-brand-black/50">Class Days</p>
                           <p className={`font-medium text-lg ${headingClass}`}>{currentStudio.days}</p>
                         </div>
-                        <div className={`w-full h-[1px] ${isThane ? 'bg-white/10' : 'bg-brand-gold/10'}`} />
+                        <div className="w-full h-[1px] bg-brand-gold/15" />
                         <div className="flex flex-col gap-1">
-                          <p className={`text-xs uppercase tracking-wider font-semibold ${isThane ? 'text-brand-cream/55' : 'text-brand-black/50'}`}>Timing</p>
+                          <p className="text-xs uppercase tracking-wider font-semibold text-brand-black/50">Timing</p>
                           <p className={`font-medium text-lg ${headingClass}`}>{currentStudio.timing}</p>
                         </div>
                       </div>
                     </div>
 
                     {currentStudio.branches && (
-                      <div className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
+                      <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
                         <h3 className={`font-serif text-xl font-bold mb-6 flex items-center gap-3 ${headingClass}`}>
-                          <div className={`w-10 h-10 rounded-full border ${isThane ? 'border-white/20 bg-white/10' : 'border-brand-gold flex items-center justify-center bg-brand-cream/10'}`}>
+                          <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center">
                             <MapPin className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
                           </div>
-                          {isThane ? 'Thane Branches' : 'Dombivli Branches'}
+                          {currentStudio.name} Branches
                         </h3>
                         <div className="space-y-4">
                           {currentStudio.branches.map(branch => (
-                            <div key={branch.name} className={`${isThane ? 'bg-white/5 border-white/10' : 'bg-brand-cream border-brand-gold/20'} border rounded-[12px] p-4`}> 
+                            <div key={branch.name} className="bg-brand-cream/50 border border-brand-gold/20 rounded-[12px] p-4">
                               <div className="flex items-start justify-between gap-3 mb-3">
                                 <div>
                                   <p className={`font-serif font-bold text-lg ${headingClass}`}>{branch.name}</p>
-                                  <p className={`text-xs uppercase tracking-wider font-semibold ${isThane ? 'text-brand-cream/55' : 'text-brand-black/45'}`}>{branch.days}</p>
+                                  <p className="text-xs uppercase tracking-wider font-semibold text-brand-black/45">{branch.days}</p>
                                 </div>
-                                <p className={`font-sans text-sm font-semibold ${isThane ? 'text-brand-gold' : 'text-brand-gold'}`}>{branch.timing}</p>
+                                <p className="font-sans text-sm font-semibold text-brand-gold">{branch.timing}</p>
                               </div>
                               <p className={`text-sm leading-relaxed ${mutedClass} mb-3`}>{branch.address}</p>
                               <a
                                 href={branch.mapLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`inline-flex items-center gap-2 text-sm font-semibold ${isThane ? 'text-brand-gold hover:text-brand-cream' : 'text-brand-gold hover:text-brand-gold-dark'} transition-colors`}
+                                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-gold hover:text-brand-gold-dark transition-colors"
                               >
                                 Open map <ChevronRight className="w-4 h-4" strokeWidth={2} />
                               </a>
@@ -508,9 +568,9 @@ export default function Classes() {
                       </div>
                     )}
 
-                    <div className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
+                    <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
                       <h3 className={`font-serif text-xl font-bold mb-6 flex items-center gap-3 ${headingClass}`}>
-                        <div className={`w-10 h-10 rounded-full border ${isThane ? 'border-white/20 bg-white/10' : 'border-brand-gold flex items-center justify-center bg-brand-cream/10'}`}>
+                        <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center">
                           <Phone className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
                         </div>
                         Contact Numbers
@@ -518,10 +578,10 @@ export default function Classes() {
                       <div className="space-y-4">
                         {currentStudio.contacts.map((c, i) => (
                           <div key={i} className="flex items-center justify-between group gap-4">
-                            <p className={`text-sm font-light ${isThane ? 'text-brand-cream/75' : 'text-brand-black/70'}`}>{c.label}</p>
+                            <p className="text-sm font-light text-brand-black/70">{c.label}</p>
                             <a
                               href={`tel:${c.number.replace(/\s/g, '')}`}
-                              className={`font-medium text-sm transition-colors flex items-center gap-1 ${isThane ? 'text-brand-cream group-hover:text-brand-gold' : 'text-brand-maroon group-hover:text-brand-gold'}`}
+                              className="font-medium text-sm transition-colors flex items-center gap-1 text-brand-maroon group-hover:text-brand-gold"
                             >
                               {c.number} <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={2} />
                             </a>
@@ -545,13 +605,13 @@ export default function Classes() {
                       if (photos.length === 0) return null;
 
                       return (
-                        <div className={`${panelClass} rounded-[12px] p-6 sm:p-8 shadow-sm overflow-hidden`}>
+                        <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 sm:p-8 shadow-sm overflow-hidden`}>
                           <div className="flex items-start justify-between gap-4 mb-6">
                             <div>
                               <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Gallery</p>
                               <h3 className={`font-serif text-xl font-bold ${headingClass}`}>{title}</h3>
                             </div>
-                            <div className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${isThane ? 'border-brand-gold/40 text-brand-gold bg-white/5' : 'border-brand-gold/30 text-brand-gold bg-brand-cream/5'}`}>
+                            <div className="px-3 py-1 rounded-full text-[11px] font-semibold border border-brand-gold/40 text-brand-gold bg-brand-cream/20">
                               {idx + 1} / {photos.length}
                             </div>
                           </div>
@@ -616,7 +676,7 @@ export default function Classes() {
                                     className={`rounded-full transition-all duration-300 ${
                                       index === idx
                                         ? 'w-6 h-2 bg-brand-gold'
-                                        : `w-2 h-2 ${isThane ? 'bg-white/30 hover:bg-white/50' : 'bg-brand-gold/30 hover:bg-brand-gold/50'}`
+                                        : `w-2 h-2 ${isThane ? 'bg-brand-gold/30 hover:bg-brand-gold/50' : 'bg-brand-gold/30 hover:bg-brand-gold/50'}`
                                     }`}
                                     aria-label={`Go to photo ${index + 1}`}
                                   />
@@ -625,14 +685,6 @@ export default function Classes() {
                             )}
                           </div>
 
-                          {/* Gold divider accent below gallery for Dombivli */}
-                          {isDombivli && (
-                            <div className="mt-4 flex justify-center">
-                              <div className="w-32 h-5 opacity-70">
-                                <DombivliLotusDivider />
-                              </div>
-                            </div>
-                          )}
 
                         </div>
                       );

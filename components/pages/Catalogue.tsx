@@ -25,21 +25,21 @@ const categories: Category[] = [
     tag: 'workshops',
     apiRoute: '/api/workshops',
     icon: <GraduationCap className="w-6 h-6" />,
-    accentColor: 'text-blue-600',
+    accentColor: 'text-brand-gold',
   },
   {
     label: 'Performances',
     tag: 'performances',
     apiRoute: '/api/performances',
     icon: <Sparkles className="w-6 h-6" />,
-    accentColor: 'text-purple-600',
+    accentColor: 'text-brand-maroon',
   },
   {
     label: 'Special Occasions',
     tag: 'specialoccasions',
     apiRoute: '/api/specialoccasions',
     icon: <Calendar className="w-6 h-6" />,
-    accentColor: 'text-rose-600',
+    accentColor: 'text-brand-brown',
   },
 ];
 
