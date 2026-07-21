@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft } from 'lucide-react';
+import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -305,95 +305,7 @@ export default function Classes() {
     return () => ctx.revert();
   }, { scope: sectionRef });
 
-  const thaneCataloguePhotos = [
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847387/a1m4rc3enk955d6iljja.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783847380/yw00bsbxhloamfqbjikx.jpg',
-  ];
-  const dombivliCataloguePhotos = [
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862457/ku47mhfvgpjuhbqqkxfy.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862455/ieceaztoludztzb3xsng.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862455/dwapjhozmjvmfrwvotb8.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862451/apfmggbmpftwnqmab7jm.jpg',
-    'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1783862451/cylztldboaxrfikelche.jpg',
-  ];
-  const [thaneBookPhotos, setThaneBookPhotos] = useState<string[]>(thaneCataloguePhotos);
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
 
-  const goToNextCard = useCallback(() => {
-    setActiveCardIndex(prev => (prev + 1) % thaneBookPhotos.length);
-  }, [thaneBookPhotos.length]);
-
-  const goToPrevCard = useCallback(() => {
-    setActiveCardIndex(prev => (prev - 1 + thaneBookPhotos.length) % thaneBookPhotos.length);
-  }, [thaneBookPhotos.length]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const loadTaggedPhotos = async () => {
-      try {
-        const response = await fetch('/api/thaneclasses', { signal: controller.signal });
-        if (response.ok) {
-          const data: { photos?: string[] } = await response.json();
-          if (Array.isArray(data.photos) && data.photos.length > 0) {
-            setThaneBookPhotos(data.photos);
-            setActiveCardIndex(0);
-          }
-        }
-      } catch {
-        // Fallback to default
-      }
-    };
-    loadTaggedPhotos();
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
-  // Auto-advance Thane cards every 5 seconds
-  useEffect(() => {
-    if (thaneBookPhotos.length <= 1) return;
-    const interval = setInterval(goToNextCard, 5000);
-    return () => clearInterval(interval);
-  }, [goToNextCard, thaneBookPhotos.length]);
-
-  // --- Dombivli photo carousel state ---
-  const [dombivliPhotos, setDombivliPhotos] = useState<string[]>(dombivliCataloguePhotos);
-  const [dombivliCardIndex, setDombivliCardIndex] = useState(0);
-
-  const goToNextDombivliCard = useCallback(() => {
-    setDombivliCardIndex(prev => (prev + 1) % (dombivliPhotos.length || 1));
-  }, [dombivliPhotos.length]);
-
-  const goToPrevDombivliCard = useCallback(() => {
-    setDombivliCardIndex(prev => (prev - 1 + (dombivliPhotos.length || 1)) % (dombivliPhotos.length || 1));
-  }, [dombivliPhotos.length]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const loadDombivliPhotos = async () => {
-      try {
-        const response = await fetch('/api/dombivliclasses', { signal: controller.signal });
-        if (response.ok) {
-          const data: { photos?: string[] } = await response.json();
-          if (Array.isArray(data.photos) && data.photos.length > 0) {
-            setDombivliPhotos(data.photos);
-            setDombivliCardIndex(0);
-          }
-        }
-      } catch {
-        // Fallback
-      }
-    };
-    loadDombivliPhotos();
-    return () => { controller.abort(); };
-  }, []);
-
-  // Auto-advance Dombivli cards every 5 seconds
-  useEffect(() => {
-    if (dombivliPhotos.length <= 1) return;
-    const interval = setInterval(goToNextDombivliCard, 5000);
-    return () => clearInterval(interval);
-  }, [goToNextDombivliCard, dombivliPhotos.length]);
 
 
 
@@ -540,103 +452,58 @@ export default function Classes() {
                   </div>
 
                   <div className="space-y-8 flex flex-col justify-between">
-                    {/* === Photo Card Carousel (shared: Thane + Dombivli) === */}
-                    {(() => {
-                      const photos = isThane ? thaneBookPhotos : dombivliPhotos;
-                      const idx = isThane ? activeCardIndex : dombivliCardIndex;
-                      const setIdx = isThane ? setActiveCardIndex : setDombivliCardIndex;
-                      const prev = isThane ? goToPrevCard : goToPrevDombivliCard;
-                      const next = isThane ? goToNextCard : goToNextDombivliCard;
-                      const title = isThane ? 'Thane Classes' : 'Dombivli Classes';
-
-                      if (photos.length === 0 && !isThane) return null;
-                      if (photos.length === 0) return null;
-
-                      return (
-                        <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 sm:p-8 shadow-sm overflow-hidden`}>
-                          <div className="flex items-start justify-between gap-4 mb-6">
+                    {/* === Catalogue Cards === */}
+                    {currentStudio.branches && currentStudio.branches.length >= 2 && (
+                      <>
+                        <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 shadow-sm overflow-hidden flex flex-col flex-1`}>
+                          <div className="flex items-start justify-between gap-4 mb-4">
                             <div>
-                              <p className={`font-sans text-xs uppercase tracking-[0.2em] mb-2 font-semibold ${labelClass}`}>Gallery</p>
-                              <h3 className={`font-serif text-xl font-bold ${headingClass}`}>{title}</h3>
+                              <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES CATALOGUE</h3>
+                              <p className={`font-sans text-sm tracking-[0.1em] font-semibold text-brand-gold mt-1`}>Foundation &amp; Techniques</p>
                             </div>
-                            <div className="px-3 py-1 rounded-full text-[11px] font-semibold border border-brand-gold/40 text-brand-gold bg-brand-cream/20">
-                              {idx + 1} / {photos.length}
+                            <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center shrink-0">
+                              <Book className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
                             </div>
                           </div>
-
-                          {/* Photo Card */}
-                          <div className="relative w-full">
-                            <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-                              <AnimatePresence mode="wait">
-                                <motion.div
-                                  key={idx}
-                                  initial={{ opacity: 0, scale: 1.05 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  exit={{ opacity: 0, scale: 0.95 }}
-                                  transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                  className="absolute inset-0"
-                                >
-                                  <Image
-                                    src={photos[idx]}
-                                    alt={`${title} photo ${idx + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                  />
-                                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
-                                  <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                                    <div>
-                                      <p className="font-serif text-white text-lg font-bold drop-shadow-lg">{title}</p>
-                                      <p className="font-sans text-white/70 text-xs">Kathak Shades Classes</p>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              </AnimatePresence>
-
-                              {/* Navigation Arrows */}
-                              {photos.length > 1 && (
-                                <>
-                                  <button
-                                    onClick={prev}
-                                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
-                                    aria-label="Previous photo"
-                                  >
-                                    <ChevronLeft className="w-5 h-5" strokeWidth={2} />
-                                  </button>
-                                  <button
-                                    onClick={next}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 shadow-lg"
-                                    aria-label="Next photo"
-                                  >
-                                    <ChevronRight className="w-5 h-5" strokeWidth={2} />
-                                  </button>
-                                </>
-                              )}
-                            </div>
-
-                            {/* Dot Indicators */}
-                            {photos.length > 1 && (
-                              <div className="flex items-center justify-center gap-2 mt-4">
-                                {photos.map((_, index) => (
-                                  <button
-                                    key={index}
-                                    onClick={() => setIdx(index)}
-                                    className={`rounded-full transition-all duration-300 ${
-                                      index === idx
-                                        ? 'w-6 h-2 bg-brand-gold'
-                                        : `w-2 h-2 ${isThane ? 'bg-brand-gold/30 hover:bg-brand-gold/50' : 'bg-brand-gold/30 hover:bg-brand-gold/50'}`
-                                    }`}
-                                    aria-label={`Go to photo ${index + 1}`}
-                                  />
-                                ))}
-                              </div>
-                            )}
+                          
+                          <div className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4">
+                            <Image
+                              src="/ghungroos.png"
+                              alt="Foundation & Techniques"
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
                           </div>
-
-
+                          <p className={`font-sans text-sm font-medium ${mutedClass}`}>{currentStudio.branches[0].name.split(' — ')[0]} Branch Program</p>
                         </div>
-                      );
-                    })()}
+
+                        <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 shadow-sm overflow-hidden flex flex-col flex-1`}>
+                          <div className="flex items-start justify-between gap-4 mb-4">
+                            <div>
+                              <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES CATALOGUE</h3>
+                              <p className={`font-sans text-sm tracking-[0.1em] font-semibold text-brand-gold mt-1`}>Performance &amp; Artistry</p>
+                            </div>
+                            <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center shrink-0">
+                              <Book className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
+                            </div>
+                          </div>
+                          
+                          <div className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4">
+                            <Image
+                              src="/performances.png"
+                              alt="Performance & Artistry"
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
+                          </div>
+                          <p className={`font-sans text-sm font-medium ${mutedClass}`}>{currentStudio.branches[1].name.split(' — ')[0]} Branch Program</p>
+                        </div>
+                      </>
+                    )}
 
 
 
