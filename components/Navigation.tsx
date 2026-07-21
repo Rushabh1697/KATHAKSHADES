@@ -44,9 +44,14 @@ export default function Navigation() {
               <span className="text-brand-maroon font-serif font-bold text-sm">KS</span>
             )}
           </div>
-          <span className="text-brand-gold font-serif font-bold text-lg hidden sm:inline">
-            Kathak Shades
-          </span>
+          <div className="hidden sm:flex flex-col leading-tight">
+            <span className="text-brand-gold font-serif font-bold text-2xl tracking-wide">
+              Kathak Shades
+            </span>
+            <span className="text-brand-gold/70 font-sans text-[10px] tracking-[0.18em] uppercase">
+              The School Of Kathak
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Menu (Centered) */}

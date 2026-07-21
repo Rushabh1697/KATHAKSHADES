@@ -47,7 +47,7 @@ export default function Hero() {
           </h1>
           
           <p className="font-sans text-brand-cream/80 text-lg md:text-xl font-light tracking-wide mb-10 max-w-xl">
-            Experience the elegance, grace, and heritage of classical Kathak at Amruta Todankar&rsquo;s Kathak Shades.
+            Experience the elegance, grace, and heritage of Kathak at Amruta Todankar&rsquo;s Kathak Shades.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-5">
@@ -56,6 +56,12 @@ export default function Hero() {
               className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
             >
               View Classes
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
+            >
+              Join Now
             </Link>
             <Link
               href="/about"
