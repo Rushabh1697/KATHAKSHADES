@@ -202,62 +202,10 @@ function RoyalCornerOrnament() {
   );
 }
 
-function DombivliCornerOrnament() {
-  return (
-    <svg viewBox="0 0 120 120" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 10 10 L 110 10 L 110 16 C 70 16 35 35 25 75 C 20 90 16 100 16 110 L 10 110 Z" fill="#B35C11" fillOpacity="0.15" />
-      <path d="M 15 15 L 105 15" stroke="#B35C11" strokeWidth="2" strokeLinecap="round" />
-      <path d="M 15 15 L 15 105" stroke="#B35C11" strokeWidth="2" strokeLinecap="round" />
-      <path d="M 25 25 L 85 25 C 65 35 50 50 35 75 L 25 85 Z" fill="#D5832A" fillOpacity="0.2" stroke="#B35C11" strokeWidth="1" />
-      <circle cx="20" cy="20" r="4" fill="#B35C11" />
-      <circle cx="35" cy="20" r="2.5" fill="#D5832A" />
-      <circle cx="20" cy="35" r="2.5" fill="#D5832A" />
-      <path d="M 25 25 C 45 45 45 45 70 50 C 50 70 45 45 25 25 Z" fill="#B35C11" fillOpacity="0.25" />
-      <path d="M 15 50 C 30 50 40 40 40 25" stroke="#D5832A" strokeWidth="1.2" />
-      <path d="M 15 75 C 45 75 65 55 75 25" stroke="#B35C11" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
-function DombivliLotusDivider() {
-  return (
-    <svg viewBox="0 0 300 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 10 12 L 120 12" stroke="#B35C11" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-      <path d="M 180 12 L 290 12" stroke="#B35C11" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-      <circle cx="125" cy="12" r="2" fill="#B35C11" />
-      <circle cx="175" cy="12" r="2" fill="#B35C11" />
-      {/* Central Lotus Ornament */}
-      <path d="M 150 4 C 144 10 144 14 150 20 C 156 14 156 10 150 4 Z" fill="#B35C11" />
-      <path d="M 150 7 C 140 10 136 15 142 19 C 146 17 148 14 150 12 Z" fill="#D5832A" />
-      <path d="M 150 7 C 160 10 164 15 158 19 C 154 17 152 14 150 12 Z" fill="#D5832A" />
-    </svg>
-  );
-}
-
-function DombivliMandalaArt() {
-  return (
-    <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="200" r="180" stroke="#B35C11" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
-      <circle cx="200" cy="200" r="140" stroke="#D5832A" strokeWidth="1.5" opacity="0.5" />
-      <circle cx="200" cy="200" r="100" stroke="#B35C11" strokeWidth="1" opacity="0.6" />
-      <circle cx="200" cy="200" r="60" stroke="#B35C11" strokeWidth="1.5" opacity="0.7" />
-      <circle cx="200" cy="200" r="20" fill="#B35C11" opacity="0.3" />
-      {/* Petals */}
-      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(angle => (
-        <g key={angle} transform={`rotate(${angle} 200 200)`}>
-          <path d="M 200 60 C 185 100 185 140 200 140 C 215 140 215 100 200 60 Z" fill="#D5832A" fillOpacity="0.1" stroke="#B35C11" strokeWidth="1" opacity="0.5" />
-          <path d="M 200 140 C 192 165 192 180 200 180 C 208 180 208 165 200 140 Z" fill="#B35C11" fillOpacity="0.15" />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
 export default function Classes() {
   const [activeStudio, setActiveStudio] = useState('thane');
   const currentStudio = studios.find(s => s.id === activeStudio)!;
   const isThane = currentStudio.id === 'thane';
-  const isDombivli = currentStudio.id === 'dombivli';
   const cardClass = 'bg-[#E8D5C0] border border-brand-gold/50 shadow-[0_12px_45px_rgba(160,110,72,0.18)]';
   const panelClass = 'bg-white/40 border border-brand-gold/25 text-brand-black/90';
   const headingClass = 'text-brand-maroon';
