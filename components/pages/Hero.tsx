@@ -65,7 +65,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/about"
-              className="inline-flex justify-center items-center bg-transparent border border-brand-gold/60 text-brand-gold px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:bg-brand-gold/10 transition-all transform hover:-translate-y-1 hover:scale-[1.02]"
+              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
             >
               About the Guru
             </Link>
