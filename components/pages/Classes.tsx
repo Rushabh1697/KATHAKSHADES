@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Image from 'next/image';
-import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft, Book } from 'lucide-react';
+import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -205,7 +205,6 @@ function RoyalCornerOrnament() {
 export default function Classes() {
   const [activeStudio, setActiveStudio] = useState('thane');
   const currentStudio = studios.find(s => s.id === activeStudio)!;
-  const isThane = currentStudio.id === 'thane';
   const cardClass = 'bg-[#E8D5C0] border border-brand-gold/50 shadow-[0_12px_45px_rgba(160,110,72,0.18)]';
   const panelClass = 'bg-white/40 border border-brand-gold/25 text-brand-black/90';
   const headingClass = 'text-brand-maroon';
