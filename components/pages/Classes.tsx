@@ -14,7 +14,7 @@ const studios = [
   {
     id: 'thane',
     name: 'Thane West',
-    venue: 'Classes branches in Vasant Vihar and Rhymes N Colours',
+    venue: 'Classes branches in Manpada and Rhymes N Colours',
     address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
     days: 'Every Tuesday & Thursday',
     timing: '7:00 PM – 8:00 PM',
@@ -61,7 +61,7 @@ const studios = [
       {
         name: 'Kidzdom — Regency Anantam',
         days: 'Monday & Wednesday',
-        timing: '7:15 PM – 8:00 PM',
+        timing: '7:15 PM – 8:15 PM',
         address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
         mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
       },

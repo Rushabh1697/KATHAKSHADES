@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { User, Award, Sparkles, School } from 'lucide-react';
+import { User, Award, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 const guruPhotoSrc = 'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846646/g766uhiacofbd8m0pcxx.jpg';
@@ -78,34 +78,31 @@ export default function About() {
                 <p className="font-serif text-xl font-bold text-brand-maroon">Smt. Amruta Pawan Todankar</p>
                 <p className="font-sans text-sm text-brand-gold uppercase tracking-widest font-semibold mb-3">Founder &amp; Director, Kathak Shades – The School of Kathak</p>
                 <p>
-                  Smt. Amruta Pawan Todankar, a devoted disciple of Guru Smt. Manasi Deshpande Ji, is an accomplished Kathak artist, performer, teacher, choreographer, and the Founder &amp; Director of Kathak Shades – The School of Kathak. With over 25 years of rigorous training, she is dedicated to preserving the authenticity, grace, and classical richness of the Kathak tradition.
-                </p>
-                <p>
-                  She holds the prestigious qualifications of Visharad (with Vishesh Yogyata), Alankar, Bachelor of Arts (B.A.), Master of Arts (M.A.), and has successfully completed the Dance Teacher Training Program at Kafqa Academy. With over 16 years of teaching experience, she has trained students across India and abroad, many of whom have secured distinctions in Gandharva examinations and excelled on prestigious cultural platforms.
-                </p>
-                <p>
-                  Before establishing Kathak Shades, Smt. Amruta served as a Kathak mentor at several reputed schools and institutions, including Billabong High International School, Euro School, Yellow Light School, and Red Arrows Institute. Through her dedication to authentic Kathak education, she has inspired and nurtured students across Mumbai.
+                  Smt. Amruta Pawan Todankar is a dedicated Kathak artist, performer, teacher, and choreographer, carrying forward the tradition of Kathak with authenticity, grace, and devotion. A disciple of Guru Smt. Manasi Deshpande Ji, she has devoted over 25 years to learning, performing, and teaching this classical art form.
                 </p>
               </div>
 
-              {/* Performances & Achievements */}
+              {/* Journey & Achievements */}
               <div className="bg-brand-cream rounded-[16px] border border-brand-gold/30 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_8px_25px_rgba(123,74,46,0.12)] transition-all duration-300 hover:-translate-y-1 p-6">
                 <h3 className="font-serif text-xl font-bold text-brand-maroon mb-3 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full border border-brand-gold/50 flex items-center justify-center bg-brand-cream/10 shadow-inner">
                     <Award className="w-6 h-6 text-brand-gold" strokeWidth={1.5} />
                   </div>
-                  Performances &amp; Achievements
+                  Journey &amp; Achievements
                 </h3>
                 <div className="font-sans text-brand-black/70 font-light leading-relaxed pl-16 space-y-3">
-                  <p>
-                    Smt. Amruta has performed at several renowned festivals and cultural platforms, including Natyanjali, Girnar Festival, Yatra Festival, Nakshatra Se Dene, Oasis of Kathak, ISKCON Temple, Varsa, Hamari Mehfil, and Atharvosav.
-                  </p>
-                  <p className="font-semibold text-brand-maroon">Key Milestones</p>
                   <ul className="list-none space-y-2">
-                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Recipient of the <strong>Nritya Nipun Award</strong> at Atharvosav.</li>
-                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Creator of <em>Samarpan</em>, her signature thematic Kathak production.</li>
-                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Author of <strong>&ldquo;नृत्यारंभ&rdquo;</strong>, a beginner-friendly foundation book on Kathak.</li>
-                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Through <strong>BE Event Management</strong>, her event management company, she choreographs and curates complete stage productions for annual showcases, corporate events, and cultural programmes.</li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Founder &amp; Director of <strong>Kathak Shades – The School of Kathak,</strong> dedicated to preserving and promoting the classical richness of Kathak.</li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Over <strong>25+ years of Kathak training</strong> and <strong>16+ years of teaching experience.</strong></li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Holds qualifications of <strong>Visharad (Vishesh Yogyata), Alankar, B.A., and M.A. in Kathak.</strong></li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Completed the <strong>Dance Teacher Training Program at Kafqa Academy.</strong></li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Trained students across India and abroad, many achieving distinctions in Gandharva examinations.</li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Served as a Kathak mentor at reputed institutions including <strong>Billabong High International School, EuroSchool, Yellow Light School, and Red Arrows Institute.</strong></li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Performed at prestigious cultural platforms and festivals including <strong>Natyanjali, Girnar Festival, Yatra Festival, Oasis of Kathak, ISKCON Temple, Varsa, Hamari Mehfil, and Atharvosav.</strong></li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Received the <strong>Nritya Nipun Award</strong> at Atharvosav.</li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Created <strong>&ldquo;Samarpan&rdquo;,</strong> a signature thematic Kathak production.</li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Authored <strong>&ldquo;नृत्यारंभ&rdquo;,</strong> a beginner-friendly foundation book on Kathak.</li>
+                    <li className="relative before:content-['✦'] before:absolute before:-left-5 before:text-brand-gold/60 before:text-xs">Through <strong>BE Event Management,</strong> curates and choreographs stage productions, annual showcases, corporate events, and cultural programmes.</li>
                   </ul>
                 </div>
               </div>
@@ -123,26 +120,7 @@ export default function About() {
                 </p>
               </div>
 
-              {/* About Kathak Shades */}
-              <div className="bg-brand-cream rounded-[16px] border border-brand-gold/30 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_8px_25px_rgba(123,74,46,0.12)] transition-all duration-300 hover:-translate-y-1 p-6">
-                <h3 className="font-serif text-xl font-bold text-brand-maroon mb-3 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full border border-brand-gold/50 flex items-center justify-center bg-brand-cream/10 shadow-inner">
-                    <School className="w-6 h-6 text-brand-gold" strokeWidth={1.5} />
-                  </div>
-                  About Kathak Shades
-                </h3>
-                <div className="font-sans text-brand-black/70 font-light leading-relaxed pl-16 space-y-3">
-                  <p>
-                    Founded in 2020, Kathak Shades – The School of Kathak is committed to providing authentic Kathak education through strong technical foundations, artistic excellence, and holistic learning. Its students consistently excel in competitions, Gandharva examinations, and national cultural events.
-                  </p>
-                  <p>
-                    A defining strength of the institution is its dedicated senior batch, many of whom have been training under Smt. Amruta for nearly a decade. Their growth reflects her commitment to disciplined training, artistic excellence, and nurturing mentorship.
-                  </p>
-                  <p>
-                    Today, Kathak Shades continues to inspire and shape the next generation of Kathak dancers, carrying forward the rich legacy of this classical art form with grace, discipline, integrity, and pride.
-                  </p>
-                </div>
-              </div>
+
 
               <div className="pt-6 text-center md:text-left">
                 <Link

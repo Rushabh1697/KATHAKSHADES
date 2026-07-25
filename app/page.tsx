@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/pages/Hero";
 import Footer from "@/components/Footer";
 import HomeVideo from "@/components/pages/HomeVideo";
-import { MapPin, Users, Shirt, BookOpen, Phone } from "lucide-react";
+import { MapPin, Users, Shirt, BookOpen, Phone, CheckCircle2, GraduationCap, Heart, Music, Star, Trophy } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,6 +16,72 @@ export default function Home() {
     <main>
       <Navigation />
       <Hero />
+
+      {/* Why Choose Kathak Shades */}
+      <section className="py-24 bg-brand-cream relative border-b border-brand-gold/20">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjRkZGOEVFIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InJnYmEoMjAwLCAxNTUsIDYwLCAwLjE1KSI+PC9yZWN0Pgo8L3N2Zz4=')] opacity-50 mix-blend-multiply pointer-events-none" />
+        <div className="container relative z-10">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="h-[1px] w-12 bg-brand-gold"></span>
+              <span className="text-brand-gold text-lg">✦</span>
+              <span className="h-[1px] w-12 bg-brand-gold"></span>
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-6 tracking-wide">
+              Why Choose Kathak Shades
+            </h2>
+            <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto font-light">
+              A commitment to authentic Kathak education, artistic excellence, and nurturing every dancer&rsquo;s unique potential.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                icon: <Music className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+                title: 'Authentic Tradition',
+                desc: 'Training rooted in the classical richness of Kathak, preserving its purity while nurturing artistic expression.',
+              },
+              {
+                icon: <GraduationCap className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+                title: 'Experienced Guru',
+                desc: 'Learn under Smt. Amruta Pawan Todankar — 25+ years of Kathak training and 16+ years of dedicated teaching experience.',
+              },
+              {
+                icon: <Trophy className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+                title: 'Proven Track Record',
+                desc: 'Students consistently achieve distinctions in Gandharva examinations and excel at national-level cultural events.',
+              },
+              {
+                icon: <Heart className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+                title: 'Holistic Development',
+                desc: 'Building discipline, confidence, creativity, and a deep respect for classical art alongside technical mastery.',
+              },
+              {
+                icon: <Star className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+                title: 'Performance Opportunities',
+                desc: 'Regular showcases, cultural festivals, and stage productions to build stage presence and artistic confidence.',
+              },
+              {
+                icon: <CheckCircle2 className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+                title: 'Supportive Community',
+                desc: 'A nurturing environment where students of all ages grow together, guided by personalised mentorship and care.',
+              },
+            ].map(item => (
+              <div
+                key={item.title}
+                className="bg-brand-cream rounded-[16px] border border-brand-gold/30 p-8 flex flex-col items-center text-center gap-5 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)]"
+              >
+                <div className="w-16 h-16 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-inner group-hover:scale-[1.08] transition-transform duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="font-serif text-xl font-bold text-brand-maroon">{item.title}</h3>
+                <p className="font-sans text-brand-black/70 text-sm leading-relaxed font-light">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       
       {/* Location Highlights */}
       <section className="py-24 bg-brand-cream relative">

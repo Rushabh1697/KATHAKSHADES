@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/kathak-shades', label: 'Kathak Shades' },
   { href: '/classes', label: 'Classes' },
   { href: '/catalogue', label: 'Catalogue' },
   { href: '/books', label: 'Books' },
