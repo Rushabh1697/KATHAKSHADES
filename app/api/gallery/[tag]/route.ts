@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request, { params }: { params: { tag: string } }) {
-  const tag = params.tag;
+export async function GET(request: Request, { params }: { params: Promise<{ tag: string }> }) {
+  const { tag } = await params;
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME || 'dnnnouh5x';
   const publicListUrl = `https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`;
 
