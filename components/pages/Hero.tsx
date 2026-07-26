@@ -41,15 +41,14 @@ export default function Hero() {
           className="max-w-3xl"
         >
           <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.1] tracking-wide mb-8">
-            <span className="text-brand-light block">Where</span>
-            <span className="text-brand-gold block my-1">Tradition</span>
-            <span className="text-brand-light block">Dances On</span>
+            <span className="text-brand-light block">Grace in Every Step</span>
+            <span className="text-brand-gold block my-1">Tradition in Every Beat</span>
           </h1>
-          
+
           <p className="font-sans text-brand-cream/80 text-lg md:text-xl font-light tracking-wide mb-10 max-w-xl">
             Experience the elegance, grace, and heritage of Kathak at Amruta Todankar&rsquo;s Kathak Shades.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-5">
             <Link
               href="/classes"
