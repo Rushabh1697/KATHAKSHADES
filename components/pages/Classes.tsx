@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, Book } from 'lucide-react';
+import { CalendarDays, Phone, MapPin, MessageCircle, ClipboardList, GraduationCap, ChevronRight, ChevronLeft, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import ImageModal from '@/components/ImageModal';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -14,7 +15,7 @@ const studios = [
   {
     id: 'thane',
     name: 'Thane West',
-    venue: 'Classes branches in Manpada and Rhymes N Colours',
+    venue: 'Classes branches in Manpada and Vasant Vihar',
     address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
     days: 'Every Tuesday & Thursday',
     timing: '7:00 PM – 8:00 PM',
@@ -28,6 +29,7 @@ const studios = [
         timing: '6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM',
         address: 'Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West',
         mapLink: 'https://maps.app.goo.gl/ZWgt2sHgxhBS1K3E7',
+        tag: 'manpada',
       },
       {
         name: 'Kinder Hive — Vasant Vihar',
@@ -35,6 +37,7 @@ const studios = [
         timing: '7:00 PM – 8:00 PM',
         address: 'Ground Floor, Branch-1, Ananthram Complex, Opp. HDFC ATM, Siddhanchal Circle, Vasant Vihar, Thane West – 400610',
         mapLink: 'https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West',
+        tag: 'vasantvihar',
       },
     ],
     mapLink: 'https://maps.google.com/?q=Ananthram+Complex+Vasant+Vihar+Thane+West',
@@ -43,7 +46,7 @@ const studios = [
   {
     id: 'dombivli',
     name: 'Dombivli East',
-    venue: 'Classes branches in Kidzdom and SD Studio',
+    venue: 'Classes branches in Regency Anantam',
     address: 'Regency Anantam, Dombivli (East)',
     days: 'Every Monday & Wednesday',
     timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
@@ -57,6 +60,7 @@ const studios = [
         timing: '5:00 PM – 6:00 PM and 7:00 PM – 8:00 PM',
         address: 'SD Education hub, Regency Anantam gate no 1, Dombivli',
         mapLink: 'https://maps.app.goo.gl/YEA5qG25toE9D2gPA',
+        tag: 'sdstudio',
       },
       {
         name: 'Kidzdom — Regency Anantam',
@@ -64,6 +68,7 @@ const studios = [
         timing: '7:15 PM – 8:15 PM',
         address: 'Front of Building No. 24 & 25, Gate No. 3, towards Maharaja Chai, Regency Anantam, Dombivli (East)',
         mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
+        tag: 'kidsdom',
       },
     ],
     mapLink: 'https://maps.app.goo.gl/hT3WLafHvm95d2LK6',
@@ -71,16 +76,123 @@ const studios = [
   },
 ];
 
+function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle: string }) {
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!branch.tag) return;
+    fetch(`/api/gallery/${branch.tag}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.photos && data.photos.length > 0) {
+          setPhotos(data.photos);
+        }
+      })
+      .catch(() => {});
+  }, [branch.tag]);
+
+  useEffect(() => {
+    if (photos.length > 1 && !isHovered && !isModalOpen) {
+      const interval = setInterval(() => {
+        setCurrentPhoto((prev) => (prev + 1) % photos.length);
+      }, 3500);
+      return () => clearInterval(interval);
+    }
+  }, [photos, isHovered, isModalOpen]);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (photos.length > 0) {
+      setCurrentPhoto((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+    }
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (photos.length > 0) {
+      setCurrentPhoto((prev) => (prev + 1) % photos.length);
+    }
+  };
+
+  const displayImage = photos.length > 0 ? photos[currentPhoto] : (defaultTitle === 'Foundation & Techniques' ? '/ghungroos.png' : '/performances.png');
+  const panelClass = 'bg-brand-cream/80 border border-brand-gold/20';
+  const headingClass = 'text-brand-maroon';
+  const mutedClass = 'text-brand-black/60';
+  const iconClass = 'text-brand-maroon';
+
+  return (
+    <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 shadow-sm overflow-hidden flex flex-col flex-1`}>
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES CATALOGUE</h3>
+          <p className={`font-sans text-sm tracking-[0.1em] font-semibold text-brand-gold mt-1`}>{defaultTitle}</p>
+        </div>
+        <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center shrink-0">
+          <Book className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
+        </div>
+      </div>
+
+      <div 
+        className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4 bg-brand-maroon/5 group cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={() => setIsModalOpen(true)}
+      >
+        <Image
+          key={displayImage} // Force re-render for simple fade, or let css transition handle it
+          src={displayImage}
+          alt={defaultTitle}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
+        
+        {/* Navigation Buttons */}
+        {photos.length > 1 && (
+          <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button 
+              onClick={handlePrev}
+              className="p-1.5 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={handleNext}
+              className="p-1.5 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
+      </div>
+      <p className={`font-sans text-sm font-medium ${mutedClass}`}>{branch.name.split(' — ')[0]} Branch Gallery</p>
+
+      {/* Lightbox Modal */}
+      <ImageModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        imageUrl={displayImage}
+        altText={defaultTitle}
+      />
+    </div>
+  );
+}
+
 function PeacockFeatherArt() {
   return (
     <svg viewBox="0 0 400 900" className="h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g stroke="#D5832A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.85">
         {/* Main Stem / Quill */}
         <path d="M 220 860 C 180 720 185 550 205 400 C 220 280 250 170 280 60" strokeWidth="3" stroke="#B35C11" />
-        
+
         {/* Intricate Inner Stem details */}
         <path d="M 215 820 C 185 700 190 540 208 400" strokeWidth="1" stroke="#D5832A" opacity="0.5" />
-        
+
         {/* Bottom decorative base flourish */}
         <path d="M 220 860 C 240 880 270 890 290 870 C 310 850 290 820 260 830 C 230 840 210 810 220 790" strokeWidth="1.5" />
         <path d="M 195 850 C 180 870 150 880 130 860 C 110 840 130 810 160 820" strokeWidth="1.2" />
@@ -88,7 +200,7 @@ function PeacockFeatherArt() {
         {/* Outer Feather Eye Structure */}
         <path d="M 280 60 C 220 -20 130 30 150 120 C 160 170 200 210 250 220 C 310 230 360 180 350 110 C 340 50 310 70 280 60 Z" strokeWidth="2.5" stroke="#B35C11" />
         <path d="M 280 60 C 240 0 160 40 175 110 C 185 150 220 180 260 185 C 310 190 335 150 330 100 C 320 60 300 70 280 60 Z" strokeWidth="1.8" />
-        
+
         {/* Styled Eye Center (Teardrop / Lotus inspired) */}
         <path d="M 268 70 C 240 85 220 115 235 145 C 245 165 275 165 285 145 C 300 115 280 85 268 70 Z" fill="#B35C11" fillOpacity="0.15" stroke="#B35C11" strokeWidth="1.5" />
         <circle cx="262" cy="122" r="14" stroke="#D5832A" strokeWidth="1.2" />
@@ -161,7 +273,7 @@ function RoyalCornerOrnament() {
         {/* Outer Corner Frame Lines */}
         <path d="M 20 20 L 380 20" strokeWidth="1.2" opacity="0.5" />
         <path d="M 20 20 L 20 380" strokeWidth="1.2" opacity="0.5" />
-        
+
         {/* Corner Accent Flourish */}
         <path d="M 40 40 L 120 40 C 100 60 100 80 120 100 C 140 120 160 100 160 80" strokeWidth="1" />
         <path d="M 40 40 L 40 120 C 60 100 80 100 100 120 C 120 140 100 160 80 160" strokeWidth="1" />
@@ -169,7 +281,7 @@ function RoyalCornerOrnament() {
         {/* Mughal Floral Scrolls (Upper-Right Flowing) */}
         <path d="M 380 20 C 320 30 260 60 220 110 C 200 135 190 170 195 210" strokeWidth="2.2" stroke="#B35C11" />
         <path d="M 340 20 C 290 35 240 70 205 120 C 190 142 180 170 182 200" strokeWidth="1.2" />
-        
+
         {/* Curling Mughal Leaves & Petals */}
         <path d="M 280 45 C 295 70 310 80 335 75 C 350 70 355 55 340 45 C 320 35 300 40 280 45 Z" fill="#B35C11" fillOpacity="0.08" />
         <path d="M 235 85 C 255 110 275 120 300 110 C 315 105 315 90 300 80 C 280 70 255 75 235 85 Z" />
@@ -188,7 +300,7 @@ function RoyalCornerOrnament() {
         <circle cx="200" cy="200" r="45" strokeWidth="2" stroke="#B35C11" />
         <circle cx="200" cy="200" r="32" strokeWidth="1.2" />
         <circle cx="200" cy="200" r="12" fill="#B35C11" />
-        
+
         {/* Lotus Petal Rays inside Mandala */}
         <path d="M 200 155 C 190 175 180 180 200 200 C 220 180 210 175 200 155 Z" fill="#D5832A" fillOpacity="0.1" />
         <path d="M 200 245 C 190 225 180 220 200 200 C 220 220 210 225 200 245 Z" fill="#D5832A" fillOpacity="0.1" />
@@ -213,10 +325,10 @@ export default function Classes() {
   const iconClass = 'text-brand-maroon';
 
   // ── GSAP animation refs ────────────────────────────────────────────
-  const sectionRef    = useRef<HTMLElement>(null);
-  const heroRef       = useRef<HTMLDivElement>(null);
-  const buttonsRef    = useRef<HTMLDivElement>(null);
-  const mainCardRef   = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const mainCardRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -341,11 +453,10 @@ export default function Classes() {
               data-gsap="toggle-btn"
               key={studio.id}
               onClick={() => setActiveStudio(studio.id)}
-              className={`px-8 py-3 rounded-full font-sans font-medium transition-all duration-300 transform hover:-translate-y-1 ${
-                activeStudio === studio.id
-                  ? 'bg-[#AA7B27] text-white shadow-[0_4px_18px_rgba(170,123,39,0.35)]'
-                  : 'bg-transparent text-brand-gold border border-brand-gold/60 hover:border-brand-gold hover:bg-brand-gold/8 hover:shadow-sm'
-              }`}
+              className={`px-8 py-3 rounded-full font-sans font-medium transition-all duration-300 transform hover:-translate-y-1 ${activeStudio === studio.id
+                ? 'bg-[#AA7B27] text-white shadow-[0_4px_18px_rgba(170,123,39,0.35)]'
+                : 'bg-transparent text-brand-gold border border-brand-gold/60 hover:border-brand-gold hover:bg-brand-gold/8 hover:shadow-sm'
+                }`}
             >
               {studio.name}
             </button>
@@ -454,53 +565,8 @@ export default function Classes() {
                     {/* === Catalogue Cards === */}
                     {currentStudio.branches && currentStudio.branches.length >= 2 && (
                       <>
-                        <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 shadow-sm overflow-hidden flex flex-col flex-1`}>
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div>
-                              <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES CATALOGUE</h3>
-                              <p className={`font-sans text-sm tracking-[0.1em] font-semibold text-brand-gold mt-1`}>Foundation &amp; Techniques</p>
-                            </div>
-                            <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center shrink-0">
-                              <Book className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
-                            </div>
-                          </div>
-                          
-                          <div className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4">
-                            <Image
-                              src="/ghungroos.png"
-                              alt="Foundation & Techniques"
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                            />
-                            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
-                          </div>
-                          <p className={`font-sans text-sm font-medium ${mutedClass}`}>{currentStudio.branches[0].name.split(' — ')[0]} Branch Program</p>
-                        </div>
-
-                        <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 shadow-sm overflow-hidden flex flex-col flex-1`}>
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div>
-                              <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES CATALOGUE</h3>
-                              <p className={`font-sans text-sm tracking-[0.1em] font-semibold text-brand-gold mt-1`}>Performance &amp; Artistry</p>
-                            </div>
-                            <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center shrink-0">
-                              <Book className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
-                            </div>
-                          </div>
-                          
-                          <div className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4">
-                            <Image
-                              src="/performances.png"
-                              alt="Performance & Artistry"
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                            />
-                            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
-                          </div>
-                          <p className={`font-sans text-sm font-medium ${mutedClass}`}>{currentStudio.branches[1].name.split(' — ')[0]} Branch Program</p>
-                        </div>
+                        <BranchGalleryCard branch={currentStudio.branches[0]} defaultTitle="Foundation &amp; Techniques" />
+                        <BranchGalleryCard branch={currentStudio.branches[1]} defaultTitle="Performance &amp; Artistry" />
                       </>
                     )}
 

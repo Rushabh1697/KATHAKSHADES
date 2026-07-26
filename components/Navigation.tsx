@@ -49,7 +49,7 @@ export default function Navigation() {
             <span className="text-brand-gold font-serif font-bold text-2xl tracking-wide">
               Kathak Shades
             </span>
-            <span className="text-brand-gold/70 font-sans text-[10px] tracking-[0.18em] uppercase">
+            <span className="text-brand-cream font-sans text-[11px] tracking-[0.22em] uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
               The School Of Kathak
             </span>
           </div>
