@@ -474,25 +474,6 @@ export default function Classes() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="space-y-8">
-                    <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
-                      <h3 className={`font-serif text-xl font-bold mb-6 flex items-center gap-3 ${headingClass}`}>
-                        <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center">
-                          <CalendarDays className={`w-5 h-5 ${iconClass}`} strokeWidth={1.5} />
-                        </div>
-                        Class Schedule
-                      </h3>
-                      <div className="space-y-5">
-                        <div className="flex flex-col gap-1">
-                          <p className="text-xs uppercase tracking-wider font-semibold text-brand-black/50">Class Days</p>
-                          <p className={`font-medium text-lg ${headingClass}`}>{currentStudio.days}</p>
-                        </div>
-                        <div className="w-full h-[1px] bg-brand-gold/15" />
-                        <div className="flex flex-col gap-1">
-                          <p className="text-xs uppercase tracking-wider font-semibold text-brand-black/50">Timing</p>
-                          <p className={`font-medium text-lg ${headingClass}`}>{currentStudio.timing}</p>
-                        </div>
-                      </div>
-                    </div>
 
                     {currentStudio.branches && (
                       <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-8 shadow-sm`}>
