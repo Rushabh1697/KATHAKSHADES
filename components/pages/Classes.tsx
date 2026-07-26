@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import ImageModal from '@/components/ImageModal';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -79,7 +78,6 @@ const studios = [
 function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle: string }) {
   const [photos, setPhotos] = useState<string[]>([]);
   const [currentPhoto, setCurrentPhoto] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -95,13 +93,13 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
   }, [branch.tag]);
 
   useEffect(() => {
-    if (photos.length > 1 && !isHovered && !isModalOpen) {
+    if (photos.length > 1 && !isHovered) {
       const interval = setInterval(() => {
         setCurrentPhoto((prev) => (prev + 1) % photos.length);
       }, 3500);
       return () => clearInterval(interval);
     }
-  }, [photos, isHovered, isModalOpen]);
+  }, [photos, isHovered]);
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -136,17 +134,16 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
       </div>
 
       <div 
-        className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4 bg-brand-maroon/5 group cursor-pointer"
+        className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4 bg-brand-maroon/5 group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => setIsModalOpen(true)}
       >
         <Image
           key={displayImage} // Force re-render for simple fade, or let css transition handle it
           src={displayImage}
           alt={defaultTitle}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover transition-transform duration-700"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -171,14 +168,6 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
         )}
       </div>
       <p className={`font-sans text-sm font-medium ${mutedClass}`}>{branch.name.split(' — ')[0]} Branch Gallery</p>
-
-      {/* Lightbox Modal */}
-      <ImageModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        imageUrl={displayImage}
-        altText={defaultTitle}
-      />
     </div>
   );
 }
