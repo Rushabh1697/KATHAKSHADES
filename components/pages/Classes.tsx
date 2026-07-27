@@ -23,7 +23,7 @@ const studios = [
     ],
     branches: [
       {
-        name: 'Rhymes N Colours',
+        name: 'Rhymes N Colours — Manpada',
         days: 'Tuesday & Friday',
         timing: '6:00 PM – 7:00 PM and 7:00 PM – 8:00 PM',
         address: 'Ground floor, Khewra Cir Marg, near Acme Ozone, Manpada, Thane West',
@@ -89,7 +89,7 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
           setPhotos(data.photos);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, [branch.tag]);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
         </div>
       </div>
 
-      <div 
+      <div
         className="relative w-full flex-1 min-h-[200px] rounded-[12px] overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.15)] mb-4 bg-brand-maroon/5 group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -148,17 +148,17 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
         />
         <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
-        
+
         {/* Navigation Buttons */}
         {photos.length > 1 && (
           <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button 
+            <button
               onClick={handlePrev}
               className="p-1.5 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button 
+            <button
               onClick={handleNext}
               className="p-1.5 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-colors"
             >
