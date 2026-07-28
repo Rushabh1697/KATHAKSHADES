@@ -19,7 +19,7 @@ declare global {
   interface Window {
     Razorpay: new (options: Record<string, unknown>) => {
       open(): void;
-      on(event: string, handler: (response: Record<string, unknown>) => void): void;
+      on(event: string, handler: (response: unknown) => void): void;
     };
   }
 }
@@ -127,9 +127,10 @@ export default function RazorpayButton({
       };
 
       const rzp = new window.Razorpay(options);
-      rzp.on('payment.failed', (response: { error: { description: string } }) => {
+      rzp.on('payment.failed', (response) => {
+        const desc = (response as { error?: { description?: string } })?.error?.description;
         setStatus('error');
-        setErrorMsg(response.error?.description ?? 'Payment failed. Please try again.');
+        setErrorMsg(desc ?? 'Payment failed. Please try again.');
       });
 
       setStatus('idle'); // Reset while popup is open
