@@ -52,7 +52,7 @@ export default function PageTransitionLoader() {
             playsInline
             onTimeUpdate={(e) => {
               const video = e.currentTarget;
-              if (video.currentTime >= 2) {
+              if (video.currentTime >= 1.2) {
                 video.pause();
               }
             }}

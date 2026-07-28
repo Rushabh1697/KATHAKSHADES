@@ -22,7 +22,7 @@ export default function RootLayoutClient({
     const timer = setTimeout(() => {
       setDisplayChildren(children);
       setIsLoading(false);
-    }, 2000);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, [pathname, children]);
