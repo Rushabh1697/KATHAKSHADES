@@ -173,10 +173,10 @@ export default function Catalogue() {
         <ScrollReveal variant="fadeUp">
           <div className="text-center mb-16">
             <p className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
-              Kathak Shades
+              Prastuti — Kathak Shades
             </p>
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
-              Events &amp; Gallery
+              Prastuti
             </h1>
             <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
               A glimpse into the vibrant world of Kathak Shades — our Samarpan productions, workshops, performances, and special celebrations.

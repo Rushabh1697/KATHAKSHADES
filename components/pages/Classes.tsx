@@ -125,7 +125,7 @@ function BranchGalleryCard({ branch, defaultTitle }: { branch: any, defaultTitle
     <div data-gsap="panel" className={`${panelClass} rounded-[12px] p-6 shadow-sm overflow-hidden flex flex-col flex-1`}>
       <div className="flex items-start justify-between gap-4 mb-4">
         <div>
-          <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES CATALOGUE</h3>
+          <h3 className={`font-serif text-lg md:text-xl font-bold ${headingClass}`}>KATHAK SHADES PRASTUTI</h3>
           <p className={`font-sans text-sm tracking-[0.1em] font-semibold text-brand-gold mt-1`}>{defaultTitle}</p>
         </div>
         <div className="w-10 h-10 rounded-full border border-brand-gold/40 bg-brand-gold/10 flex items-center justify-center shrink-0">

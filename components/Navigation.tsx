@@ -10,8 +10,8 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/kathak-shades', label: 'Kathak Shades' },
   { href: '/classes', label: 'Classes' },
-  { href: '/catalogue', label: 'Catalogue' },
-  { href: '/books', label: 'Books' },
+  { href: '/catalogue', label: 'Prastuti' },
+  { href: '/books', label: 'Nritya Store' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];

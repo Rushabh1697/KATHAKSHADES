@@ -43,10 +43,10 @@ export default function Books() {
         <ScrollReveal variant="fadeUp">
           <div className="text-center mb-16">
             <p className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
-              Kathak Shades Store
+              Nritya Store
             </p>
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
-              Books &amp; Accessories
+              Nritya Store
             </h1>
             <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
               Curated resources and accessories for every Kathak student — from our in-house handbook to performance-grade ghungroos.

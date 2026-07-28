@@ -4,7 +4,7 @@ import Books from "@/components/pages/Books";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Books & Accessories — Kathak Shades",
+  title: "Nritya Store — Kathak Shades",
   description:
     "Shop Kathak books, ghungroos and accessories. Buy the नृत्यारंभ Foundation Handbook and performance-grade Kathak ghungroos online.",
 };

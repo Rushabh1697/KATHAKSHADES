@@ -47,13 +47,13 @@ const exploreItems = [
   {
     href: '/catalogue',
     icon: <Shirt className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
-    title: 'Catalogue',
+    title: 'Prastuti',
     desc: 'Browse premium Kathak costumes, ghungroos & accessories.',
   },
   {
     href: '/books',
     icon: <BookOpen className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
-    title: 'Books',
+    title: 'Nritya Store',
     desc: 'Curated Kathak learning books, taal manuals & music theory.',
   },
   {

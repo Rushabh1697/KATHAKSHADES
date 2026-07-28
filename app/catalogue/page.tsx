@@ -4,9 +4,9 @@ import Catalogue from "@/components/pages/Catalogue";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Catalogue — Kathak Shades",
+  title: "Prastuti — Kathak Shades",
   description:
-    "Browse our Kathak dance catalogue — costumes, ghungroos, and accessories for every dancer.",
+    "Browse Prastuti by Kathak Shades — premium costumes, ghungroos, and accessories for every dancer.",
 };
 
 export default function CataloguePage() {

@@ -65,8 +65,8 @@ export default function Footer() {
                 {[
                   { href: '/', label: 'Home' },
                   { href: '/classes', label: 'Classes' },
-                  { href: '/catalogue', label: 'Catalogue' },
-                  { href: '/books', label: 'Books' },
+                  { href: '/catalogue', label: 'Prastuti' },
+                  { href: '/books', label: 'Nritya Store' },
                   { href: '/about', label: 'About' },
                   { href: '/contact', label: 'Contact' },
                 ].map(link => (
