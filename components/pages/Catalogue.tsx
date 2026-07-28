@@ -37,9 +37,9 @@ const categories: Category[] = [
     accentColor: 'text-brand-maroon',
   },
   {
-    label: 'Special Occasions',
-    tag: 'specialoccasions',
-    apiRoute: '/api/specialoccasions',
+    label: 'ANGM Exam',
+    tag: 'angmexam',
+    apiRoute: '/api/gallery/angmexam',
     icon: <Calendar className="w-6 h-6" />,
     accentColor: 'text-brand-brown',
   },
