@@ -48,7 +48,7 @@ const categories: Category[] = [
 function PhotoScrollRow({ category, index }: { category: Category; index: number }) {
   const [photos, setPhotos] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -115,7 +115,7 @@ function PhotoScrollRow({ category, index }: { category: Category; index: number
                 <div
                   key={src + idx}
                   className="flex-shrink-0 w-64 sm:w-72 md:w-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group border border-brand-maroon/10 bg-white cursor-pointer"
-                  onClick={() => setSelectedImage(src)}
+                  onClick={() => setSelectedIndex(idx)}
                 >
                   <div className="relative w-full aspect-[4/3] overflow-hidden">
                     <Image
@@ -155,10 +155,13 @@ function PhotoScrollRow({ category, index }: { category: Category; index: number
         )}
 
         <ImageModal
-          isOpen={!!selectedImage}
-          onClose={() => setSelectedImage(null)}
-          imageUrl={selectedImage}
+          isOpen={selectedIndex !== null}
+          onClose={() => setSelectedIndex(null)}
+          imageUrl={selectedIndex !== null ? photos[selectedIndex] : null}
           altText={`Full screen view from ${category.label}`}
+          photos={photos}
+          currentIndex={selectedIndex ?? 0}
+          onNavigate={(idx) => setSelectedIndex(idx)}
         />
       </div>
     </ScrollReveal>

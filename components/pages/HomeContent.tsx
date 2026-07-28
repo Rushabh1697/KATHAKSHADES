@@ -2,7 +2,7 @@
 
 import ScrollReveal from '@/components/ScrollReveal';
 import HomeVideo from '@/components/pages/HomeVideo';
-import { MapPin, Users, Shirt, BookOpen, Phone, CheckCircle2, GraduationCap, Heart, Music, Star, Trophy } from 'lucide-react';
+import { MapPin, Users, Camera, ShoppingBag, Phone, CheckCircle2, GraduationCap, Heart, Music, Star, Trophy } from 'lucide-react';
 
 const whyChooseItems = [
   {
@@ -46,15 +46,15 @@ const exploreItems = [
   },
   {
     href: '/catalogue',
-    icon: <Shirt className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+    icon: <Camera className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
     title: 'Prastuti',
-    desc: 'Browse premium Kathak costumes, ghungroos & accessories.',
+    desc: 'Watch our Samarpan productions, workshops & cultural performances.',
   },
   {
     href: '/books',
-    icon: <BookOpen className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
+    icon: <ShoppingBag className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />,
     title: 'Nritya Store',
-    desc: 'Curated Kathak learning books, taal manuals & music theory.',
+    desc: 'Shop ghungroos, the Foundation Handbook & more.',
   },
   {
     href: '/contact',
@@ -87,7 +87,10 @@ export default function HomeContent() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {/* Mobile: horizontal scroll; sm+: grid */}
+          <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto overflow-x-auto pb-2 sm:pb-0 snap-x snap-mandatory sm:snap-none scroll-smooth"
+            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+          >
             {whyChooseItems.map((item, index) => (
               <ScrollReveal
                 key={item.title}
@@ -96,7 +99,7 @@ export default function HomeContent() {
                 duration={0.5}
               >
                 <div
-                  className="bg-brand-cream rounded-[14px] border border-brand-gold/30 px-5 py-6 flex flex-col items-center text-center gap-3 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)] h-full"
+                  className="snap-center min-w-[75vw] sm:min-w-0 bg-brand-cream rounded-[14px] border border-brand-gold/30 px-5 py-6 flex flex-col items-center text-center gap-3 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)] h-full"
                 >
                   <div className="w-12 h-12 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-inner group-hover:scale-[1.08] transition-transform duration-300">
                     {item.icon}
