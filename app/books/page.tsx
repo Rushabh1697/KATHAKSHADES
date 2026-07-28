@@ -4,9 +4,9 @@ import Books from "@/components/pages/Books";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Books & Resources — Kathak Shades",
+  title: "Books & Accessories — Kathak Shades",
   description:
-    "Curated Kathak books, taal manuals, and classical dance literature for students at all levels.",
+    "Shop Kathak books, ghungroos and accessories. Buy the नृत्यारंभ Foundation Handbook and performance-grade Kathak ghungroos online.",
 };
 
 export default function BooksPage() {

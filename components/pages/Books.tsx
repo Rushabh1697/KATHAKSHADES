@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Phone, Info, BookOpen, MessageCircle, GraduationCap } from 'lucide-react';
+import { Info, BookOpen, GraduationCap, Package } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import RazorpayButton from '@/components/RazorpayButton';
 
 const fallbackBookPhoto = 'https://res.cloudinary.com/dnnnouh5x/image/upload/f_auto,q_auto/v1784278292/g5hwqgmgnnwvp0ngypn8.jpg';
 
@@ -36,31 +37,28 @@ export default function Books() {
 
   return (
     <section id="books" className="py-20 bg-white min-h-screen">
-      <div className="container max-w-5xl mx-auto">
-        {/* Header */}
+      <div className="container max-w-5xl mx-auto px-4">
+
+        {/* ─── Header ────────────────────────────────────────────── */}
         <ScrollReveal variant="fadeUp">
           <div className="text-center mb-16">
             <p className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
-              Kathak Shades Publication
+              Kathak Shades Store
             </p>
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-brand-maroon mb-4">
-              Books &amp; Resources
+              Books &amp; Accessories
             </h1>
             <p className="font-sans text-lg text-brand-black/70 max-w-2xl mx-auto">
-              Our in-house Kathak Foundation Handbook — your perfect companion from the very first step to a strong technique.
+              Curated resources and accessories for every Kathak student — from our in-house handbook to performance-grade ghungroos.
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 bg-brand-maroon/10 border border-brand-maroon/20 rounded-full px-5 py-2">
-              <span className="font-sans text-brand-maroon text-sm font-semibold">
-                <Phone className="w-4 h-4 inline-block -mt-0.5" /> To order: <a href="https://wa.me/919773602766" className="text-brand-maroon font-bold underline hover:text-brand-maroon/70">WhatsApp +91 97736 02766</a>
-              </span>
-            </div>
           </div>
         </ScrollReveal>
 
-        {/* Book Feature Card */}
+        {/* ─── Book Feature Card ──────────────────────────────────── */}
         <ScrollReveal variant="fadeUp" delay={0.15}>
-          <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10">
+          <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 mb-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+
               {/* Left — Book Photo */}
               <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-8 md:p-12 min-h-[460px] relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full -translate-x-24 -translate-y-24" />
@@ -89,7 +87,7 @@ export default function Books() {
               <ScrollReveal variant="slideRight" delay={0.2}>
                 <div className="p-10 flex flex-col justify-center h-full">
                   {/* Hindi title */}
-                  <h2 className="font-serif text-4xl font-bold text-brand-maroon mb-1" style={{fontFamily: 'serif'}}>
+                  <h2 className="font-serif text-4xl font-bold text-brand-maroon mb-1" style={{ fontFamily: 'serif' }}>
                     नृत्यारंभ...
                   </h2>
                   <p className="font-sans text-brand-black/50 text-sm italic mb-6">
@@ -123,16 +121,13 @@ export default function Books() {
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
                       <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price</p>
-                      <p className="font-serif text-3xl font-bold text-brand-gold">₹350</p>
+                      <p className="font-serif text-3xl font-bold text-brand-gold">₹400</p>
                     </div>
-                    <a
-                      href="https://wa.me/919773602766?text=Hi!%20I%20would%20like%20to%20pre-book%20a%20copy%20of%20%22%E0%A4%A8%E0%A5%83%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A4%82%E0%A4%AD%22%20Foundation%20Handbook%20(3rd%20Edition).%20Price%20%E2%82%B9350."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-brand-maroon text-brand-gold px-7 py-3 rounded-full font-sans font-bold hover:bg-brand-maroon/90 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
-                    >
-                      <BookOpen className="w-5 h-5 inline-block" /> Book Your Copy
-                    </a>
+                    <RazorpayButton
+                      amount={400}
+                      productName="नृत्यारंभ Foundation Handbook (3rd Edition)"
+                      label="Pre-Book Now"
+                    />
                   </div>
                 </div>
               </ScrollReveal>
@@ -140,23 +135,107 @@ export default function Books() {
           </div>
         </ScrollReveal>
 
-        {/* Bottom Note */}
+        {/* ─── Ghungroos Product Card ─────────────────────────────── */}
+        <ScrollReveal variant="fadeUp" delay={0.2}>
+          <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+
+              {/* Left — Ghungroos Photo */}
+              <div className="bg-gradient-to-br from-[#1a1205] via-[#3d2c0a] to-brand-maroon flex items-center justify-center p-8 md:p-12 min-h-[400px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-gold/5 rounded-full translate-x-24 -translate-y-24" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/5 rounded-full -translate-x-32 translate-y-32" />
+
+                <ScrollReveal variant="scaleUp" delay={0.3}>
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-4 border-brand-gold/40">
+                      <Image
+                        src="/ghungroos.png"
+                        alt="Kathak Ghungroos — pair of 50"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="mt-6 font-serif text-2xl font-bold text-brand-gold text-center">
+                      Kathak Ghungroos
+                    </p>
+                    <p className="font-sans text-sm mt-1 text-brand-cream/70 text-center">
+                      Performance-Grade • Pair of 50
+                    </p>
+                  </div>
+                </ScrollReveal>
+              </div>
+
+              {/* Right — Ghungroos Details */}
+              <ScrollReveal variant="slideRight" delay={0.2}>
+                <div className="p-10 flex flex-col justify-center h-full">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Package className="w-5 h-5 text-brand-gold" />
+                    <span className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest">
+                      Accessories
+                    </span>
+                  </div>
+
+                  <h2 className="font-serif text-3xl font-bold text-brand-maroon mb-1">
+                    Kathak Ghungroos
+                  </h2>
+                  <p className="font-sans text-brand-black/50 text-sm italic mb-5">
+                    Pair of 50 Bells — Ready to Perform
+                  </p>
+
+                  <p className="font-sans text-brand-black/80 text-base leading-relaxed mb-6">
+                    Premium-quality Kathak ghungroos with clear resonant tone — ideal for students and performers alike. Each pair contains <strong>50 bells</strong>, hand-strung on durable leather padding for long practice sessions.
+                  </p>
+
+                  {/* Stock badge */}
+                  <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-8">
+                    <Package className="w-5 h-5 text-amber-700 shrink-0" />
+                    <div>
+                      <p className="font-sans text-amber-800 font-bold text-sm">Limited Stock — 50 Pairs Available</p>
+                      <p className="font-sans text-amber-600/80 text-xs">Order now to secure yours</p>
+                    </div>
+                  </div>
+
+                  {/* Price + CTA */}
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                      <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price per Pair</p>
+                      <p className="font-serif text-3xl font-bold text-brand-gold">₹1,200</p>
+                    </div>
+                    <RazorpayButton
+                      amount={1200}
+                      productName="Kathak Ghungroos (Pair of 50)"
+                      label="Buy Now"
+                    />
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* ─── Bottom Note ────────────────────────────────────────── */}
         <ScrollReveal variant="fadeUp" delay={0.3}>
-          <div className="text-center mt-10 p-6 bg-brand-maroon/5 rounded-2xl border border-brand-maroon/10">
+          <div className="text-center mt-4 p-6 bg-brand-maroon/5 rounded-2xl border border-brand-maroon/10">
             <p className="font-sans text-brand-maroon font-semibold">
-              <GraduationCap className="w-5 h-5 inline-block -mt-1 mr-1" /> This handbook is recommended for all enrolled students at Kathak Shades.
-              Contact us on WhatsApp to reserve your copy before the 3rd edition sells out!
+              <GraduationCap className="w-5 h-5 inline-block -mt-1 mr-1" />
+              The handbook is recommended for all enrolled students at Kathak Shades.
+              For any queries, feel free to reach out on WhatsApp.
             </p>
             <a
-              href="https://wa.me/919773602766?text=Hi!%20I%20want%20to%20know%20more%20about%20the%20Nrityarambh%20Foundation%20Handbook."
+              href="https://wa.me/919773602766?text=Hi!%20I%20want%20to%20know%20more%20about%20the%20Kathak%20Shades%20store."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 bg-[#25D366] text-white px-6 py-3 rounded-full font-bold hover:bg-[#20bb5a] transition-colors"
+              className="inline-flex items-center gap-2 mt-4 bg-[#25D366] text-white px-6 py-3 rounded-full font-bold hover:bg-[#20bb5a] transition-colors"
             >
-              <span className="flex items-center justify-center gap-2"><MessageCircle className="w-5 h-5" /> Chat on WhatsApp</span>
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.847L.057 23.571a.75.75 0 0 0 .921.921l5.724-1.471A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.743 9.743 0 0 1-4.98-1.367l-.356-.213-3.394.872.887-3.32-.234-.373A9.711 9.711 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+              </svg>
+              Chat on WhatsApp
             </a>
           </div>
         </ScrollReveal>
+
       </div>
     </section>
   );
