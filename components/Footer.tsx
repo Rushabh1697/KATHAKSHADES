@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -14,8 +15,14 @@ export default function Footer() {
           <ScrollReveal variant="fadeUp" delay={0}>
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-[0_0_15px_rgba(179,92,17,0.1)]">
-                  <span className="text-brand-gold font-serif font-bold text-lg">KS</span>
+                <div className="w-12 h-12 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-[0_0_15px_rgba(179,92,17,0.1)] overflow-hidden">
+                  <Image
+                    src="https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846259/iuajlxf8tsqzwfbrfa6u.jpg"
+                    alt="Kathak Shades Logo"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <span className="text-brand-gold font-serif font-bold text-2xl tracking-wide">Kathak Shades</span>
               </div>
@@ -35,9 +42,9 @@ export default function Footer() {
                   className="w-9 h-9 rounded-full border border-brand-gold/40 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-maroon transition-all"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
                   </svg>
                 </a>
                 {/* YouTube */}
@@ -49,8 +56,8 @@ export default function Footer() {
                   className="w-9 h-9 rounded-full border border-brand-gold/40 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-maroon transition-all"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
                   </svg>
                 </a>
               </div>
@@ -111,7 +118,7 @@ export default function Footer() {
                   </p>
                   <p className="font-sans text-brand-cream/70 text-xs leading-relaxed">
                     <a href="https://maps.app.goo.gl/YEA5qG25toE9D2gPA" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Regency Anantam Gate 1, Dombivli</a><br />
-                    <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 5:00 PM – 8:00 PM</span>
+                    <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 5:00 PM – 7:00 PM</span>
                   </p>
                 </div>
                 <div className="group">
@@ -120,7 +127,7 @@ export default function Footer() {
                   </p>
                   <p className="font-sans text-brand-cream/70 text-xs leading-relaxed">
                     <a href="https://maps.app.goo.gl/hT3WLafHvm95d2LK6" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Regency Anantam Gate 3, Dombivli</a><br />
-                    <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 7:15 PM – 8:00 PM</span>
+                    <span className="text-brand-cream/50 mt-1 block">Mon &amp; Wed · 7:15 PM – 8:15 PM</span>
                   </p>
                 </div>
               </div>

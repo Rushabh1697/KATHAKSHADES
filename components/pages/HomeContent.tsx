@@ -3,6 +3,7 @@
 import ScrollReveal from '@/components/ScrollReveal';
 import HomeVideo from '@/components/pages/HomeVideo';
 import { MapPin, Users, Camera, ShoppingBag, Phone, CheckCircle2, GraduationCap, Heart, Music, Star, Trophy } from 'lucide-react';
+import { useRef, useEffect } from 'react';
 
 const whyChooseItems = [
   {
@@ -65,6 +66,46 @@ const exploreItems = [
 ];
 
 export default function HomeContent() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let intervalId: NodeJS.Timeout;
+
+    const startScroll = () => {
+      intervalId = setInterval(() => {
+        // Only auto scroll on mobile (when it's a flex container instead of grid)
+        if (window.innerWidth >= 640) return;
+
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Scroll to the next snap point
+          container.scrollBy({ left: container.clientWidth * 0.85, behavior: 'smooth' });
+        }
+      }, 3000);
+    };
+
+    startScroll();
+
+    const stopScroll = () => clearInterval(intervalId);
+
+    container.addEventListener('touchstart', stopScroll);
+    container.addEventListener('touchend', startScroll);
+    container.addEventListener('mouseenter', stopScroll);
+    container.addEventListener('mouseleave', startScroll);
+
+    return () => {
+      clearInterval(intervalId);
+      container.removeEventListener('touchstart', stopScroll);
+      container.removeEventListener('touchend', startScroll);
+      container.removeEventListener('mouseenter', stopScroll);
+      container.removeEventListener('mouseleave', startScroll);
+    };
+  }, []);
+
   return (
     <>
       {/* Why Choose Kathak Shades */}
@@ -87,8 +128,10 @@ export default function HomeContent() {
             </div>
           </ScrollReveal>
 
-          {/* Mobile: horizontal scroll; sm+: grid */}
-          <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto overflow-x-auto pb-2 sm:pb-0 snap-x snap-mandatory sm:snap-none scroll-smooth"
+          {/* Mobile: auto-scroll horizontal; sm+: grid */}
+          <div 
+            ref={scrollRef}
+            className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto overflow-x-auto snap-x snap-mandatory sm:snap-none scroll-smooth pb-4 sm:pb-0"
             style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
           >
             {whyChooseItems.map((item, index) => (
@@ -99,7 +142,7 @@ export default function HomeContent() {
                 duration={0.5}
               >
                 <div
-                  className="snap-center min-w-[75vw] sm:min-w-0 bg-brand-cream rounded-[14px] border border-brand-gold/30 px-5 py-6 flex flex-col items-center text-center gap-3 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)] h-full"
+                  className="snap-center min-w-[85vw] sm:min-w-0 bg-brand-cream rounded-[14px] border border-brand-gold/30 px-5 py-6 flex flex-col items-center text-center gap-3 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)] h-full"
                 >
                   <div className="w-12 h-12 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-inner group-hover:scale-[1.08] transition-transform duration-300">
                     {item.icon}
@@ -122,7 +165,7 @@ export default function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Top-Left: Heading block */}
               <ScrollReveal variant="slideLeft" className="md:col-span-1">
-                <div className="bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] p-10 flex flex-col justify-center h-full">
+                <div className="bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] p-6 sm:p-10 flex flex-col justify-center h-full">
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-brand-gold text-lg">✦</span>
                     <span className="h-[1px] w-12 bg-brand-gold"></span>
@@ -148,7 +191,7 @@ export default function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Thane Card */}
               <ScrollReveal variant="fadeUp" delay={0.1}>
-                <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-10 flex flex-col items-center text-center h-full">
+                <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-6 sm:p-10 flex flex-col items-center text-center h-full">
                   <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(179,92,17,0.2)] transition-all duration-300">
                     <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
                   </div>
@@ -164,7 +207,7 @@ export default function HomeContent() {
 
               {/* Dombivli Card */}
               <ScrollReveal variant="fadeUp" delay={0.2}>
-                <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-10 flex flex-col items-center text-center h-full">
+                <div className="group bg-brand-cream rounded-[16px] border border-brand-gold/40 shadow-[0_4px_20px_rgba(123,74,46,0.08)] hover:shadow-[0_12px_30px_rgba(123,74,46,0.15)] transition-all duration-500 hover:-translate-y-[5px] p-6 sm:p-10 flex flex-col items-center text-center h-full">
                   <div className="w-16 h-16 bg-brand-cream rounded-full flex items-center justify-center mb-6 border border-brand-gold/50 shadow-[0_4px_15px_rgba(90,16,35,0.05)] group-hover:scale-[1.08] group-hover:shadow-[0_4px_15px_rgba(179,92,17,0.2)] transition-all duration-300">
                     <MapPin className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
                   </div>
@@ -211,7 +254,7 @@ export default function HomeContent() {
               >
                 <a
                   href={item.href}
-                  className="bg-brand-cream rounded-[16px] border border-brand-gold/30 p-8 flex flex-col items-center text-center gap-5 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)] h-full"
+                  className="bg-brand-cream rounded-[16px] border border-brand-gold/30 p-6 sm:p-8 flex flex-col items-center text-center gap-5 group hover:-translate-y-[5px] transition-all duration-500 shadow-[0_4px_15px_rgba(123,74,46,0.05)] hover:shadow-[0_12px_25px_rgba(123,74,46,0.12)] h-full"
                 >
                   <div className="w-16 h-16 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-cream/5 shadow-inner group-hover:scale-[1.08] transition-transform duration-300">
                     {item.icon}

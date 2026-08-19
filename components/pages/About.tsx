@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { User, Award, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -10,6 +10,19 @@ const guruPhotoSrc = 'https://res.cloudinary.com/dnnnouh5x/image/upload/v1783846
 
 export default function About() {
   const [photoError, setPhotoError] = useState(false);
+  const [secondPhotoSrc, setSecondPhotoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Note: Tell user to use tag "maamguru" without punctuation for safety
+    fetch('/api/gallery/maamguru')
+      .then(r => r.json())
+      .then((data: { photos?: string[] }) => {
+        if (Array.isArray(data.photos) && data.photos.length > 0) {
+          setSecondPhotoSrc(data.photos[0]);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="about" className="py-24 bg-brand-cream relative">
@@ -17,11 +30,12 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Side - Portrait */}
           <ScrollReveal variant="slideLeft" duration={0.7}>
-            <div className="flex justify-center group lg:sticky lg:top-24">
+            <div className="flex flex-col gap-8 items-center justify-start group lg:sticky lg:top-24">
+              {/* First Portrait */}
               <div className="relative w-full max-w-md aspect-[4/5] bg-brand-maroon rounded-[18px] overflow-hidden shadow-[0_10px_40px_rgba(74,15,29,0.2)] transition-all duration-700 hover:shadow-[0_15px_50px_rgba(179,92,17,0.25)] hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-b from-brand-black/20 to-brand-black/80 z-10" />
                 
-                <div className="absolute inset-0 bg-brand-maroon/40 backdrop-blur-sm z-0 group-hover:scale-105 transition-transform duration-700">
+                <div className="absolute inset-0 bg-brand-maroon/40 backdrop-blur-sm z-0 hover:scale-105 transition-transform duration-700">
                   {!photoError ? (
                     <Image
                       src={guruPhotoSrc}
@@ -56,6 +70,23 @@ export default function About() {
                   </p>
                 </div>
               </div>
+
+              {/* Second Dynamic Photo */}
+              {secondPhotoSrc && (
+                <div className="relative w-full max-w-md aspect-[4/5] bg-brand-maroon rounded-[18px] overflow-hidden shadow-[0_10px_40px_rgba(74,15,29,0.2)] transition-all duration-700 hover:shadow-[0_15px_50px_rgba(179,92,17,0.25)] hover:-translate-y-2">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-black/60 z-10" />
+                  <div className="absolute inset-0 bg-brand-maroon/20 backdrop-blur-[1px] z-0 hover:scale-105 transition-transform duration-700">
+                    <Image
+                      src={secondPhotoSrc}
+                      alt="Kathak Shades Guru Moments"
+                      fill
+                      className="object-cover object-center"
+                    />
+                  </div>
+                  {/* Gold border accent */}
+                  <div className="absolute inset-4 border-[0.5px] border-brand-gold/40 rounded-[10px] z-20 pointer-events-none" />
+                </div>
+              )}
             </div>
           </ScrollReveal>
 

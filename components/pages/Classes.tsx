@@ -56,7 +56,7 @@ const studios = [
       {
         name: 'SD Studio — Regency Anantam',
         days: 'Monday & Wednesday',
-        timing: '5:00 PM – 6:00 PM',
+        timing: '5:00 PM – 7:00 PM',
         address: 'SD Education hub, Regency Anantam gate no 1, Dombivli',
         mapLink: 'https://maps.app.goo.gl/YEA5qG25toE9D2gPA',
         tag: 'sdstudio',

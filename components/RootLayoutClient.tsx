@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransitionLoader from './PageTransitionLoader';
+import { Agentation } from 'agentation';
 
 export default function RootLayoutClient({
   children,
@@ -53,6 +54,7 @@ export default function RootLayoutClient({
           {displayChildren}
         </motion.div>
       )}
+      {process.env.NODE_ENV === 'development' && <Agentation />}
     </>
   );
 }

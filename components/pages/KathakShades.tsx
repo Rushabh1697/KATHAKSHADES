@@ -4,9 +4,57 @@ import { School, Sparkles, Award, Users } from 'lucide-react';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ScrollReveal';
 
+const FluteIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M10 90 L90 10" strokeWidth="4" />
+    <circle cx="70" cy="30" r="2" fill="currentColor"/>
+    <circle cx="60" cy="40" r="2" fill="currentColor"/>
+    <circle cx="50" cy="50" r="2" fill="currentColor"/>
+    <circle cx="40" cy="60" r="2" fill="currentColor"/>
+    <circle cx="30" cy="70" r="2" fill="currentColor"/>
+    <circle cx="20" cy="80" r="2" fill="currentColor"/>
+    <path d="M80 20 Q 95 35 85 45 T 90 60" strokeWidth="1" strokeDasharray="2,2"/>
+  </svg>
+);
+
+const TablaIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M20 50 C20 80 30 90 40 90 C50 90 55 80 55 50" />
+    <ellipse cx="37.5" cy="50" rx="17.5" ry="8" />
+    <ellipse cx="37.5" cy="50" rx="8" ry="4" fill="currentColor" fillOpacity="0.2" />
+    <path d="M60 55 C60 85 65 90 75 90 C85 90 90 85 90 55" />
+    <ellipse cx="75" cy="55" rx="15" ry="6" />
+    <ellipse cx="75" cy="55" rx="6" ry="2.5" fill="currentColor" fillOpacity="0.2" />
+    <path d="M22 55 L30 88 M30 57 L40 89 M45 57 L48 85 M52 54 L52 75" strokeWidth="1" opacity="0.5" />
+    <path d="M62 60 L68 88 M70 61 L75 89 M80 61 L82 88 M87 59 L88 75" strokeWidth="1" opacity="0.5" />
+  </svg>
+);
+
+const GhungrooIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M10 50 Q 30 60 50 50 T 90 50" strokeWidth="3" />
+    <circle cx="30" cy="65" r="8" />
+    <path d="M26 65 H34 M30 65 V73" strokeWidth="1" />
+    <path d="M30 55 V57" />
+    <circle cx="50" cy="60" r="8" />
+    <path d="M46 60 H54 M50 60 V68" strokeWidth="1" />
+    <path d="M50 50 V52" />
+    <circle cx="70" cy="65" r="8" />
+    <path d="M66 65 H74 M70 65 V73" strokeWidth="1" />
+    <path d="M70 55 V57" />
+  </svg>
+);
+
 export default function KathakShades() {
   return (
-    <section id="kathak-shades" className="py-24 bg-brand-cream relative">
+    <section id="kathak-shades" className="py-24 bg-brand-cream relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
+        <FluteIcon className="absolute top-[5%] left-[5%] w-64 h-64 text-brand-gold -rotate-12" />
+        <TablaIcon className="absolute top-[40%] right-[2%] w-72 h-72 text-brand-gold rotate-12 opacity-80" />
+        <GhungrooIcon className="absolute bottom-[10%] left-[8%] w-80 h-80 text-brand-gold -rotate-6" />
+      </div>
+
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Header */}

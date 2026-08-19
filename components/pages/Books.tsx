@@ -54,79 +54,71 @@ export default function Books() {
           </div>
         </ScrollReveal>
 
-        {/* ─── Book Feature Card ──────────────────────────────────── */}
+        {/* ─── Ghungroos (Pair of 25) Product Card ───────────────── */}
         <ScrollReveal variant="fadeUp" delay={0.15}>
           <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 mb-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-
-              {/* Left — Book Photo */}
-              <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-8 md:p-12 min-h-[460px] relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full -translate-x-24 -translate-y-24" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full translate-x-32 translate-y-32" />
+              <div className="bg-gradient-to-br from-[#1a1205] via-[#3d2c0a] to-brand-maroon flex items-center justify-center p-8 md:p-12 min-h-[400px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-gold/5 rounded-full translate-x-24 -translate-y-24" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/5 rounded-full -translate-x-32 translate-y-32" />
 
                 <ScrollReveal variant="scaleUp" delay={0.3}>
-                  <div className="relative z-10 w-full max-w-[18rem]">
-                    <div className="relative w-full aspect-[3/4] rounded-[1.4rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-brand-gold/20">
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-4 border-brand-gold/40">
                       <Image
-                        src={bookCover}
-                        alt="नृत्यारंभ Foundation Handbook cover"
+                        src="/ghungroos.png"
+                        alt="Kathak Ghungroos — pair of 25"
                         fill
                         className="object-cover"
-                        priority
                       />
                     </div>
-                    <div className="mt-6 text-center text-brand-cream/80">
-                      <p className="font-serif text-2xl font-bold text-brand-gold">नृत्यारंभ — Foundation Handbook</p>
-                      <p className="font-sans text-sm mt-1 text-brand-cream/70">by Kathak Shades</p>
-                    </div>
+                    <p className="mt-6 font-serif text-2xl font-bold text-brand-gold text-center">
+                      Kathak Ghungroos
+                    </p>
+                    <p className="font-sans text-sm mt-1 text-brand-cream/70 text-center">
+                      Beginner-Friendly • Pair of 25
+                    </p>
                   </div>
                 </ScrollReveal>
               </div>
 
-              {/* Right — Book Details */}
               <ScrollReveal variant="slideRight" delay={0.2}>
                 <div className="p-10 flex flex-col justify-center h-full">
-                  {/* Hindi title */}
-                  <h2 className="font-serif text-4xl font-bold text-brand-maroon mb-1" style={{ fontFamily: 'serif' }}>
-                    नृत्यारंभ...
+                  <div className="flex items-center gap-2 mb-2">
+                    <Package className="w-5 h-5 text-brand-gold" />
+                    <span className="font-sans text-brand-gold font-semibold text-sm uppercase tracking-widest">
+                      Accessories
+                    </span>
+                  </div>
+
+                  <h2 className="font-serif text-3xl font-bold text-brand-maroon mb-1">
+                    Kathak Ghungroos
                   </h2>
-                  <p className="font-sans text-brand-black/50 text-sm italic mb-6">
-                    &ldquo;...Unfolding the Journey of Kathak&rdquo;
+                  <p className="font-sans text-brand-black/50 text-sm italic mb-5">
+                    Pair of 25 Bells — Perfect for Beginners
                   </p>
 
-                  {/* Description */}
                   <p className="font-sans text-brand-black/80 text-base leading-relaxed mb-6">
-                    From the first step in Kathak to a strong foundation in technique — this book is your <em className="text-brand-maroon font-semibold">perfect companion</em>. A comprehensive Foundation Handbook crafted for every beginner and student of classical Kathak.
+                    Ideal for young learners and beginners starting their Kathak journey. Each pair contains <strong>25 bells</strong>, strung on comfortable and durable padding, providing a gentle resonant tone.
                   </p>
 
-                  {/* Edition Status */}
-                  <div className="space-y-3 mb-8">
-                    <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
-                      <Info className="w-6 h-6 text-red-700" />
-                      <div>
-                        <p className="font-sans text-red-700 font-bold text-sm">1st &amp; 2nd Editions — Sold Out!</p>
-                        <p className="font-sans text-red-500/70 text-xs">Due to overwhelming demand</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
-                      <BookOpen className="w-6 h-6 text-green-700" />
-                      <div>
-                        <p className="font-sans text-green-700 font-bold text-sm">3rd Edition — Coming Soon!</p>
-                        <p className="font-sans text-green-600/70 text-xs">Pre-book your copy today</p>
-                      </div>
+                  <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-8">
+                    <Package className="w-5 h-5 text-amber-700 shrink-0" />
+                    <div>
+                      <p className="font-sans text-amber-800 font-bold text-sm">Limited Stock Available</p>
+                      <p className="font-sans text-amber-600/80 text-xs">Order now to secure yours</p>
                     </div>
                   </div>
 
-                  {/* Price + CTA */}
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
-                      <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price</p>
-                      <p className="font-serif text-3xl font-bold text-brand-gold">₹400</p>
+                      <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price per Pair</p>
+                      <p className="font-serif text-3xl font-bold text-brand-gold">₹600</p>
                     </div>
                     <RazorpayButton
-                      amount={400}
-                      productName="नृत्यारंभ Foundation Handbook (3rd Edition)"
-                      label="Pre-Book Now"
+                      amount={600}
+                      productName="Kathak Ghungroos (Pair of 25)"
+                      label="Buy Now"
                     />
                   </div>
                 </div>
@@ -135,12 +127,10 @@ export default function Books() {
           </div>
         </ScrollReveal>
 
-        {/* ─── Ghungroos Product Card ─────────────────────────────── */}
+        {/* ─── Ghungroos (Pair of 50) Product Card ───────────────── */}
         <ScrollReveal variant="fadeUp" delay={0.2}>
           <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 mb-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-
-              {/* Left — Ghungroos Photo */}
               <div className="bg-gradient-to-br from-[#1a1205] via-[#3d2c0a] to-brand-maroon flex items-center justify-center p-8 md:p-12 min-h-[400px] relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-brand-gold/5 rounded-full translate-x-24 -translate-y-24" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/5 rounded-full -translate-x-32 translate-y-32" />
@@ -165,7 +155,6 @@ export default function Books() {
                 </ScrollReveal>
               </div>
 
-              {/* Right — Ghungroos Details */}
               <ScrollReveal variant="slideRight" delay={0.2}>
                 <div className="p-10 flex flex-col justify-center h-full">
                   <div className="flex items-center gap-2 mb-2">
@@ -186,7 +175,6 @@ export default function Books() {
                     Premium-quality Kathak ghungroos with clear resonant tone — ideal for students and performers alike. Each pair contains <strong>50 bells</strong>, hand-strung on durable leather padding for long practice sessions.
                   </p>
 
-                  {/* Stock badge */}
                   <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-8">
                     <Package className="w-5 h-5 text-amber-700 shrink-0" />
                     <div>
@@ -195,7 +183,6 @@ export default function Books() {
                     </div>
                   </div>
 
-                  {/* Price + CTA */}
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
                       <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price per Pair</p>
@@ -205,6 +192,80 @@ export default function Books() {
                       amount={1200}
                       productName="Kathak Ghungroos (Pair of 50)"
                       label="Buy Now"
+                    />
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* ─── Book Feature Card ──────────────────────────────────── */}
+        <ScrollReveal variant="fadeUp" delay={0.25}>
+          <div className="bg-brand-cream rounded-3xl shadow-2xl overflow-hidden border border-brand-maroon/10 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+              <div className="bg-gradient-to-br from-brand-maroon via-[#3d0a0e] to-[#1a0205] flex items-center justify-center p-8 md:p-12 min-h-[460px] relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full -translate-x-24 -translate-y-24" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full translate-x-32 translate-y-32" />
+
+                <ScrollReveal variant="scaleUp" delay={0.3}>
+                  <div className="relative z-10 w-full max-w-[18rem]">
+                    <div className="relative w-full aspect-[3/4] rounded-[1.4rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-brand-gold/20">
+                      <Image
+                        src={bookCover}
+                        alt="नृत्यारंभ Foundation Handbook cover"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                    <div className="mt-6 text-center text-brand-cream/80">
+                      <p className="font-serif text-2xl font-bold text-brand-gold">नृत्यारंभ — Foundation Handbook</p>
+                      <p className="font-sans text-sm mt-1 text-brand-cream/70">by Kathak Shades</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              </div>
+
+              <ScrollReveal variant="slideRight" delay={0.2}>
+                <div className="p-10 flex flex-col justify-center h-full">
+                  <h2 className="font-serif text-4xl font-bold text-brand-maroon mb-1" style={{ fontFamily: 'serif' }}>
+                    नृत्यारंभ...
+                  </h2>
+                  <p className="font-sans text-brand-black/50 text-sm italic mb-6">
+                    &ldquo;...Unfolding the Journey of Kathak&rdquo;
+                  </p>
+
+                  <p className="font-sans text-brand-black/80 text-base leading-relaxed mb-6">
+                    From the first step in Kathak to a strong foundation in technique — this book is your <em className="text-brand-maroon font-semibold">perfect companion</em>. A comprehensive Foundation Handbook crafted for every beginner and student of classical Kathak.
+                  </p>
+
+                  <div className="space-y-3 mb-8">
+                    <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                      <Info className="w-6 h-6 text-red-700" />
+                      <div>
+                        <p className="font-sans text-red-700 font-bold text-sm">1st &amp; 2nd Editions — Sold Out!</p>
+                        <p className="font-sans text-red-500/70 text-xs">Due to overwhelming demand</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                      <BookOpen className="w-6 h-6 text-green-700" />
+                      <div>
+                        <p className="font-sans text-green-700 font-bold text-sm">3rd Edition — Coming Soon!</p>
+                        <p className="font-sans text-green-600/70 text-xs">Pre-book your copy today</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                      <p className="font-sans text-brand-black/50 text-xs uppercase tracking-wider">Price</p>
+                      <p className="font-serif text-3xl font-bold text-brand-gold">₹400</p>
+                    </div>
+                    <RazorpayButton
+                      amount={400}
+                      productName="नृत्यारंभ Foundation Handbook (3rd Edition)"
+                      label="Pre-Book Now"
                     />
                   </div>
                 </div>

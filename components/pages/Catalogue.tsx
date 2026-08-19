@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Star, GraduationCap, Sparkles, Calendar, ChevronLeft, ChevronRight, MessageCircle, ImageOff, ZoomIn } from 'lucide-react';
+import { Star, GraduationCap, Sparkles, Calendar, ChevronLeft, ChevronRight, MessageCircle, ImageOff, ZoomIn, Trophy, Compass, ClipboardCheck, Camera, PartyPopper } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import ImageModal from '@/components/ImageModal';
 
@@ -43,6 +43,41 @@ const categories: Category[] = [
     icon: <Calendar className="w-6 h-6" />,
     accentColor: 'text-brand-brown',
   },
+  {
+    label: 'Student Achievements',
+    tag: 'achievements',
+    apiRoute: '/api/gallery/achievements',
+    icon: <Trophy className="w-6 h-6" />,
+    accentColor: 'text-brand-gold',
+  },
+  {
+    label: 'Learning Visits',
+    tag: 'learningvisits',
+    apiRoute: '/api/gallery/learningvisits',
+    icon: <Compass className="w-6 h-6" />,
+    accentColor: 'text-brand-maroon',
+  },
+  {
+    label: 'Parichay',
+    tag: 'parichay',
+    apiRoute: '/api/gallery/parichay',
+    icon: <ClipboardCheck className="w-6 h-6" />,
+    accentColor: 'text-brand-brown',
+  },
+  {
+    label: 'Shoots',
+    tag: 'shoots',
+    apiRoute: '/api/gallery/shoots',
+    icon: <Camera className="w-6 h-6" />,
+    accentColor: 'text-brand-gold',
+  },
+  {
+    label: 'Special Occasions',
+    tag: 'specialoccasions',
+    apiRoute: '/api/gallery/specialoccasions',
+    icon: <PartyPopper className="w-6 h-6" />,
+    accentColor: 'text-brand-maroon',
+  },
 ];
 
 function PhotoScrollRow({ category, index }: { category: Category; index: number }) {
@@ -58,7 +93,7 @@ function PhotoScrollRow({ category, index }: { category: Category; index: number
       .then((data: { photos?: string[] }) => {
         if (Array.isArray(data.photos)) setPhotos(data.photos);
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, [category.apiRoute]);
 

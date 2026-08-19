@@ -29,7 +29,7 @@ export default function Hero() {
 
 
       {/* Decorative Elements */}
-      <div className="absolute -bottom-20 -left-20 w-[40rem] h-[40rem] border-[0.5px] border-brand-gold/10 rounded-full opacity-30 pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 sm:w-[40rem] sm:h-[40rem] border-[0.5px] border-brand-gold/10 rounded-full opacity-30 pointer-events-none" />
 
 
       {/* Content */}
@@ -40,7 +40,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.1] tracking-wide mb-8">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl font-bold leading-[1.1] tracking-wide mb-8">
             <span className="text-brand-light block">Grace in Every Step</span>
             <span className="text-brand-gold block my-1">Tradition in Every Beat</span>
           </h1>
@@ -52,19 +52,19 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-5">
             <Link
               href="/classes"
-              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
+              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-3 sm:px-10 sm:py-4 rounded-[12px] font-sans font-bold text-base sm:text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
             >
               View Classes
             </Link>
             <Link
               href="/contact"
-              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
+              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-3 sm:px-10 sm:py-4 rounded-[12px] font-sans font-bold text-base sm:text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
             >
               Join Now
             </Link>
             <Link
               href="/about"
-              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-10 py-4 rounded-[12px] font-sans font-bold text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
+              className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-3 sm:px-10 sm:py-4 rounded-[12px] font-sans font-bold text-base sm:text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"
             >
               About the Guru
             </Link>
