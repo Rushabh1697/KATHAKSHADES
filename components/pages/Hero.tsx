@@ -40,16 +40,16 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl font-bold leading-[1.1] tracking-wide mb-8">
+          <h1 className="font-serif text-4xl sm:text-6xl md:text-8xl font-bold leading-[1.1] tracking-wide mb-6 sm:mb-8">
             <span className="text-brand-light block">Grace in Every Step</span>
             <span className="text-brand-gold block my-1">Tradition in Every Beat</span>
           </h1>
 
-          <p className="font-sans text-brand-cream/80 text-lg md:text-xl font-light tracking-wide mb-10 max-w-xl">
+          <p className="font-sans text-brand-cream/80 text-base sm:text-lg md:text-xl font-light tracking-wide mb-8 sm:mb-10 max-w-xl">
             Experience the elegance, grace, and heritage of Kathak at Amruta Todankar&rsquo;s Kathak Shades.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
             <Link
               href="/classes"
               className="inline-flex justify-center items-center bg-gradient-to-br from-brand-gold-light to-brand-gold-dark text-brand-black px-6 py-3 sm:px-10 sm:py-4 rounded-[12px] font-sans font-bold text-base sm:text-lg hover:shadow-[0_4px_20px_rgba(179,92,17,0.4)] transition-all transform hover:-translate-y-1 hover:scale-[1.02] shadow-md"

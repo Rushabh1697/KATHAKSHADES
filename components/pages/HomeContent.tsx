@@ -3,7 +3,7 @@
 import ScrollReveal from '@/components/ScrollReveal';
 import HomeVideo from '@/components/pages/HomeVideo';
 import { MapPin, Users, Camera, ShoppingBag, Phone, CheckCircle2, GraduationCap, Heart, Music, Star, Trophy } from 'lucide-react';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const whyChooseItems = [
   {
@@ -67,6 +67,22 @@ const exploreItems = [
 
 export default function HomeContent() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const firstChild = container.children[0] as HTMLElement;
+    if (!firstChild) return;
+    
+    // gap-5 is 20px
+    const itemWidth = firstChild.offsetWidth + 20;
+    const index = Math.round(container.scrollLeft / itemWidth);
+    
+    if (index >= 0 && index < whyChooseItems.length) {
+      setActiveIndex(index);
+    }
+  };
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -131,6 +147,7 @@ export default function HomeContent() {
           {/* Mobile: auto-scroll horizontal; sm+: grid */}
           <div 
             ref={scrollRef}
+            onScroll={handleScroll}
             className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto overflow-x-auto snap-x snap-mandatory sm:snap-none scroll-smooth pb-4 sm:pb-0"
             style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
           >
@@ -151,6 +168,18 @@ export default function HomeContent() {
                   <p className="font-sans text-brand-black/70 text-sm leading-relaxed font-light">{item.desc}</p>
                 </div>
               </ScrollReveal>
+            ))}
+          </div>
+
+          {/* Dots Indicator for Mobile */}
+          <div className="flex sm:hidden justify-center items-center gap-2 mt-2">
+            {whyChooseItems.map((_, index) => (
+              <div
+                key={index}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === activeIndex ? 'w-6 bg-brand-maroon' : 'w-2 bg-brand-gold/40'
+                }`}
+              />
             ))}
           </div>
         </div>
